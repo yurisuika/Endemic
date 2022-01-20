@@ -2,7 +2,6 @@ package com.yurisuika.endemic.block;
 
 import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
 import net.minecraft.block.*;
-import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EndemicSaplingBlock extends PlantBlock implements Fertilizable {
+public class EndemicSaplingBlock extends SaplingBlock {
 
     public static final IntProperty STAGE;
     protected static final float field_31236 = 6.0F;
@@ -23,7 +22,7 @@ public class EndemicSaplingBlock extends PlantBlock implements Fertilizable {
     private final EndemicSaplingGenerator generator;
 
     public EndemicSaplingBlock(EndemicSaplingGenerator generator, AbstractBlock.Settings settings) {
-        super(settings);
+        super(generator, settings);
         this.generator = generator;
         this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(STAGE, 0));
     }
