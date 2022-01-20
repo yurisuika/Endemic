@@ -1,0 +1,4 @@
+accessWidener v1 named
+
+accessible    method    net/minecraft/block/SaplingBlock    <init>    (Lnet/minecraft/block/sapling/SaplingGenerator;Lnet/minecraft/block/AbstractBlock$Settings;)V
+accessible    method    net/minecraft/block/Blocks    register    (Ljava/lang/String;Lnet/minecraft/block/Block;)Lnet/minecraft/block/Block;

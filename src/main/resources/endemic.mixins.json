@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.yurisuika.endemic.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "block.BlocksMixin",
+    "block.sapling.AcaciaSaplingGeneratorMixin",
+    "block.sapling.BirchSaplingGeneratorMixin",
+    "block.sapling.DarkOakSaplingGeneratorMixin",
+    "block.sapling.JungleSaplingGeneratorMixin",
+    "block.sapling.OakSaplingGeneratorMixin",
+    "block.sapling.SpruceSaplingGeneratorMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "endemic",
+  "version": "${version}",
+
+  "name": "Endemic",
+  "description": "Trees should be where they belong!",
+  "authors": [
+    "yurisuika"
+  ],
+  "contact": {
+    "homepage": "https://suikacraft.com",
+    "sources": "https://github.com/yurisuika/Endemic"
+  },
+
+  "license": "MIT",
+  "icon": "assets/endemic/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.yurisuika.endemic.Endemic"
+    ]
+  },
+  "mixins": [
+    "endemic.mixins.json"
+  ],
+
+  "accessWidener" : "endemic.accesswidener",
+
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
