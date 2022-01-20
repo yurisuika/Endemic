@@ -43,7 +43,7 @@ Stable releases of Endemic ready to be consumed by the public!
 
 #### Dependencies
 
-Branched requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)* as a dependency!
+Endemic requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)* as a dependency!
 
 #### Servers
 
