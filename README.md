@@ -2,7 +2,11 @@
 
 # <p align="center">ENDEMIC</p>
 
-Endemic is a Fabric mod that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, tall birches, pine spruces, and more!
+Endemic is a Fabric mod that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
+
+There is a degree of configurability to Endemic. Press 'g' by default to open the settings and you will find yourself upon the realism setting. You can enable or disable the mod's functionality entirely from here as well.
+
+Set the realism to Hardcore and saplings will die outside of their native biomes. Set it to Hard and they will grow into stunted shrubby trees. Or, if you prefer, set it to Easy and enjoy growing trees anywhere! Large trees will still only be able to grow in their native biomes. All saplings will die in The End and The Nether regardless of which realism setting is used if Endemic is enabled!
 
 ---
 
@@ -34,8 +38,9 @@ While you can compile from source, you can always download the latest releases r
 
 Stable releases of Endemic ready to be consumed by the public!
 
-##### NOTHING YET!!!
+##### 1.18 - [*`1.0.0`*](https://github.com/yurisuika/Endemic/releases/download/1.0.0/endemic-1.18.1-1.0.0.jar)
 
+For Fabric 1.18.1!
 
 ---
 
@@ -44,6 +49,10 @@ Stable releases of Endemic ready to be consumed by the public!
 #### Dependencies
 
 Endemic requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)* as a dependency!
+
+#### Credits
+
+Endemic's *[config](https://github.com/Minenash/TinyConfig)* is thanks to Minenash!
 
 #### Servers
 
