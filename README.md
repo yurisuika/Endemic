@@ -6,7 +6,7 @@ Endemic is a Fabric mod that allows you to grow trees endemic to their biomes wi
 
 There is a degree of configurability to Endemic. Press 'g' by default to open the settings and you will find yourself upon the realism setting. You can enable or disable the mod's functionality entirely from here as well.
 
-Set the realism to Hardcore and saplings will die outside of their native biomes. Set it to Hard and they will grow into stunted shrubby trees. Or, if you prefer, set it to Easy and enjoy growing trees anywhere! Large trees will still only be able to grow in their native biomes. All saplings will die in The End and The Nether regardless of which realism setting is used if Endemic is enabled!
+Set the realism to Hardcore and saplings will die outside of their native biomes. Set it to Realistic and they will grow into stunted shrubby trees. Or, if you prefer, set it to Simple and enjoy growing trees anywhere! Large trees will still only be able to grow in their native biomes. All saplings will die in The End and The Nether regardless of which realism setting is used if Endemic is enabled!
 
 ---
 
