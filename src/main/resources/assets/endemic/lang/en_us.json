@@ -1,0 +1,10 @@
+{
+  "endemic.tinyconfig.title": "Endemic Settings",
+  "endemic.tinyconfig.enumRealism": "Realism",
+  "endemic.tinyconfig.enumRealism.tooltip": "When a sapling is grown outside of its native biomes, what will happen?\n\nHardcore: Saplings will die!\nRealistic: Saplings will grow into stunted trees!\nSimple: Saplings will grow into full trees!",
+  "endemic.tinyconfig.enum.Realism.Hardcore": "Hardcore",
+  "endemic.tinyconfig.enum.Realism.Realistic": "Realistic",
+  "endemic.tinyconfig.enum.Realism.Simple": "Simple",
+  "endemic.tinyconfig.enable": "Enable Endemic",
+  "endemic.tinyconfig.enable.tooltip": "Enables Endemic's sapling behavior!"
+}

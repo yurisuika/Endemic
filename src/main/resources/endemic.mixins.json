@@ -5,12 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "block.BlocksMixin",
-    "block.sapling.AcaciaSaplingGeneratorMixin",
-    "block.sapling.BirchSaplingGeneratorMixin",
-    "block.sapling.DarkOakSaplingGeneratorMixin",
-    "block.sapling.JungleSaplingGeneratorMixin",
-    "block.sapling.OakSaplingGeneratorMixin",
-    "block.sapling.SpruceSaplingGeneratorMixin"
+    "world.gen.trunk.TrunkPlacerTypeInvoker"
   ],
   "client": [
   ],

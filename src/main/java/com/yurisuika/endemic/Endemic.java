@@ -1,21 +1,16 @@
 package com.yurisuika.endemic;
 
-import com.mojang.serialization.Lifecycle;
-import com.yurisuika.endemic.block.EndemicSaplingBlock;
-import com.yurisuika.endemic.world.features.tree.EndemicOakSaplingGenerator;
+import com.yurisuika.endemic.mixin.world.gen.trunk.TrunkPlacerTypeInvoker;
+import com.yurisuika.endemic.world.gen.trunk.DeadTrunkPlacer;
+import com.yurisuika.endemic.world.gen.trunk.GiantDeadTrunkPlacer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.block.sapling.OakSaplingGenerator;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
 public class Endemic implements ModInitializer {
 
@@ -23,10 +18,22 @@ public class Endemic implements ModInitializer {
 
 	public static final Logger LOGGER = LogManager.getLogger("modid");
 
+	KeyBinding keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("Settings", GLFW.GLFW_KEY_G, "Endemic"));
+
+	public static final TrunkPlacerType<DeadTrunkPlacer> DEAD_TRUNK_PLACER = TrunkPlacerTypeInvoker.callRegister("dead_trunk_placer", DeadTrunkPlacer.CODEC);
+	public static final TrunkPlacerType<GiantDeadTrunkPlacer> GIANT_DEAD_TRUNK_PLACER = TrunkPlacerTypeInvoker.callRegister("giant_dead_trunk_placer", GiantDeadTrunkPlacer.CODEC);
+
 	@Override
 	public void onInitialize() {
 
 		LOGGER.info("Loading Endemic!");
+
+		EndemicConfig.init(MOD_ID, EndemicConfig.class);
+
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			while (keyBinding.wasPressed())
+				client.setScreen(new EndemicConfig().getScreen(null));
+		});
 
 	}
 

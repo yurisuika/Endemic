@@ -1,5 +1,10 @@
 accessWidener v1 named
 
+accessible    method    net/minecraft/world/gen/stateprovider/SimpleBlockStateProvider    <init>    (Lnet/minecraft/block/BlockState;)V
 accessible    method    net/minecraft/block/SaplingBlock    <init>    (Lnet/minecraft/block/sapling/SaplingGenerator;Lnet/minecraft/block/AbstractBlock$Settings;)V
 accessible    method    net/minecraft/block/Blocks    register    (Ljava/lang/String;Lnet/minecraft/block/Block;)Lnet/minecraft/block/Block;
 accessible    field     net/minecraft/block/SaplingBlock    generator    Lnet/minecraft/block/sapling/SaplingGenerator;
+accessible    field     net/minecraft/client/gui/screen/Screen    children    Ljava/util/List;
+accessible    method    net/minecraft/world/gen/trunk/TrunkPlacerType    register    (Ljava/lang/String;Lcom/mojang/serialization/Codec;)Lnet/minecraft/world/gen/trunk/TrunkPlacerType;
+accessible    method    net/minecraft/world/gen/trunk/TrunkPlacer    fillTrunkPlacerFields    (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P3;
+accessible    method    net/minecraft/world/gen/trunk/TrunkPlacer    trySetState    (Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos$Mutable;Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)V
