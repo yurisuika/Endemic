@@ -16,7 +16,7 @@ public class Endemic implements ModInitializer {
 
 	public static final String MOD_ID = "endemic";
 
-	public static final Logger LOGGER = LogManager.getLogger("modid");
+	public static final Logger LOGGER = LogManager.getLogger("Endemic");
 
 	KeyBinding keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("Settings", GLFW.GLFW_KEY_G, "Endemic"));
 
@@ -32,7 +32,7 @@ public class Endemic implements ModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (keyBinding.wasPressed())
-				client.setScreen(new EndemicConfig().getScreen(null));
+			client.setScreen(new EndemicConfig().getScreen(null, MOD_ID));
 		});
 
 	}

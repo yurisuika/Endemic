@@ -25,30 +25,69 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
     protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
         Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
 
-        if (EndemicConfig.enable) {
-            if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Hardcore) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.DARK_FOREST)) {
-                return EndemicConfiguredFeatures.DEAD_BUSH;
+        Biome.Category category = world.getBiome(pos).getCategory();
+
+        int chance = random.nextInt(100);
+
+        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+            // VOID BIOMES
+            if (category == Biome.Category.NONE) {
+                return null;
             }
-            else if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Realistic) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.DARK_FOREST)) {
-                if (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
-                }
-                else {
+            // NETHER BIOMES
+            else if (category == Biome.Category.NETHER) {
+                if (chance < EndemicConfig.netherNormalChance) {
                     return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
                 }
+                else if (chance < EndemicConfig.netherStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.netherDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
             }
+            // END BIOMES
+            else if (category == Biome.Category.THEEND) {
+                if (chance < EndemicConfig.endNormalChance) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.endStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.endDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
+            }
+            // OVERWORLD BIOMES
             else {
-                if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID)) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
-                }
-                else {
+                // ENDEMIC BIOMES
+                if (BiomeKey.get() != BiomeKeys.DARK_FOREST) {
+                    if (chance < EndemicConfig.endemicChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
                     return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
                 }
+                // NATIVE BIOMES
+                else if (BiomeKey.get() != BiomeKeys.DARK_FOREST) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                // NONNATIVE BIOMES
+                else if (chance < EndemicConfig.overworldNormalChance) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.overworldStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.overworldDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
             }
         }
-        else {
-            return null;
-        }
+        // VANILLA
+        return null;
     }
 
     @Nullable
@@ -56,33 +95,69 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
     protected ConfiguredFeature<?, ?> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
         Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
 
-        if (EndemicConfig.enable) {
-            if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Hardcore) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.DARK_FOREST)) {
-                return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+        Biome.Category category = world.getBiome(pos).getCategory();
+
+        int chance = random.nextInt(100);
+
+        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+            // VOID BIOMES
+            if (category == Biome.Category.NONE) {
+                return null;
             }
-            if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Realistic) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.DARK_FOREST)) {
-                if (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID) {
-                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+            // NETHER BIOMES
+            else if (category == Biome.Category.NETHER) {
+                if (chance < EndemicConfig.netherNormalChance) {
+                    return TreeConfiguredFeatures.DARK_OAK;
                 }
-                else {
+                else if (chance < EndemicConfig.netherStuntedChance) {
                     return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
                 }
-            }
-            else {
-                if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID)) {
+                else if (chance < EndemicConfig.netherDeadChance) {
                     return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
                 }
+                return null;
+            }
+            // END BIOMES
+            else if (category == Biome.Category.THEEND) {
+                if (chance < EndemicConfig.endNormalChance) {
+                    return TreeConfiguredFeatures.DARK_OAK;
+                }
+                else if (chance < EndemicConfig.endStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.endDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                }
+                return null;
+            }
+            // OVERWORLD BIOMES
+            else {
+                // ENDEMIC BIOMES
+                if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                    if (chance < EndemicConfig.endemicChance) {
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    return TreeConfiguredFeatures.DARK_OAK;
+                }
+                // NATIVE BIOMES
                 else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
                     return TreeConfiguredFeatures.DARK_OAK;
                 }
-                else {
-                    return null;
+                // NONNATIVE BIOMES
+                else if (chance < EndemicConfig.overworldNormalChance) {
+                    return TreeConfiguredFeatures.DARK_OAK;
                 }
+                else if (chance < EndemicConfig.overworldStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                }
+                else if (chance < EndemicConfig.overworldDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                }
+                return null;
             }
         }
-        else {
-            return TreeConfiguredFeatures.DARK_OAK;
-        }
+        // VANILLA
+        return TreeConfiguredFeatures.DARK_OAK;
     }
 
     protected abstract @Nullable ConfiguredFeature<?, ?> getLargeTreeFeature(Random random);

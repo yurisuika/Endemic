@@ -26,55 +26,111 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
         Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
 
-        if (EndemicConfig.enable) {
-            if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Hardcore) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.JUNGLE && BiomeKey.get() != BiomeKeys.BAMBOO_JUNGLE && BiomeKey.get() != BiomeKeys.SPARSE_JUNGLE && BiomeKey.get() != BiomeKeys.SWAMP && BiomeKey.get() != BiomeKeys.DARK_FOREST && BiomeKey.get() != BiomeKeys.FOREST && BiomeKey.get() != BiomeKeys.FLOWER_FOREST && BiomeKey.get() != BiomeKeys.PLAINS && BiomeKey.get() != BiomeKeys.SUNFLOWER_PLAINS && BiomeKey.get() != BiomeKeys.RIVER && BiomeKey.get() != BiomeKeys.FROZEN_RIVER && BiomeKey.get() != BiomeKeys.OCEAN && BiomeKey.get() != BiomeKeys.COLD_OCEAN && BiomeKey.get() != BiomeKeys.FROZEN_OCEAN && BiomeKey.get() != BiomeKeys.LUKEWARM_OCEAN && BiomeKey.get() != BiomeKeys.WARM_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_COLD_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_FROZEN_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_LUKEWARM_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_OCEAN && BiomeKey.get() != BiomeKeys.MEADOW && BiomeKey.get() != BiomeKeys.WINDSWEPT_FOREST && BiomeKey.get() != BiomeKeys.WINDSWEPT_HILLS && BiomeKey.get() != BiomeKeys.WOODED_BADLANDS)) {
-                return EndemicConfiguredFeatures.DEAD_BUSH;
+        Biome.Category category = world.getBiome(pos).getCategory();
+
+        int chance = random.nextInt(100);
+
+        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+            // VOID BIOMES
+            if (category == Biome.Category.NONE) {
+                return null;
             }
-            else if (EndemicConfig.enumRealism.equals(EndemicConfig.Realism.Realistic) && BiomeKey.isPresent() && (BiomeKey.get() != BiomeKeys.JUNGLE && BiomeKey.get() != BiomeKeys.BAMBOO_JUNGLE && BiomeKey.get() != BiomeKeys.SPARSE_JUNGLE && BiomeKey.get() != BiomeKeys.SWAMP && BiomeKey.get() != BiomeKeys.DARK_FOREST && BiomeKey.get() != BiomeKeys.FOREST && BiomeKey.get() != BiomeKeys.FLOWER_FOREST && BiomeKey.get() != BiomeKeys.PLAINS && BiomeKey.get() != BiomeKeys.SUNFLOWER_PLAINS && BiomeKey.get() != BiomeKeys.RIVER && BiomeKey.get() != BiomeKeys.FROZEN_RIVER && BiomeKey.get() != BiomeKeys.OCEAN && BiomeKey.get() != BiomeKeys.COLD_OCEAN && BiomeKey.get() != BiomeKeys.FROZEN_OCEAN && BiomeKey.get() != BiomeKeys.LUKEWARM_OCEAN && BiomeKey.get() != BiomeKeys.WARM_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_COLD_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_FROZEN_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_LUKEWARM_OCEAN && BiomeKey.get() != BiomeKeys.DEEP_OCEAN && BiomeKey.get() != BiomeKeys.MEADOW && BiomeKey.get() != BiomeKeys.WINDSWEPT_FOREST && BiomeKey.get() != BiomeKeys.WINDSWEPT_HILLS && BiomeKey.get() != BiomeKeys.WOODED_BADLANDS)) {
-                if (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
-                }
-                else {
-                    return EndemicConfiguredFeatures.STUNTED_OAK;
-                }
-            }
-            else {
-                if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.NETHER_WASTES || BiomeKey.get() == BiomeKeys.BASALT_DELTAS || BiomeKey.get() == BiomeKeys.CRIMSON_FOREST || BiomeKey.get() == BiomeKeys.WARPED_FOREST || BiomeKey.get() == BiomeKeys.SOUL_SAND_VALLEY || BiomeKey.get() == BiomeKeys.THE_END || BiomeKey.get() == BiomeKeys.END_BARRENS || BiomeKey.get() == BiomeKeys.END_HIGHLANDS || BiomeKey.get() == BiomeKeys.END_MIDLANDS || BiomeKey.get() == BiomeKeys.SMALL_END_ISLANDS || BiomeKey.get() == BiomeKeys.THE_VOID)) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
-                }
-                else if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.SWAMP)) {
-                    return TreeConfiguredFeatures.SWAMP_OAK;
-                }
-                else if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.WOODED_BADLANDS)) {
-                    return TreeConfiguredFeatures.OAK;
-                }
-                else if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.JUNGLE || BiomeKey.get() == BiomeKeys.BAMBOO_JUNGLE)) {
-                    return TreeConfiguredFeatures.JUNGLE_BUSH;
-                }
-                else if (BiomeKey.isPresent() && (BiomeKey.get() == BiomeKeys.SPARSE_JUNGLE)) {
+            // NETHER BIOMES
+            else if (category == Biome.Category.NETHER) {
+                if (chance < EndemicConfig.netherNormalChance) {
                     if (random.nextInt(10) == 0) {
-                        return TreeConfiguredFeatures.FANCY_OAK;
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
                     }
-                    else {
-                        return TreeConfiguredFeatures.JUNGLE_BUSH;
-                    }
-                }
-                else if (random.nextInt(10) == 0) {
-                    return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
-                }
-                else {
                     return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                 }
+                else if (chance < EndemicConfig.netherStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_OAK;
+                }
+                else if (chance < EndemicConfig.netherDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
             }
-        }
-        else {
-            if (random.nextInt(10) == 0) {
-                return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+            // END BIOMES
+            else if (category == Biome.Category.THEEND) {
+                if (chance < EndemicConfig.endNormalChance) {
+                    if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                else if (chance < EndemicConfig.endStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_OAK;
+                }
+                else if (chance < EndemicConfig.endDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
             }
+            // OVERWORLD BIOMES
             else {
-                return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                // ENDEMIC BIOMES
+                if (category == Biome.Category.SWAMP) {
+                    if (chance < EndemicConfig.endemicChance) {
+                        return TreeConfiguredFeatures.SWAMP_OAK;
+                    }
+                    else if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                else if (category == Biome.Category.JUNGLE) {
+                    if (chance < EndemicConfig.endemicChance) {
+                        if (BiomeKey.get() == BiomeKeys.SPARSE_JUNGLE) {
+                            if (random.nextInt(10) == 0) {
+                                return TreeConfiguredFeatures.FANCY_OAK;
+                            }
+                            return TreeConfiguredFeatures.JUNGLE_BUSH;
+                        }
+                        return TreeConfiguredFeatures.JUNGLE_BUSH;
+                    }
+                    else if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                else if (BiomeKey.get() == BiomeKeys.WOODED_BADLANDS) {
+                    if (chance < EndemicConfig.endemicChance) {
+                        return TreeConfiguredFeatures.OAK;
+                    }
+                    else if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                // NATIVE BIOMES
+                else if (category == Biome.Category.OCEAN  || category == Biome.Category.RIVER || (category == Biome.Category.FOREST && BiomeKey.get() != BiomeKeys.BIRCH_FOREST && BiomeKey.get() != BiomeKeys.OLD_GROWTH_BIRCH_FOREST) || (category == Biome.Category.PLAINS && BiomeKey.get() != BiomeKeys.ICE_SPIKES && BiomeKey.get() != BiomeKeys.SNOWY_PLAINS) || BiomeKey.get() == BiomeKeys.MEADOW || category == Biome.Category.EXTREME_HILLS) {
+                    if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                // NONNATIVE BIOMES
+                else if (chance < EndemicConfig.overworldNormalChance) {
+                    if (random.nextInt(10) == 0) {
+                        return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+                    }
+                    return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
+                }
+                else if (chance < EndemicConfig.overworldStuntedChance) {
+                    return EndemicConfiguredFeatures.STUNTED_OAK;
+                }
+                else if (chance < EndemicConfig.overworldDeadChance) {
+                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                }
+                return null;
             }
         }
+        // VANILLA
+        else if (random.nextInt(10) == 0) {
+            return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
+        }
+        return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
     }
 
 }

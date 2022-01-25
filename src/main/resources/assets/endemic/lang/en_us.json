@@ -1,10 +1,38 @@
 {
-  "endemic.tinyconfig.title": "Endemic Settings",
-  "endemic.tinyconfig.enumRealism": "Realism",
-  "endemic.tinyconfig.enumRealism.tooltip": "When a sapling is grown outside of its native biomes, what will happen?\n\nHardcore: Saplings will die!\nRealistic: Saplings will grow into stunted trees!\nSimple: Saplings will grow into full trees!",
-  "endemic.tinyconfig.enum.Realism.Hardcore": "Hardcore",
-  "endemic.tinyconfig.enum.Realism.Realistic": "Realistic",
-  "endemic.tinyconfig.enum.Realism.Simple": "Simple",
-  "endemic.tinyconfig.enable": "Enable Endemic",
-  "endemic.tinyconfig.enable.tooltip": "Enables Endemic's sapling behavior!"
+  "endemic.endemicconfig.title": "Endemic Options",
+
+  "endemic.endemicconfig.enable": "Enable Endemic",
+  "endemic.endemicconfig.enable.tooltip": "Enables Endemic's sapling behavior!",
+
+  "endemic.endemicconfig.endemicDescription": "§lThe Overworld: Endemic Growth Chance",
+  "endemic.endemicconfig.endemicDescription.tooltip": "If a sapling is grown in its endemic biomes,\nthen it may grow into a endemic form.",
+  "endemic.endemicconfig.endemicChance": "Endemic Chance %",
+  "endemic.endemicconfig.endemicChance.tooltip": "Chance endemic saplings will grow into specially in The Overworld.",
+
+  "endemic.endemicconfig.overworldDescription": "§lThe Overworld: Nonnative Growth Chances",
+  "endemic.endemicconfig.overworldDescription.tooltip": "If a sapling is grown outside its native biomes,\nthen it will grow into one of these forms.\n\nFirst attempts to grow a normal tree, then a stunted tree, and then a dead tree.\n\nIf one of these values is not 100,\nthen sapling growth will be slowed down.",
+  "endemic.endemicconfig.overworldNormalChance": "Normal Chance %",
+  "endemic.endemicconfig.overworldStuntedChance": "Stunted Chance %",
+  "endemic.endemicconfig.overworldDeadChance": "Dead Chance %",
+  "endemic.endemicconfig.overworldNormalChance.tooltip": "Chance nonnative saplings will grow normally in The Overworld.",
+  "endemic.endemicconfig.overworldStuntedChance.tooltip": "Chance nonnative saplings will grow stunted in The Overworld.",
+  "endemic.endemicconfig.overworldDeadChance.tooltip": "Chance nonnative saplings will die in The Overworld.",
+
+  "endemic.endemicconfig.netherDescription": "§lThe Nether: Growth Chances",
+  "endemic.endemicconfig.netherDescription.tooltip": "If a sapling is grown in The Nether,\nthen it will grow into one of these forms.\n\nFirst attempts to grow a normal tree, then a stunted tree, and then a dead tree.\n\nIf one of these values is not 100,\nthen sapling growth will be slowed down.",
+  "endemic.endemicconfig.netherNormalChance": "Normal Chance %",
+  "endemic.endemicconfig.netherStuntedChance": "Stunted Chance %",
+  "endemic.endemicconfig.netherDeadChance": "Dead Chance %",
+  "endemic.endemicconfig.netherNormalChance.tooltip": "Chance saplings will grow normally in The Nether.",
+  "endemic.endemicconfig.netherStuntedChance.tooltip": "Chance saplings will grow stunted in The Nether.",
+  "endemic.endemicconfig.netherDeadChance.tooltip": "Chance saplings will die in The Nether.",
+
+  "endemic.endemicconfig.endDescription": "§lThe End: Growth Chances",
+  "endemic.endemicconfig.endDescription.tooltip": "If a sapling is grown in The End,\nthen it will grow into one of these forms.\n\nFirst attempts to grow a normal tree, then a stunted tree, and then a dead tree.\n\nIf one of these values is not 100,\nthen sapling growth will be slowed down.",
+  "endemic.endemicconfig.endNormalChance": "Normal Chance %",
+  "endemic.endemicconfig.endStuntedChance": "Stunted Chance %",
+  "endemic.endemicconfig.endDeadChance": "Dead Chance %",
+  "endemic.endemicconfig.endNormalChance.tooltip": "Chance saplings will grow normally in The End.",
+  "endemic.endemicconfig.endStuntedChance.tooltip": "Chance saplings will grow stunted in The End.",
+  "endemic.endemicconfig.endDeadChance.tooltip": "Chance saplings will die in The End."
 }
