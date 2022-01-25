@@ -4,9 +4,19 @@
 
 Endemic is a Fabric mod that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
 
-There is a degree of configurability to Endemic. Press 'g' by default to open the settings and you will find yourself upon the realism setting. You can enable or disable the mod's functionality entirely from here as well.
+There is a degree of configurability to Endemic. Press `g` by default to open the settings. You can enable or disable the mod's functionality entirely from here as well. Set the endemic chance high to allow saplings to grow into those endemic trees like swamp oaks and tall birches!
 
-Set the realism to Hardcore and saplings will die outside of their native biomes. Set it to Realistic and they will grow into stunted shrubby trees. Or, if you prefer, set it to Simple and enjoy growing trees anywhere! Large trees will still only be able to grow in their native biomes. All saplings will die in The End and The Nether regardless of which realism setting is used if Endemic is enabled!
+You can customize how saplings grow in The Overworld, with additional functionality for The Nether and The End! You can set each category to use either normal, stunted, or dead trees if a sapling is grown outside its native habitat. First it will try to grow a normal tree, then a stunted tree, and finally a dead tree. If it doesn't do any of these then nothing will happen, so you can set it so nonnative saplings never grow up.
+
+Endemic works mainly based on biome categories. Thus, sapling growth is not strictly limited to where you would find a tree already existing, but rather allows some spread into nonnative territory without affecting growth. While there are more specifics than just this, here is the general idea:
+- Oaks grow in temperate forests, extreme hills, and plains.
+- Spruces grow in taiga forests, extreme hills, and mountains, and snowy/frozen biomes.
+- Birches grow in temperate forests and extreme hills.
+- Jungles grow in tropical jungles.
+- Acacias grow in arid savannas.
+- Dark Oaks grow in only the dark forest biome.
+
+As well, ocean and river biomes allow you to grow trees a bit more easily outside their native habitat.
 
 ---
 
@@ -38,7 +48,7 @@ While you can compile from source, you can always download the latest releases r
 
 Stable releases of Endemic ready to be consumed by the public!
 
-##### 1.18 - [*`1.0.0`*](https://github.com/yurisuika/Endemic/releases/download/1.0.0/endemic-1.18.1-1.0.0.jar)
+##### 1.18 - [*`1.1.0`*](https://github.com/yurisuika/Endemic/releases/download/1.1.0/endemic-1.18.1-1.1.0.jar)
 
 For Fabric 1.18.1!
 
