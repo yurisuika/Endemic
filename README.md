@@ -62,7 +62,7 @@ Endemic requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabr
 
 #### Credits
 
-Endemic's *[config](https://github.com/Minenash/TinyConfig)* is thanks to Minenash!
+Endemic's *[config](https://github.com/TeamMidnightDust/MidnightLib)* is thanks to Minenash and MidnightDust!
 
 #### Servers
 
