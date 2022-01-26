@@ -48,7 +48,7 @@ While you can compile from source, you can always download the latest releases r
 
 Stable releases of Endemic ready to be consumed by the public!
 
-##### 1.18 - [*`1.1.0`*](https://github.com/yurisuika/Endemic/releases/download/1.1.0/endemic-1.18.1-1.1.0.jar)
+##### 1.18 - [*`1.1.1`*](https://github.com/yurisuika/Endemic/releases/download/1.1.1/endemic-1.18.1-1.1.1.jar)
 
 For Fabric 1.18.1!
 

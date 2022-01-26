@@ -1,11 +1,12 @@
 {
   "homepage": "https://github.com/yurisuika/Endemic",
   "1.18.1": {
+    "1.1.1": "Fixed server compatibility!",
     "1.1.0": "Added configurability for growth chances!",
     "1.0.0": "Initial release!"
   },
   "promos": {
-    "1.18.1-latest": "1.1.0",
-    "1.18.1-recommended": "1.1.0"
+    "1.18.1-latest": "1.1.1",
+    "1.18.1-recommended": "1.1.1"
   }
 }
