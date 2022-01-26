@@ -25,6 +25,9 @@
   "entrypoints": {
     "main": [
       "com.yurisuika.endemic.Endemic"
+    ],
+    "client": [
+      "com.yurisuika.endemic.EndemicClient"
     ]
   },
   "mixins": [
