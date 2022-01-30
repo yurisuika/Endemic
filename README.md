@@ -18,6 +18,8 @@ Endemic works mainly based on biome categories. Thus, sapling growth is not stri
 
 As well, ocean and river biomes allow you to grow trees a bit more easily outside their native habitat.
 
+You can also configure the sky light requirements for trees to grow (and set chances for growth type)! If the sky light level is below your set level, saplings will grow differently to your likings (depending on the preexisting biome growth settings)! Set the light level to 0 and trees will grow as without the modifier. Set it to 1 and trees will grow differently in caves! Or even set the light to 13-14 and have trees grow as shrubs when under other trees!
+
 ---
 
 ## <p align="center">DOWNLOADS</p>
@@ -48,7 +50,7 @@ While you can compile from source, you can always download the latest releases r
 
 Stable releases of Endemic ready to be consumed by the public!
 
-##### 1.18 - [*`1.1.1`*](https://github.com/yurisuika/Endemic/releases/download/1.1.1/endemic-1.18.1-1.1.1.jar)
+##### 1.18 - [*`1.2.0`*](https://github.com/yurisuika/Endemic/releases/download/1.2.0/endemic-1.18.1-1.2.0.jar)
 
 For Fabric 1.18.1!
 
