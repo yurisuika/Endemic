@@ -6,6 +6,7 @@ import com.yurisuika.endemic.world.features.EndemicConfiguredFeatures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -27,6 +28,8 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
 
         Biome.Category category = world.getBiome(pos).getCategory();
 
+        int light = world.getLightLevel(LightType.SKY, pos);
+
         int chance = random.nextInt(100);
 
         if (EndemicConfig.enable && BiomeKey.isPresent()) {
@@ -62,26 +65,88 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
             }
             // OVERWORLD BIOMES
             else {
-                // ENDEMIC BIOMES
-                if (BiomeKey.get() != BiomeKeys.DARK_FOREST) {
-                    if (chance < EndemicConfig.endemicChance) {
+                // LIGHT PASS
+                if (light >= EndemicConfig.lightLevel) {
+                    // ENDEMIC BIOMES
+                    if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                        }
                         return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
                     }
-                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    // NATIVE BIOMES
+                    else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    // NONNATIVE BIOMES
+                    else if (chance < EndemicConfig.overworldNormalChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.overworldStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.overworldDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
+                }
+                // LIGHT FAIL
+                // ENDEMIC BIOMES
+                else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                        }
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NATIVE BIOMES
-                else if (BiomeKey.get() != BiomeKeys.DARK_FOREST) {
-                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NONNATIVE BIOMES
                 else if (chance < EndemicConfig.overworldNormalChance) {
-                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 return null;
             }
@@ -97,6 +162,8 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
 
         Biome.Category category = world.getBiome(pos).getCategory();
 
+        int light = world.getLightLevel(LightType.SKY, pos);
+
         int chance = random.nextInt(100);
 
         if (EndemicConfig.enable && BiomeKey.isPresent()) {
@@ -132,26 +199,88 @@ public abstract class EndemicDarkOakSaplingGenerator extends EndemicLargeTreeSap
             }
             // OVERWORLD BIOMES
             else {
-                // ENDEMIC BIOMES
-                if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
-                    if (chance < EndemicConfig.endemicChance) {
+                // LIGHT PASS
+                if (light >= EndemicConfig.lightLevel) {
+                    // ENDEMIC BIOMES
+                    if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.DARK_OAK;
+                        }
                         return TreeConfiguredFeatures.DARK_OAK;
                     }
-                    return TreeConfiguredFeatures.DARK_OAK;
+                    // NATIVE BIOMES
+                    else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    // NONNATIVE BIOMES
+                    else if (chance < EndemicConfig.overworldNormalChance) {
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.overworldStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.overworldDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
+                }
+                // LIGHT FAIL
+                // ENDEMIC BIOMES
+                if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.DARK_OAK;
+                        }
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 // NATIVE BIOMES
                 else if (BiomeKey.get() == BiomeKeys.DARK_FOREST) {
-                    return TreeConfiguredFeatures.DARK_OAK;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 // NONNATIVE BIOMES
                 else if (chance < EndemicConfig.overworldNormalChance) {
-                    return TreeConfiguredFeatures.DARK_OAK;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return TreeConfiguredFeatures.DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_DARK_OAK;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 return null;
             }

@@ -6,6 +6,7 @@ import com.yurisuika.endemic.world.features.EndemicConfiguredFeatures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -27,6 +28,8 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
         Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
 
         Biome.Category category = world.getBiome(pos).getCategory();
+
+        int light = world.getLightLevel(LightType.SKY, pos);
 
         int chance = random.nextInt(100);
 
@@ -63,26 +66,88 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
             }
             // OVERWORLD BIOMES
             else {
-                // ENDEMIC BIOMES
-                if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_BIRCH_FOREST || BiomeKey.get() == BiomeKeys.MEADOW) {
-                    if (chance < EndemicConfig.endemicChance) {
-                        return TreeConfiguredFeatures.SUPER_BIRCH_BEES_0002;
+                // LIGHT PASS
+                if (light >= EndemicConfig.lightLevel) {
+                    // ENDEMIC BIOMES
+                    if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_BIRCH_FOREST || BiomeKey.get() == BiomeKeys.MEADOW) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SUPER_BIRCH_BEES_0002;
+                        }
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
                     }
-                    return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    // NATIVE BIOMES
+                    else if ((category == Biome.Category.FOREST && BiomeKey.get() != BiomeKeys.GROVE) || category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.OCEAN || BiomeKey.get() == BiomeKeys.DEEP_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN || BiomeKey.get() == BiomeKeys.RIVER) {
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    }
+                    // NONNATIVE BIOMES
+                    else if (chance < EndemicConfig.overworldNormalChance) {
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    }
+                    else if (chance < EndemicConfig.overworldStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    }
+                    else if (chance < EndemicConfig.overworldDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
+                }
+                // LIGHT FAIL
+                // ENDEMIC BIOMES
+                else if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_BIRCH_FOREST || BiomeKey.get() == BiomeKeys.MEADOW) {
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SUPER_BIRCH_BEES_0002;
+                        }
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NATIVE BIOMES
                 else if ((category == Biome.Category.FOREST && BiomeKey.get() != BiomeKeys.GROVE) || category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.OCEAN || BiomeKey.get() == BiomeKeys.DEEP_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN || BiomeKey.get() == BiomeKeys.RIVER) {
-                    return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NONNATIVE BIOMES
                 else if (chance < EndemicConfig.overworldNormalChance) {
-                    return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return bees ? TreeConfiguredFeatures.BIRCH_BEES_005 : TreeConfiguredFeatures.BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_BIRCH;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 return null;
             }

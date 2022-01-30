@@ -5,10 +5,21 @@
   "endemic.endemicconfig.enable": "Enable Endemic",
   "endemic.endemicconfig.enable.tooltip": "Enables Endemic's sapling behavior!",
 
+  "endemic.endemicconfig.lightDescription": "§lThe Overworld: Sky Light Growth Chance",
+  "endemic.endemicconfig.lightDescription.tooltip": "Saplings can require sky light to grow.",
+  "endemic.endemicconfig.lightLevel": "Light Level",
+  "endemic.endemicconfig.lightLevel.tooltip": "Saplings require this amount of light to grow properly.",
+  "endemic.endemicconfig.lightNormalChance": "Normal Chance %",
+  "endemic.endemicconfig.lightStuntedChance": "Stunted Chance %",
+  "endemic.endemicconfig.lightDeadChance": "Dead Chance %",
+  "endemic.endemicconfig.lightNormalChance.tooltip": "Chance saplings will grow normally below the light level.",
+  "endemic.endemicconfig.lightStuntedChance.tooltip": "Chance saplings will grow stunted below the light level.",
+  "endemic.endemicconfig.lightDeadChance.tooltip": "Chance saplings will die below the light level.",
+
   "endemic.endemicconfig.endemicDescription": "§lThe Overworld: Endemic Growth Chance",
   "endemic.endemicconfig.endemicDescription.tooltip": "If a sapling is grown in its endemic biomes,\nthen it may grow into a endemic form.",
   "endemic.endemicconfig.endemicChance": "Endemic Chance %",
-  "endemic.endemicconfig.endemicChance.tooltip": "Chance endemic saplings will grow into specially in The Overworld.",
+  "endemic.endemicconfig.endemicChance.tooltip": "Chance endemic saplings will grow into endemic forms in The Overworld.",
 
   "endemic.endemicconfig.overworldDescription": "§lThe Overworld: Nonnative Growth Chances",
   "endemic.endemicconfig.overworldDescription.tooltip": "If a sapling is grown outside its native biomes,\nthen it will grow into one of these forms.\n\nFirst attempts to grow a normal tree, then a stunted tree, and then a dead tree.\n\nIf one of these values is not 100,\nthen sapling growth will be slowed down.",

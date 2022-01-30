@@ -6,6 +6,7 @@ import com.yurisuika.endemic.world.features.EndemicConfiguredFeatures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -28,6 +29,8 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
 
         Biome.Category category = world.getBiome(pos).getCategory();
 
+        int light = world.getLightLevel(LightType.SKY, pos);
+
         int chance = random.nextInt(100);
 
         if (EndemicConfig.enable && BiomeKey.isPresent()) {
@@ -63,23 +66,82 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
             }
             // OVERWORLD BIOMES
             else {
+                // LIGHT PASS
+                if (light >= EndemicConfig.lightLevel) {
+                    // ENDEMIC BIOMES
+                    if (category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.SNOWY_PLAINS || BiomeKey.get() == BiomeKeys.FROZEN_RIVER) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SPRUCE;
+                        }
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    }
+                    // NATIVE BIOMES
+                    else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || BiomeKey.get() == BiomeKeys.GROVE || BiomeKey.get() == BiomeKeys.FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    }
+                    // NONNATIVE BIOMES
+                    else if (chance < EndemicConfig.overworldNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    }
+                    else if (chance < EndemicConfig.overworldStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.overworldDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
+                }
+                // LIGHT FAIL
                 // ENDEMIC BIOMES
                 if (category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.SNOWY_PLAINS || BiomeKey.get() == BiomeKeys.FROZEN_RIVER) {
-                    if (chance < EndemicConfig.endemicChance) {
-                        return TreeConfiguredFeatures.SPRUCE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SPRUCE;
+                        }
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
-                    return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NATIVE BIOMES
                 else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || BiomeKey.get() == BiomeKeys.GROVE || BiomeKey.get() == BiomeKeys.FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN) {
-                    return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 // NONNATIVE BIOMES
                 else if (chance < EndemicConfig.overworldNormalChance) {
-                    return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
                     return EndemicConfiguredFeatures.DEAD_BUSH;
@@ -100,6 +162,8 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
 
         Biome.Category category = world.getBiome(pos).getCategory();
 
+        int light = world.getLightLevel(LightType.SKY, pos);
+
         int chance = random.nextInt(100);
 
         if (EndemicConfig.enable && BiomeKey.isPresent()) {
@@ -135,26 +199,88 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
             }
             // OVERWORLD BIOMES
             else {
+                // LIGHT PASS
+                if (light >= EndemicConfig.lightLevel) {
+                    // ENDEMIC BIOMES
+                    if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SPRUCE;
+                        }
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    }
+                    // NATIVE BIOMES
+                    else if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_PINE_TAIGA) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    }
+                    // NONNATIVE BIOMES
+                    else if (chance < EndemicConfig.overworldNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    }
+                    else if (chance < EndemicConfig.overworldStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.overworldDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
+                }
+                // LIGHT FAIL
                 // ENDEMIC BIOMES
                 if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA) {
-                    if (chance < EndemicConfig.endemicChance) {
-                        return TreeConfiguredFeatures.SPRUCE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        if (chance < EndemicConfig.endemicChance) {
+                            return TreeConfiguredFeatures.SPRUCE;
+                        }
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
-                    return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 // NATIVE BIOMES
                 else if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_PINE_TAIGA) {
-                    return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 // NONNATIVE BIOMES
                 else if (chance < EndemicConfig.overworldNormalChance) {
-                    return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    if (chance < EndemicConfig.lightNormalChance) {
+                        return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
+                    }
+                    else if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    if (chance < EndemicConfig.lightStuntedChance) {
+                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    }
+                    else if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    if (chance < EndemicConfig.lightDeadChance) {
+                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    }
+                    return null;
                 }
                 return null;
             }

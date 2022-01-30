@@ -7,6 +7,20 @@ public class EndemicConfig extends Config {
     @Entry
     public static boolean enable = true;
 
+    @Comment public static Comment lightDescription;
+
+    @Entry(max = 15, min = 0)
+    public static int lightLevel = 7;
+
+    @Entry(max = 100, min = 0)
+    public static int lightNormalChance = 0;
+
+    @Entry(max = 100, min = 0)
+    public static int lightStuntedChance = 100;
+
+    @Entry(max = 100, min = 0)
+    public static int lightDeadChance = 100;
+
     @Comment public static Comment endemicDescription;
 
     @Entry(max = 100, min = 0)
