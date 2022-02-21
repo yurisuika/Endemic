@@ -42,18 +42,6 @@ cd ./endemic
 
 Afterwards, your compiled JAR will be in `./build/libs`.
 
-### Released Builds
-
-While you can compile from source, you can always download the latest releases right off of GitHub. Either click the links below or check the releases tab.
-
-#### Latest Builds
-
-Stable releases of Endemic ready to be consumed by the public!
-
-##### 1.18 - [*`1.2.0`*](https://github.com/yurisuika/Endemic/releases/download/1.2.0/endemic-1.18.1-1.2.0.jar)
-
-For Fabric 1.18.1!
-
 ---
 
 ## <p align="center">LINKS</p>
@@ -65,10 +53,6 @@ Endemic requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabr
 #### Credits
 
 Endemic's *[config](https://github.com/TeamMidnightDust/MidnightLib)* is thanks to Minenash and MidnightDust!
-
-#### Servers
-
-Join *`play.suikacraft.com`* to play on SuikaCraft today!
 
 #### Community
 
