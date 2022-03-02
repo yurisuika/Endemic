@@ -1,11 +1,11 @@
 package com.yurisuika.endemic.world.features.tree;
 
+import com.yurisuika.endemic.Endemic;
 import com.yurisuika.endemic.EndemicConfig;
 import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
-import com.yurisuika.endemic.world.features.EndemicConfiguredFeatures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.Random;
 
 public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator {
@@ -24,16 +23,15 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
 
     @Nullable
     @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
-        Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
-
-        Biome.Category category = world.getBiome(pos).getCategory();
+    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
+        RegistryEntry<Biome> biome = world.getBiome(pos);
+        Biome.Category category = world.getBiome(pos).value().getCategory();
 
         int light = world.getLightLevel(LightType.SKY, pos);
 
         int chance = random.nextInt(100);
 
-        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+        if (EndemicConfig.enable) {
             // VOID BIOMES
             if (category == Biome.Category.NONE) {
                 return null;
@@ -47,10 +45,10 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                     return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                 }
                 else if (chance < EndemicConfig.netherStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_OAK;
+                    return Endemic.STUNTED_OAK;
                 }
                 else if (chance < EndemicConfig.netherDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    return Endemic.DEAD_BUSH;
                 }
                 return null;
             }
@@ -63,10 +61,10 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                     return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                 }
                 else if (chance < EndemicConfig.endStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_OAK;
+                    return Endemic.STUNTED_OAK;
                 }
                 else if (chance < EndemicConfig.endDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    return Endemic.DEAD_BUSH;
                 }
                 return null;
             }
@@ -86,7 +84,7 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                     }
                     else if (category == Biome.Category.JUNGLE) {
                         if (chance < EndemicConfig.endemicChance) {
-                            if (BiomeKey.get() == BiomeKeys.SPARSE_JUNGLE) {
+                            if (biome.matchesKey(BiomeKeys.SPARSE_JUNGLE)) {
                                 if (random.nextInt(10) == 0) {
                                     return TreeConfiguredFeatures.FANCY_OAK;
                                 }
@@ -99,7 +97,7 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         }
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
-                    else if (BiomeKey.get() == BiomeKeys.WOODED_BADLANDS) {
+                    else if (biome.matchesKey(BiomeKeys.WOODED_BADLANDS)) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.OAK;
                         }
@@ -109,7 +107,7 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     // NATIVE BIOMES
-                    else if (category == Biome.Category.OCEAN  || category == Biome.Category.RIVER || (category == Biome.Category.FOREST && BiomeKey.get() != BiomeKeys.BIRCH_FOREST && BiomeKey.get() != BiomeKeys.OLD_GROWTH_BIRCH_FOREST) || (category == Biome.Category.PLAINS && BiomeKey.get() != BiomeKeys.ICE_SPIKES && BiomeKey.get() != BiomeKeys.SNOWY_PLAINS) || BiomeKey.get() == BiomeKeys.MEADOW || category == Biome.Category.EXTREME_HILLS) {
+                    else if (category == Biome.Category.OCEAN  || category == Biome.Category.RIVER || (category == Biome.Category.FOREST && !biome.matchesKey(BiomeKeys.BIRCH_FOREST) && !biome.matchesKey(BiomeKeys.OLD_GROWTH_BIRCH_FOREST)) || (category == Biome.Category.PLAINS && !biome.matchesKey(BiomeKeys.ICE_SPIKES) && !biome.matchesKey(BiomeKeys.SNOWY_PLAINS)) || biome.matchesKey(BiomeKeys.MEADOW) || category == Biome.Category.EXTREME_HILLS) {
                         if (random.nextInt(10) == 0) {
                             return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
                         }
@@ -123,10 +121,10 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.overworldStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.overworldDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
@@ -143,17 +141,17 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 else if (category == Biome.Category.JUNGLE) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         if (chance < EndemicConfig.endemicChance) {
-                            if (BiomeKey.get() == BiomeKeys.SPARSE_JUNGLE) {
+                            if (biome.matchesKey(BiomeKeys.SPARSE_JUNGLE)) {
                                 if (random.nextInt(10) == 0) {
                                     return TreeConfiguredFeatures.FANCY_OAK;
                                 }
@@ -167,14 +165,14 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
-                else if (BiomeKey.get() == BiomeKeys.WOODED_BADLANDS) {
+                else if (biome.matchesKey(BiomeKeys.WOODED_BADLANDS)) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.OAK;
@@ -185,15 +183,15 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 // NATIVE BIOMES
-                else if (category == Biome.Category.OCEAN  || category == Biome.Category.RIVER || (category == Biome.Category.FOREST && BiomeKey.get() != BiomeKeys.BIRCH_FOREST && BiomeKey.get() != BiomeKeys.OLD_GROWTH_BIRCH_FOREST) || (category == Biome.Category.PLAINS && BiomeKey.get() != BiomeKeys.ICE_SPIKES && BiomeKey.get() != BiomeKeys.SNOWY_PLAINS) || BiomeKey.get() == BiomeKeys.MEADOW || category == Biome.Category.EXTREME_HILLS) {
+                else if (category == Biome.Category.OCEAN  || category == Biome.Category.RIVER || (category == Biome.Category.FOREST && !biome.matchesKey(BiomeKeys.BIRCH_FOREST) && !biome.matchesKey(BiomeKeys.OLD_GROWTH_BIRCH_FOREST)) || (category == Biome.Category.PLAINS && !biome.matchesKey(BiomeKeys.ICE_SPIKES) && !biome.matchesKey(BiomeKeys.SNOWY_PLAINS)) || biome.matchesKey(BiomeKeys.MEADOW) || category == Biome.Category.EXTREME_HILLS) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         if (random.nextInt(10) == 0) {
                             return bees ? TreeConfiguredFeatures.FANCY_OAK_BEES_005 : TreeConfiguredFeatures.FANCY_OAK;
@@ -201,10 +199,10 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
@@ -217,25 +215,25 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
                         return bees ? TreeConfiguredFeatures.OAK_BEES_005 : TreeConfiguredFeatures.OAK;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
                     if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_OAK;
+                        return Endemic.STUNTED_OAK;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
                     if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }

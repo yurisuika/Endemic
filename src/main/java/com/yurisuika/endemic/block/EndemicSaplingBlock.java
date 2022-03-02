@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class EndemicSaplingBlock extends SaplingBlock {
-
     public static final IntProperty STAGE;
     protected static final float field_31236 = 6.0F;
     protected static final VoxelShape SHAPE;

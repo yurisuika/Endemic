@@ -9,13 +9,13 @@
     "yurisuika"
   ],
   "contributors": [
-    "Daomephsta",
     "Minenash",
     "MidnightDust"
   ],
   "contact": {
     "homepage": "https://suikacraft.com",
-    "sources": "https://github.com/yurisuika/Endemic"
+    "sources": "https://github.com/yurisuika/Endemic",
+    "issues": "https://github.com/yurisuika/Endemic/issues"
   },
 
   "license": "GNU General Public License 3.0",

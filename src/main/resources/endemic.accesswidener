@@ -8,3 +8,4 @@ accessible    field     net/minecraft/client/gui/screen/Screen    children    Lj
 accessible    method    net/minecraft/world/gen/trunk/TrunkPlacerType    register    (Ljava/lang/String;Lcom/mojang/serialization/Codec;)Lnet/minecraft/world/gen/trunk/TrunkPlacerType;
 accessible    method    net/minecraft/world/gen/trunk/TrunkPlacer    fillTrunkPlacerFields    (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P3;
 accessible    method    net/minecraft/world/gen/trunk/TrunkPlacer    trySetState    (Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos$Mutable;Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)V
+accessible    method    net/minecraft/world/biome/Biome    getCategory    ()Lnet/minecraft/world/biome/Biome$Category;

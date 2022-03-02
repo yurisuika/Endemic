@@ -1,11 +1,11 @@
 package com.yurisuika.endemic.world.features.tree;
 
+import com.yurisuika.endemic.Endemic;
 import com.yurisuika.endemic.EndemicConfig;
 import com.yurisuika.endemic.block.sapling.EndemicLargeTreeSaplingGenerator;
-import com.yurisuika.endemic.world.features.EndemicConfiguredFeatures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.Random;
 
 public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSaplingGenerator {
@@ -24,16 +23,15 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
 
     @Nullable
     @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
-        Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
-
-        Biome.Category category = world.getBiome(pos).getCategory();
+    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
+        RegistryEntry<Biome> biome = world.getBiome(pos);
+        Biome.Category category = world.getBiome(pos).value().getCategory();
 
         int light = world.getLightLevel(LightType.SKY, pos);
 
         int chance = random.nextInt(100);
 
-        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+        if (EndemicConfig.enable) {
             // VOID BIOMES
             if (category == Biome.Category.NONE) {
                 return null;
@@ -44,10 +42,10 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                     return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                 }
                 else if (chance < EndemicConfig.netherStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    return Endemic.STUNTED_SPRUCE;
                 }
                 else if (chance < EndemicConfig.netherDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    return Endemic.DEAD_BUSH;
                 }
                 return null;
             }
@@ -57,10 +55,10 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                     return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                 }
                 else if (chance < EndemicConfig.endStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                    return Endemic.STUNTED_SPRUCE;
                 }
                 else if (chance < EndemicConfig.endDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    return Endemic.DEAD_BUSH;
                 }
                 return null;
             }
@@ -69,14 +67,14 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                 // LIGHT PASS
                 if (light >= EndemicConfig.lightLevel) {
                     // ENDEMIC BIOMES
-                    if (category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.SNOWY_PLAINS || BiomeKey.get() == BiomeKeys.FROZEN_RIVER) {
+                    if (category == Biome.Category.EXTREME_HILLS || biome.matchesKey(BiomeKeys.SNOWY_PLAINS) || biome.matchesKey(BiomeKeys.FROZEN_RIVER)) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.SPRUCE;
                         }
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     // NATIVE BIOMES
-                    else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || BiomeKey.get() == BiomeKeys.GROVE || BiomeKey.get() == BiomeKeys.FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN) {
+                    else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || biome.matchesKey(BiomeKeys.GROVE) || biome.matchesKey(BiomeKeys.FROZEN_OCEAN) || biome.matchesKey(BiomeKeys.DEEP_FROZEN_OCEAN) || biome.matchesKey(BiomeKeys.COLD_OCEAN) || biome.matchesKey(BiomeKeys.DEEP_COLD_OCEAN)) {
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     // NONNATIVE BIOMES
@@ -84,16 +82,16 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     else if (chance < EndemicConfig.overworldStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                        return Endemic.STUNTED_SPRUCE;
                     }
                     else if (chance < EndemicConfig.overworldDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 // LIGHT FAIL
                 // ENDEMIC BIOMES
-                if (category == Biome.Category.EXTREME_HILLS || BiomeKey.get() == BiomeKeys.SNOWY_PLAINS || BiomeKey.get() == BiomeKeys.FROZEN_RIVER) {
+                if (category == Biome.Category.EXTREME_HILLS || biome.matchesKey(BiomeKeys.SNOWY_PLAINS) || biome.matchesKey(BiomeKeys.FROZEN_RIVER)) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.SPRUCE;
@@ -101,23 +99,23 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                        return Endemic.STUNTED_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 // NATIVE BIOMES
-                else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || BiomeKey.get() == BiomeKeys.GROVE || BiomeKey.get() == BiomeKeys.FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_FROZEN_OCEAN || BiomeKey.get() == BiomeKeys.COLD_OCEAN || BiomeKey.get() == BiomeKeys.DEEP_COLD_OCEAN) {
+                else if (category == Biome.Category.TAIGA || category == Biome.Category.MOUNTAIN || biome.matchesKey(BiomeKeys.GROVE) || biome.matchesKey(BiomeKeys.FROZEN_OCEAN) || biome.matchesKey(BiomeKeys.DEEP_FROZEN_OCEAN) || biome.matchesKey(BiomeKeys.COLD_OCEAN) || biome.matchesKey(BiomeKeys.DEEP_COLD_OCEAN)) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                        return Endemic.STUNTED_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
@@ -127,24 +125,24 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.SPRUCE : TreeConfiguredFeatures.PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                        return Endemic.STUNTED_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
                     if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_SPRUCE;
+                        return Endemic.STUNTED_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_BUSH;
+                        return Endemic.DEAD_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_BUSH;
+                    return Endemic.DEAD_BUSH;
                 }
                 return null;
             }
@@ -157,16 +155,15 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
 
     @Nullable
     @Override
-    protected ConfiguredFeature<?, ?> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
-        Optional<RegistryKey<Biome>> BiomeKey = world.getBiomeKey(pos);
-
-        Biome.Category category = world.getBiome(pos).getCategory();
+    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
+        RegistryEntry<Biome> biome = world.getBiome(pos);
+        Biome.Category category = world.getBiome(pos).value().getCategory();
 
         int light = world.getLightLevel(LightType.SKY, pos);
 
         int chance = random.nextInt(100);
 
-        if (EndemicConfig.enable && BiomeKey.isPresent()) {
+        if (EndemicConfig.enable) {
             // VOID BIOMES
             if (category == Biome.Category.NONE) {
                 return null;
@@ -177,10 +174,10 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                     return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                 }
                 else if (chance < EndemicConfig.netherStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    return Endemic.STUNTED_MEGA_SPRUCE;
                 }
                 else if (chance < EndemicConfig.netherDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    return Endemic.DEAD_MEGA_BUSH;
                 }
                 return null;
             }
@@ -190,10 +187,10 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                     return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                 }
                 else if (chance < EndemicConfig.endStuntedChance) {
-                    return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                    return Endemic.STUNTED_MEGA_SPRUCE;
                 }
                 else if (chance < EndemicConfig.endDeadChance) {
-                    return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                    return Endemic.DEAD_MEGA_BUSH;
                 }
                 return null;
             }
@@ -202,14 +199,14 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                 // LIGHT PASS
                 if (light >= EndemicConfig.lightLevel) {
                     // ENDEMIC BIOMES
-                    if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA) {
+                    if (biome.matchesKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA)) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.SPRUCE;
                         }
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     // NATIVE BIOMES
-                    else if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_PINE_TAIGA) {
+                    else if (biome.matchesKey(BiomeKeys.OLD_GROWTH_PINE_TAIGA)) {
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     // NONNATIVE BIOMES
@@ -217,16 +214,16 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     else if (chance < EndemicConfig.overworldStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                        return Endemic.STUNTED_MEGA_SPRUCE;
                     }
                     else if (chance < EndemicConfig.overworldDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }
                 // LIGHT FAIL
                 // ENDEMIC BIOMES
-                if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA) {
+                if (biome.matchesKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA)) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         if (chance < EndemicConfig.endemicChance) {
                             return TreeConfiguredFeatures.SPRUCE;
@@ -234,23 +231,23 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                        return Endemic.STUNTED_MEGA_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }
                 // NATIVE BIOMES
-                else if (BiomeKey.get() == BiomeKeys.OLD_GROWTH_PINE_TAIGA) {
+                else if (biome.matchesKey(BiomeKeys.OLD_GROWTH_PINE_TAIGA)) {
                     if (chance < EndemicConfig.lightNormalChance) {
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                        return Endemic.STUNTED_MEGA_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }
@@ -260,25 +257,25 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                         return random.nextBoolean() ? TreeConfiguredFeatures.MEGA_SPRUCE : TreeConfiguredFeatures.MEGA_PINE;
                     }
                     else if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                        return Endemic.STUNTED_MEGA_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldStuntedChance) {
                     if (chance < EndemicConfig.lightStuntedChance) {
-                        return EndemicConfiguredFeatures.STUNTED_MEGA_SPRUCE;
+                        return Endemic.STUNTED_MEGA_SPRUCE;
                     }
                     else if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }
                 else if (chance < EndemicConfig.overworldDeadChance) {
                     if (chance < EndemicConfig.lightDeadChance) {
-                        return EndemicConfiguredFeatures.DEAD_MEGA_BUSH;
+                        return Endemic.DEAD_MEGA_BUSH;
                     }
                     return null;
                 }

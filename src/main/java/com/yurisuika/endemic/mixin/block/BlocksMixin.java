@@ -5,6 +5,7 @@ import com.yurisuika.endemic.world.features.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,9 +25,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedOak(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicOakSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -41,9 +41,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedSpruce(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicSpruceSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
@@ -62,9 +61,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedBirch(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicBirchSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -79,9 +77,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedJungle(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicJungleSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
@@ -100,9 +97,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedAcacia(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicAcaciaSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -117,9 +113,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedDarkOak(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicDarkOakSaplingGenerator() {
-            @Nullable
             @Override
-            protected ConfiguredFeature<?, ?> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
