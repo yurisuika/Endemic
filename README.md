@@ -1,8 +1,6 @@
 <p align="center"><img src="https://github.com/yurisuika/Endemic/blob/Fabric-1.18/src/main/resources/assets/endemic/icon.png?raw=true" width="256" height="256"></p>
 
-# <p align="center">ENDEMIC</p>
-
-Endemic is a Fabric mod that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
+**Endemic** is a Fabric mod for Minecraft that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
 
 There is a degree of configurability to Endemic. Press `g` by default to open the settings. You can enable or disable the mod's functionality entirely from here as well. Set the endemic chance high to allow saplings to grow into those endemic trees like swamp oaks and tall birches!
 
@@ -20,15 +18,9 @@ As well, ocean and river biomes allow you to grow trees a bit more easily outsid
 
 You can also configure the sky light requirements for trees to grow (and set chances for growth type)! If the sky light level is below your set level, saplings will grow differently to your likings (depending on the preexisting biome growth settings)! Set the light level to 0 and trees will grow as without the modifier. Set it to 1 and trees will grow differently in caves! Or even set the light to 13-14 and have trees grow as shrubs when under other trees!
 
----
-
-## <p align="center">DOWNLOADS</p>
-
-### Source Building
+#### Compiling
 
 To build from source you will need have JDK 17 to compile and, optionally, Git to clone the repository. Otherwise, download the archive and just run `./gradlew build` from the root project folder.
-
-#### Commands
 
 When using Git, just choose a directory you wish to keep the project root folder in, decide which branch you wish to compile, and then run these commands:
 
@@ -42,13 +34,13 @@ cd ./endemic
 
 Afterwards, your compiled JAR will be in `./build/libs`.
 
----
+#### Releases
 
-## <p align="center">LINKS</p>
+Don't want to bother building from source? Get the releases *[right here](https://github.com/yurisuika/Endemic/releases)* now!
 
-#### Dependencies
+#### Repositories
 
-Endemic requires *[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)* as a dependency!
+You can find Compost on both *[CurseForge](https://www.curseforge.com/minecraft/mc-mods/endemic)* and *[Modrinth](https://modrinth.com/mod/endemic)*!
 
 #### Credits
 
