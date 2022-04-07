@@ -40,7 +40,7 @@ Don't want to bother building from source? Get the releases *[right here](https:
 
 #### Repositories
 
-You can find Compost on both *[CurseForge](https://www.curseforge.com/minecraft/mc-mods/endemic)* and *[Modrinth](https://modrinth.com/mod/endemic)*!
+You can find Endemic on both *[CurseForge](https://www.curseforge.com/minecraft/mc-mods/endemic)* and *[Modrinth](https://modrinth.com/mod/endemic)*!
 
 #### Credits
 
