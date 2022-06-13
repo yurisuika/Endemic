@@ -1,20 +1,15 @@
 package com.yurisuika.endemic.world.features.tree;
 
 import com.yurisuika.endemic.Endemic;
-import com.yurisuika.endemic.EndemicConfig;
 import com.yurisuika.endemic.block.sapling.EndemicLargeTreeSaplingGenerator;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.LightType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public abstract class EndemicJungleSaplingGenerator extends EndemicLargeTreeSaplingGenerator {
 
@@ -24,268 +19,79 @@ public abstract class EndemicJungleSaplingGenerator extends EndemicLargeTreeSapl
     @Nullable
     @Override
     protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
-        RegistryEntry<Biome> biome = world.getBiome(pos);
-        Biome.Category category = world.getBiome(pos).value().getCategory();
-
         int light = world.getLightLevel(LightType.SKY, pos);
 
-        int chance = random.nextInt(100);
-
-        if (EndemicConfig.enable) {
-            // VOID BIOMES
-            if (category == Biome.Category.NONE) {
-                return null;
-            }
-            // NETHER BIOMES
-            else if (category == Biome.Category.NETHER) {
-                if (chance < EndemicConfig.netherNormalChance) {
-                    return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                }
-                else if (chance < EndemicConfig.netherStuntedChance) {
-                    return Endemic.STUNTED_JUNGLE;
-                }
-                else if (chance < EndemicConfig.netherDeadChance) {
-                    return Endemic.DEAD_BUSH;
-                }
-                return null;
-            }
-            // END BIOMES
-            else if (category == Biome.Category.THEEND) {
-                if (chance < EndemicConfig.endNormalChance) {
-                    return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                }
-                else if (chance < EndemicConfig.endStuntedChance) {
-                    return Endemic.STUNTED_JUNGLE;
-                }
-                else if (chance < EndemicConfig.endDeadChance) {
-                    return Endemic.DEAD_BUSH;
-                }
-                return null;
-            }
-            // OVERWORLD BIOMES
-            else {
-                // LIGHT PASS
-                if (light >= EndemicConfig.lightLevel) {
-                    // ENDEMIC BIOMES
-                    if (category == Biome.Category.JUNGLE) {
-                        if (chance < EndemicConfig.endemicChance) {
-                            return TreeConfiguredFeatures.JUNGLE_TREE;
-                        }
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    // NATIVE BIOMES
-                    else if (biome.matchesKey(BiomeKeys.WARM_OCEAN)) {
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    // NONNATIVE BIOMES
-                    else if (chance < EndemicConfig.overworldNormalChance) {
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    else if (chance < EndemicConfig.overworldStuntedChance) {
-                        return Endemic.STUNTED_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.overworldDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                // LIGHT FAIL
-                // ENDEMIC BIOMES
-                if (category == Biome.Category.JUNGLE) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        if (chance < EndemicConfig.endemicChance) {
-                            return TreeConfiguredFeatures.JUNGLE_TREE;
-                        }
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                // NATIVE BIOMES
-                else if (biome.matchesKey(BiomeKeys.WARM_OCEAN)) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                // NONNATIVE BIOMES
-                else if (chance < EndemicConfig.overworldNormalChance) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                else if (chance < EndemicConfig.overworldStuntedChance) {
-                    if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                else if (chance < EndemicConfig.overworldDeadChance) {
-                    if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_BUSH;
-                    }
-                    return null;
-                }
-                return null;
-            }
+        // ENDEMIC (VINED JUNGLE)
+        if(world.getBiome(pos).isIn(Endemic.JUNGLE_ENDEMIC)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.JUNGLE_ENDEMIC_FULL;
+                case 11, 10, 9, 8 -> Endemic.JUNGLE_ENDEMIC_LARGE;
+                case 7, 6, 5, 4 -> Endemic.JUNGLE_ENDEMIC_MEDIUM;
+                default -> Endemic.JUNGLE_ENDEMIC_SMALL;
+            };
         }
-        // VANILLA
-        return TreeConfiguredFeatures.JUNGLE_TREE_NO_VINE;
+        // NATIVE (JUNGLE)
+        else if(world.getBiome(pos).isIn(Endemic.JUNGLE_NATIVE)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.JUNGLE_NATIVE_FULL;
+                case 11, 10, 9, 8 -> Endemic.JUNGLE_NATIVE_LARGE;
+                case 7, 6, 5, 4 -> Endemic.JUNGLE_NATIVE_MEDIUM;
+                default -> Endemic.JUNGLE_NATIVE_SMALL;
+            };
+        }
+        // NONNATIVE
+        else if(world.getBiome(pos).isIn(Endemic.JUNGLE_NONNATIVE)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.JUNGLE_NONNATIVE_FULL;
+                case 11, 10, 9, 8 -> Endemic.JUNGLE_NONNATIVE_LARGE;
+                case 7, 6, 5, 4 -> Endemic.JUNGLE_NONNATIVE_MEDIUM;
+                default -> Endemic.JUNGLE_NONNATIVE_SMALL;
+            };
+        }
+        // DEAD
+        else {
+            return Endemic.DEAD_BUSH;
+        }
     }
 
-    @Nullable
     @Override
-    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
-        RegistryEntry<Biome> biome = world.getBiome(pos);
-        Biome.Category category = world.getBiome(pos).value().getCategory();
-
+    protected @Nullable RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
         int light = world.getLightLevel(LightType.SKY, pos);
 
-        int chance = random.nextInt(100);
-
-        if (EndemicConfig.enable) {
-            // VOID BIOMES
-            if (category == Biome.Category.NONE) {
-                return null;
-            }
-            // NETHER BIOMES
-            else if (category == Biome.Category.NETHER) {
-                if (chance < EndemicConfig.netherNormalChance) {
-                    return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                }
-                else if (chance < EndemicConfig.netherStuntedChance) {
-                    return Endemic.STUNTED_MEGA_JUNGLE;
-                }
-                else if (chance < EndemicConfig.netherDeadChance) {
-                    return Endemic.DEAD_MEGA_BUSH;
-                }
-                return null;
-            }
-            // END BIOMES
-            else if (category == Biome.Category.THEEND) {
-                if (chance < EndemicConfig.endNormalChance) {
-                    return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                }
-                else if (chance < EndemicConfig.endStuntedChance) {
-                    return Endemic.STUNTED_MEGA_JUNGLE;
-                }
-                else if (chance < EndemicConfig.endDeadChance) {
-                    return Endemic.DEAD_MEGA_BUSH;
-                }
-                return null;
-            }
-            // OVERWORLD BIOMES
-            else {
-                // LIGHT PASS
-                if (light >= EndemicConfig.lightLevel) {
-                    // ENDEMIC BIOMES
-                    if (category == Biome.Category.JUNGLE) {
-                        if (chance < EndemicConfig.endemicChance) {
-                            return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                        }
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    // NATIVE BIOMES
-                    else if (biome.matchesKey(BiomeKeys.WARM_OCEAN)) {
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    // NONNATIVE BIOMES
-                    else if (chance < EndemicConfig.overworldNormalChance) {
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    else if (chance < EndemicConfig.overworldStuntedChance) {
-                        return Endemic.STUNTED_MEGA_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.overworldDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                // LIGHT FAIL
-                // ENDEMIC BIOMES
-                if (category == Biome.Category.JUNGLE) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        if (chance < EndemicConfig.endemicChance) {
-                            return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                        }
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_MEGA_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                // NATIVE BIOMES
-                else if (biome.matchesKey(BiomeKeys.WARM_OCEAN)) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_MEGA_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                // NONNATIVE BIOMES
-                else if (chance < EndemicConfig.overworldNormalChance) {
-                    if (chance < EndemicConfig.lightNormalChance) {
-                        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
-                    }
-                    else if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_MEGA_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                else if (chance < EndemicConfig.overworldStuntedChance) {
-                    if (chance < EndemicConfig.lightStuntedChance) {
-                        return Endemic.STUNTED_MEGA_JUNGLE;
-                    }
-                    else if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                else if (chance < EndemicConfig.overworldDeadChance) {
-                    if (chance < EndemicConfig.lightDeadChance) {
-                        return Endemic.DEAD_MEGA_BUSH;
-                    }
-                    return null;
-                }
-                return null;
-            }
+        // ENDEMIC (VINED GIANT JUNGLE)
+        if(world.getBiome(pos).isIn(Endemic.GIANT_JUNGLE_ENDEMIC)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.GIANT_JUNGLE_ENDEMIC_FULL;
+                case 11, 10, 9, 8 -> Endemic.GIANT_JUNGLE_ENDEMIC_LARGE;
+                case 7, 6, 5, 4 -> Endemic.GIANT_JUNGLE_ENDEMIC_MEDIUM;
+                default -> Endemic.GIANT_JUNGLE_ENDEMIC_SMALL;
+            };
         }
-        // VANILLA
-        return TreeConfiguredFeatures.MEGA_JUNGLE_TREE;
+        // NATIVE (VINED GIANT JUNGLE)
+        else if(world.getBiome(pos).isIn(Endemic.GIANT_JUNGLE_NATIVE)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.GIANT_JUNGLE_NATIVE_FULL;
+                case 11, 10, 9, 8 -> Endemic.GIANT_JUNGLE_NATIVE_LARGE;
+                case 7, 6, 5, 4 -> Endemic.GIANT_JUNGLE_NATIVE_MEDIUM;
+                default -> Endemic.GIANT_JUNGLE_NATIVE_SMALL;
+            };
+        }
+        // NONNATIVE
+        else if(world.getBiome(pos).isIn(Endemic.GIANT_JUNGLE_NONNATIVE)) {
+            return switch (light) {
+                case 15, 14, 13, 12 -> Endemic.GIANT_JUNGLE_NONNATIVE_FULL;
+                case 11, 10, 9, 8 -> Endemic.GIANT_JUNGLE_NONNATIVE_LARGE;
+                case 7, 6, 5, 4 -> Endemic.GIANT_JUNGLE_NONNATIVE_MEDIUM;
+                default -> Endemic.GIANT_JUNGLE_NONNATIVE_SMALL;
+            };
+        }
+        // DEAD
+        else {
+            return Endemic.GIANT_DEAD_BUSH;
+        }
     }
 
-    protected abstract @Nullable ConfiguredFeature<?, ?> getLargeTreeFeature(Random random);
+    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees);
+
+    protected abstract @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random);
 }

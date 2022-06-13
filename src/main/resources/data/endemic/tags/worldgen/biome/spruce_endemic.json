@@ -1,0 +1,17 @@
+{
+  "values": [
+    "minecraft:deep_frozen_ocean",
+    "minecraft:frozen_ocean",
+    "minecraft:deep_cold_ocean",
+    "minecraft:cold_ocean",
+    "minecraft:snowy_slopes",
+    "minecraft:grove",
+    "minecraft:snowy_taiga",
+    "minecraft:taiga",
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:jagged_peaks",
+    "minecraft:stony_peaks",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:frozen_peaks"
+  ]
+}

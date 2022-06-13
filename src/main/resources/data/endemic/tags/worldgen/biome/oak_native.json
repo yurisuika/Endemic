@@ -1,0 +1,24 @@
+{
+  "values": [
+    "minecraft:deep_frozen_ocean",
+    "minecraft:frozen_ocean",
+    "minecraft:deep_cold_ocean",
+    "minecraft:cold_ocean",
+    "minecraft:deep_ocean",
+    "minecraft:ocean",
+    "minecraft:deep_lukewarm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:warm_ocean",
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "minecraft:windswept_gravelly_hills",
+    "minecraft:grove",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_forest",
+    "minecraft:plains",
+    "minecraft:meadow",
+    "minecraft:forest",
+    "minecraft:flower_forest",
+    "minecraft:wooded_badlands"
+  ]
+}

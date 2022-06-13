@@ -1,15 +1,16 @@
 package com.yurisuika.endemic.block.sapling;
 
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class EndemicLargeTreeSaplingGenerator extends EndemicSaplingGenerator {
@@ -29,7 +30,10 @@ public abstract class EndemicLargeTreeSaplingGenerator extends EndemicSaplingGen
     }
 
     @Nullable
-    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos);
+    protected abstract RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos);
+
+    @Nullable
+    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random);
 
     public boolean generateLargeTree(ServerWorld world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random, int x, int z) {
         RegistryEntry<? extends ConfiguredFeature<?, ?>> registryEntry = this.getLargeTreeFeature(random, world, pos);

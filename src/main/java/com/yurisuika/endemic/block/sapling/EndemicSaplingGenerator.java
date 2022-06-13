@@ -1,19 +1,17 @@
 package com.yurisuika.endemic.block.sapling;
 
+import java.util.Iterator;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Iterator;
-import java.util.Random;
 
 public abstract class EndemicSaplingGenerator extends SaplingGenerator {
 
@@ -29,8 +27,13 @@ public abstract class EndemicSaplingGenerator extends SaplingGenerator {
             return false;
         } else {
             ConfiguredFeature<?, ?> configuredFeature = (ConfiguredFeature)registryEntry.value();
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
+            BlockState blockState = world.getFluidState(pos).getBlockState();
+            world.setBlockState(pos, blockState, 4);
             if (configuredFeature.generate(world, chunkGenerator, random, pos)) {
+                if (world.getBlockState(pos) == blockState) {
+                    world.updateListeners(pos, state, blockState, 2);
+                }
+
                 return true;
             } else {
                 world.setBlockState(pos, state, 4);

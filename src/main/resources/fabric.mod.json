@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Endemic",
-  "description": "Trees should be where they belong!",
+  "description": "Trees grow based on biome and luminance!",
   "authors": [
     "yurisuika"
   ],
@@ -25,9 +25,6 @@
   "entrypoints": {
     "main": [
       "com.yurisuika.endemic.Endemic"
-    ],
-    "client": [
-      "com.yurisuika.endemic.EndemicClient"
     ]
   },
   "mixins": [
@@ -37,9 +34,9 @@
   "accessWidener" : "endemic.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.11.6",
+    "fabricloader": ">=0.12.0",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17"
   },
   "suggests": {

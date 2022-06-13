@@ -5,13 +5,12 @@ import com.yurisuika.endemic.world.features.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
-
-import java.util.Random;
 
 @Mixin(Blocks.class)
 public class BlocksMixin {
@@ -25,8 +24,9 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedOak(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicOakSaplingGenerator() {
+            @Nullable
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(net.minecraft.util.math.random.Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -46,7 +46,7 @@ public class BlocksMixin {
                 return null;
             }
             @Override
-            protected @Nullable ConfiguredFeature<?, ?> getLargeTreeFeature(Random random) {
+            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -82,7 +82,7 @@ public class BlocksMixin {
                 return null;
             }
             @Override
-            protected @Nullable ConfiguredFeature<?, ?> getLargeTreeFeature(Random random) {
+            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -118,7 +118,7 @@ public class BlocksMixin {
                 return null;
             }
             @Override
-            protected @Nullable ConfiguredFeature<?, ?> getLargeTreeFeature(Random random) {
+            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
