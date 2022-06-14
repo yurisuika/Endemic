@@ -6,12 +6,10 @@
     "minecraft:ocean",
     "minecraft:windswept_hills",
     "minecraft:windswept_forest",
-    "minecraft:meadow",
     "minecraft:forest",
     "minecraft:flower_forest",
     "minecraft:birch_forest",
     "minecraft:dark_forest",
-    "minecraft:river",
-    "minecraft:old_growth_birch_forest"
+    "minecraft:river"
   ]
 }

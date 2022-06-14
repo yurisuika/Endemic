@@ -21,7 +21,7 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
     protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
         int light = world.getLightLevel(LightType.SKY, pos);
 
-        // ENDEMIC (PINE)
+        // ENDEMIC (SPRUCE)
         if(world.getBiome(pos).isIn(Endemic.SPRUCE_ENDEMIC)) {
             return switch (light) {
                 case 15, 14, 13, 12 -> Endemic.SPRUCE_ENDEMIC_FULL;
@@ -63,7 +63,7 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
     protected @Nullable RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getLargeTreeFeature(Random random, ServerWorld world, BlockPos pos) {
         int light = world.getLightLevel(LightType.SKY, pos);
 
-        // ENDEMIC (GIANT PINE)
+        // ENDEMIC (GIANT SPRUCE)
         if(world.getBiome(pos).isIn(Endemic.GIANT_SPRUCE_ENDEMIC)) {
             return switch (light) {
                 case 15, 14, 13, 12 -> Endemic.GIANT_SPRUCE_ENDEMIC_FULL;
@@ -72,14 +72,9 @@ public abstract class EndemicSpruceSaplingGenerator extends EndemicLargeTreeSapl
                 default -> Endemic.GIANT_SPRUCE_ENDEMIC_SMALL;
             };
         }
-        // NATIVE (GIANT SPRUCE + GIANT PINE)
+        // NATIVE (GIANT PINE)
         else if(world.getBiome(pos).isIn(Endemic.GIANT_SPRUCE_NATIVE)) {
-            return random.nextBoolean() ? switch (light) {
-                case 15, 14, 13, 12 -> Endemic.GIANT_SPRUCE_ENDEMIC_FULL;
-                case 11, 10, 9, 8 -> Endemic.GIANT_SPRUCE_ENDEMIC_LARGE;
-                case 7, 6, 5, 4 -> Endemic.GIANT_SPRUCE_ENDEMIC_MEDIUM;
-                default -> Endemic.GIANT_SPRUCE_ENDEMIC_SMALL;
-            } : switch (light) {
+            return switch (light) {
                 case 15, 14, 13, 12 -> Endemic.GIANT_SPRUCE_NATIVE_FULL;
                 case 11, 10, 9, 8 -> Endemic.GIANT_SPRUCE_NATIVE_LARGE;
                 case 7, 6, 5, 4 -> Endemic.GIANT_SPRUCE_NATIVE_MEDIUM;

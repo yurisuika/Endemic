@@ -35,9 +35,6 @@ import org.slf4j.LoggerFactory;
 import java.util.OptionalInt;
 
 public class Endemic implements ModInitializer {
-
-	public static final String MOD_ID = "endemic";
-
 	public static final Logger LOGGER = LoggerFactory.getLogger("endemic");
 
 	public static final TrunkPlacerType<DeadTrunkPlacer> DEAD_TRUNK_PLACER = TrunkPlacerTypeInvoker.callRegister("dead_trunk_placer", DeadTrunkPlacer.CODEC);
@@ -97,7 +94,7 @@ public class Endemic implements ModInitializer {
 					new TwoLayersFeatureSize(1, 0, 1)
 			)).ignoreVines().decorators(ImmutableList.of(new LeavesVineTreeDecorator(0.25F))).build());
 
-	// OAK NATIVE
+	// OAK NATIVE (OAK)
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_FULL = ConfiguredFeatures.register("oak_native_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
@@ -201,42 +198,8 @@ public class Endemic implements ModInitializer {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// SPRUCE ENDEMIC (PINE)
+	// SPRUCE ENDEMIC (SPRUCE)
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_FULL = ConfiguredFeatures.register("spruce_endemic_full",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new StraightTrunkPlacer(6, 4, 0),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(3, 4)),
-					new TwoLayersFeatureSize(2, 0, 2)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_LARGE = ConfiguredFeatures.register("spruce_endemic_large",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new StraightTrunkPlacer(4, 3, 0),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(3, 4)),
-					new TwoLayersFeatureSize(2, 0, 2)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_MEDIUM = ConfiguredFeatures.register("spruce_endemic_medium",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new StraightTrunkPlacer(3, 2, 0),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(2, 3)),
-					new TwoLayersFeatureSize(2, 0, 2)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_SMALL = ConfiguredFeatures.register("spruce_endemic_small",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new StraightTrunkPlacer(2, 1, 0),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(1, 2)),
-					new TwoLayersFeatureSize(2, 0, 2)
-			)).ignoreVines().build());
-
-	// SPRUCE NATIVE
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_FULL = ConfiguredFeatures.register("spruce_native_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new StraightTrunkPlacer(5, 2, 1),
@@ -244,7 +207,7 @@ public class Endemic implements ModInitializer {
 					new SpruceFoliagePlacer(UniformIntProvider.create(2, 3), UniformIntProvider.create(0, 2), UniformIntProvider.create(1, 2)),
 					new TwoLayersFeatureSize(2, 0, 2)
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_LARGE = ConfiguredFeatures.register("spruce_native_large",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_LARGE = ConfiguredFeatures.register("spruce_endemic_large",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new StraightTrunkPlacer(4, 1, 1),
@@ -252,7 +215,7 @@ public class Endemic implements ModInitializer {
 					new SpruceFoliagePlacer(UniformIntProvider.create(2, 3), UniformIntProvider.create(0, 2), UniformIntProvider.create(1, 2)),
 					new TwoLayersFeatureSize(2, 0, 2)
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_MEDIUM = ConfiguredFeatures.register("spruce_native_medium",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_MEDIUM = ConfiguredFeatures.register("spruce_endemic_medium",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new StraightTrunkPlacer(3, 1, 0),
@@ -260,12 +223,46 @@ public class Endemic implements ModInitializer {
 					new SpruceFoliagePlacer(UniformIntProvider.create(1, 2), UniformIntProvider.create(0, 2), UniformIntProvider.create(1, 2)),
 					new TwoLayersFeatureSize(2, 0, 2)
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_SMALL = ConfiguredFeatures.register("spruce_native_small",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_ENDEMIC_SMALL = ConfiguredFeatures.register("spruce_endemic_small",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new StraightTrunkPlacer(2, 1, 0),
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
 					new SpruceFoliagePlacer(UniformIntProvider.create(1, 2), UniformIntProvider.create(0, 2), UniformIntProvider.create(1, 2)),
+					new TwoLayersFeatureSize(2, 0, 2)
+			)).ignoreVines().build());
+
+	// SPRUCE NATIVE (PINE)
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_FULL = ConfiguredFeatures.register("spruce_native_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new StraightTrunkPlacer(6, 4, 0),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(3, 4)),
+					new TwoLayersFeatureSize(2, 0, 2)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_LARGE = ConfiguredFeatures.register("spruce_native_large",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new StraightTrunkPlacer(4, 3, 0),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(3, 4)),
+					new TwoLayersFeatureSize(2, 0, 2)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_MEDIUM = ConfiguredFeatures.register("spruce_native_medium",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new StraightTrunkPlacer(3, 2, 0),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(2, 3)),
+					new TwoLayersFeatureSize(2, 0, 2)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> SPRUCE_NATIVE_SMALL = ConfiguredFeatures.register("spruce_native_small",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new StraightTrunkPlacer(2, 1, 0),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new PineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), UniformIntProvider.create(1, 2)),
 					new TwoLayersFeatureSize(2, 0, 2)
 			)).ignoreVines().build());
 
@@ -513,110 +510,6 @@ public class Endemic implements ModInitializer {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// DARK OAK ENDEMIC
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_FULL = ConfiguredFeatures.register("dark_oak_endemic_full",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_LARGE = ConfiguredFeatures.register("dark_oak_endemic_large",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_MEDIUM = ConfiguredFeatures.register("dark_oak_endemic_medium",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_SMALL = ConfiguredFeatures.register("dark_oak_endemic_small",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-
-	// DARK OAK NATIVE
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_FULL = ConfiguredFeatures.register("dark_oak_medium_full",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_LARGE = ConfiguredFeatures.register("dark_oak_native_large",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_MEDIUM = ConfiguredFeatures.register("dark_oak_native_medium",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_SMALL = ConfiguredFeatures.register("dark_oak_native_small",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-
-	// DARK OAK NONNATIVE
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_FULL = ConfiguredFeatures.register("dark_oak_nonnative_full",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_LARGE = ConfiguredFeatures.register("dark_oak_nonnative_large",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_MEDIUM = ConfiguredFeatures.register("dark_oak_nonnative_medium",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_SMALL = ConfiguredFeatures.register("dark_oak_nonnative_small",
-			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
-					new StraightTrunkPlacer(1, 0, 0),
-					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
-					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
-					new TwoLayersFeatureSize(0, 0, 0)
-			)).ignoreVines().build());
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// ACACIA ENDEMIC
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> ACACIA_ENDEMIC_FULL = ConfiguredFeatures.register("acacia_endemic_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
@@ -721,42 +614,112 @@ public class Endemic implements ModInitializer {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// GIANT SPRUCE ENDEMIC (GIANT PINE)
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_FULL = ConfiguredFeatures.register("giant_spruce_endemic_full",
+	// DARK OAK ENDEMIC
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_FULL = ConfiguredFeatures.register("dark_oak_endemic_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new GiantTrunkPlacer(13, 2, 14),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(3, 7)),
-					new TwoLayersFeatureSize(1, 1, 2)
-			)).decorators(ImmutableList.of(new CocoaBeansTreeDecorator(0.2F), TrunkVineTreeDecorator.INSTANCE, new LeavesVineTreeDecorator(0.25F))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_LARGE = ConfiguredFeatures.register("giant_spruce_endemic_large",
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_LARGE = ConfiguredFeatures.register("dark_oak_endemic_large",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new GiantTrunkPlacer(10, 2, 11),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(3, 5)),
-					new TwoLayersFeatureSize(1, 1, 2)
-			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_MEDIUM = ConfiguredFeatures.register("giant_spruce_endemic_medium",
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_MEDIUM = ConfiguredFeatures.register("dark_oak_endemic_medium",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new GiantTrunkPlacer(7, 1, 8),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(2, 5)),
-					new TwoLayersFeatureSize(1, 1, 2)
-			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_SMALL = ConfiguredFeatures.register("giant_spruce_endemic_small",
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_ENDEMIC_SMALL = ConfiguredFeatures.register("dark_oak_endemic_small",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
-					new GiantTrunkPlacer(4, 1, 5),
-					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(2, 3)),
-					new TwoLayersFeatureSize(1, 1, 2)
-			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
 
-	// GIANT SPRUCE NATIVE
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_FULL = ConfiguredFeatures.register("giant_spruce_native_full",
+	// DARK OAK NATIVE
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_FULL = ConfiguredFeatures.register("dark_oak_medium_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_LARGE = ConfiguredFeatures.register("dark_oak_native_large",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_MEDIUM = ConfiguredFeatures.register("dark_oak_native_medium",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NATIVE_SMALL = ConfiguredFeatures.register("dark_oak_native_small",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+
+	// DARK OAK NONNATIVE
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_FULL = ConfiguredFeatures.register("dark_oak_nonnative_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_LARGE = ConfiguredFeatures.register("dark_oak_nonnative_large",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_MEDIUM = ConfiguredFeatures.register("dark_oak_nonnative_medium",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> DARK_OAK_NONNATIVE_SMALL = ConfiguredFeatures.register("dark_oak_nonnative_small",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(1, 0, 0),
+					new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.getDefaultState()),
+					new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
+					new TwoLayersFeatureSize(0, 0, 0)
+			)).ignoreVines().build());
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// GIANT SPRUCE ENDEMIC (GIANT SPRUCE)
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_FULL = ConfiguredFeatures.register("giant_spruce_endemic_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new GiantTrunkPlacer(13, 2, 14),
@@ -764,7 +727,7 @@ public class Endemic implements ModInitializer {
 					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(13, 17)),
 					new TwoLayersFeatureSize(1, 1, 2)
 			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_LARGE = ConfiguredFeatures.register("giant_spruce_native_large",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_LARGE = ConfiguredFeatures.register("giant_spruce_endemic_large",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new GiantTrunkPlacer(10, 2, 11),
@@ -772,7 +735,7 @@ public class Endemic implements ModInitializer {
 					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(11, 15)),
 					new TwoLayersFeatureSize(1, 1, 2)
 			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_MEDIUM = ConfiguredFeatures.register("giant_spruce_native_medium",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_MEDIUM = ConfiguredFeatures.register("giant_spruce_endemic_medium",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new GiantTrunkPlacer(7, 1, 8),
@@ -780,12 +743,46 @@ public class Endemic implements ModInitializer {
 					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(9, 13)),
 					new TwoLayersFeatureSize(1, 1, 2)
 			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_SMALL = ConfiguredFeatures.register("giant_spruce_native_small",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_ENDEMIC_SMALL = ConfiguredFeatures.register("giant_spruce_endemic_small",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
 					new GiantTrunkPlacer(4, 1, 5),
 					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
 					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(7, 11)),
+					new TwoLayersFeatureSize(1, 1, 2)
+			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
+
+	// GIANT SPRUCE NATIVE (GIANT PINE)
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_FULL = ConfiguredFeatures.register("giant_spruce_native_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new GiantTrunkPlacer(13, 2, 14),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(3, 7)),
+					new TwoLayersFeatureSize(1, 1, 2)
+			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_LARGE = ConfiguredFeatures.register("giant_spruce_native_large",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new GiantTrunkPlacer(10, 2, 11),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(3, 5)),
+					new TwoLayersFeatureSize(1, 1, 2)
+			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_MEDIUM = ConfiguredFeatures.register("giant_spruce_native_medium",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new GiantTrunkPlacer(7, 1, 8),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(2, 5)),
+					new TwoLayersFeatureSize(1, 1, 2)
+			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> GIANT_SPRUCE_NATIVE_SMALL = ConfiguredFeatures.register("giant_spruce_native_small",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
+					new GiantTrunkPlacer(4, 1, 5),
+					new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
+					new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(2, 3)),
 					new TwoLayersFeatureSize(1, 1, 2)
 			)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.PODZOL)))).ignoreVines().build());
 
@@ -1047,13 +1044,13 @@ public class Endemic implements ModInitializer {
 	public static final TagKey<Biome> JUNGLE_NATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "jungle_native"));
 	public static final TagKey<Biome> JUNGLE_ENDEMIC = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "jungle_endemic"));
 
-	public static final TagKey<Biome> DARK_OAK_NONNATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_nonnative"));
-	public static final TagKey<Biome> DARK_OAK_NATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_native"));
-	public static final TagKey<Biome> DARK_OAK_ENDEMIC = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_endemic"));
-
 	public static final TagKey<Biome> ACACIA_NONNATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "acacia_nonnative"));
 	public static final TagKey<Biome> ACACIA_NATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "acacia_native"));
 	public static final TagKey<Biome> ACACIA_ENDEMIC = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "acacia_endemic"));
+
+	public static final TagKey<Biome> DARK_OAK_NONNATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_nonnative"));
+	public static final TagKey<Biome> DARK_OAK_NATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_native"));
+	public static final TagKey<Biome> DARK_OAK_ENDEMIC = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "dark_oak_endemic"));
 
 	public static final TagKey<Biome> GIANT_SPRUCE_NONNATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "giant_spruce_nonnative"));
 	public static final TagKey<Biome> GIANT_SPRUCE_NATIVE = TagKey.of(Registry.BIOME_KEY, new Identifier("endemic", "giant_spruce_native"));

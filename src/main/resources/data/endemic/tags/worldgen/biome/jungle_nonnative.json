@@ -5,7 +5,6 @@
     "minecraft:ocean",
     "minecraft:deep_lukewarm_ocean",
     "minecraft:lukewarm_ocean",
-    "minecraft:warm_ocean",
     "minecraft:swamp",
     "minecraft:mangrove_swamp",
     "minecraft:plains",
@@ -13,12 +12,9 @@
     "minecraft:flower_forest",
     "minecraft:birch_forest",
     "minecraft:dark_forest",
-    "minecraft:jungle",
     "minecraft:river",
     "minecraft:sunflower_plains",
     "minecraft:old_growth_birch_forest",
-    "minecraft:sparse_jungle",
-    "minecraft:bamboo_jungle",
     "minecraft:dripstone_caves",
     "minecraft:lush_caves"
   ]
