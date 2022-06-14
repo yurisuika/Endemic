@@ -2,21 +2,26 @@
 
 **Endemic** is a Fabric mod for Minecraft that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
 
-There is a degree of configurability to Endemic. Press `g` by default to open the settings. You can enable or disable the mod's functionality entirely from here as well. Set the endemic chance high to allow saplings to grow into those endemic trees like swamp oaks and tall birches!
+With 2.0, Endemic has been rewritten to use tags! Each species has four categories of biome tags: endemic, native, nonnative, and dead. The last one isn't actually a tag, but any biome that is not is the other three will fall under this category. As you can imagine, any endemic species only grow in special biomes. Native species grow in many biomes and may grow alongside their endemic species. If a species is grown outside of its native habitat, it will grow as a shrubby form. And finally, if a species is deemed to be far too outside of its natives habitat, it is left to grow as a dead bush!
 
-You can customize how saplings grow in The Overworld, with additional functionality for The Nether and The End! You can set each category to use either normal, stunted, or dead trees if a sapling is grown outside its native habitat. First it will try to grow a normal tree, then a stunted tree, and finally a dead tree. If it doesn't do any of these then nothing will happen, so you can set it so nonnative saplings never grow up.
+As mentioned, each species has a few forms it can grow in. Oaks and Birches of course have their additional forms with beehives (not listed here). Here are what each species grows as in its biome groups (all grow as dead shrub otherwise):
+- Oak: Swamp Oak (Endemic) / Oak + Fancy Oak (Native) / Shrub (Nonnative)
+- Birch: Tall Birch (Endemic) / Birch (Native) / Shrub (Nonnative)
+- Spruce: Spruce (Endemic) / Pine (Native) / Shrub (Nonnative)
+- Jungle: Vined Jungle (Endemic) / Jungle (Native) / Shrub (Nonnative)
+- Acacia: Acacia (Endemic + Native) / Shrub (Nonnative)
+- Dark Oak: Shrub (Endemic + Native + Nonnative)
+- Giant Spruce: Giant Spruce (Endemic) / Giant Pine (Native) / Giant Shrub (Nonnative)
+- Giant Jungle: Giant Jungle (Endemic + Native) / Giant Shrub (Nonnative)
+- Giant Dark Oak: Giant Dark Oak (Endemic + Native) / Giant Shrub (Nonnative)
 
-Endemic works mainly based on biome categories. Thus, sapling growth is not strictly limited to where you would find a tree already existing, but rather allows some spread into nonnative territory without affecting growth. While there are more specifics than just this, here is the general idea:
-- Oaks grow in temperate forests, extreme hills, and plains.
-- Spruces grow in taiga forests, extreme hills, and mountains, and snowy/frozen biomes.
-- Birches grow in temperate forests and extreme hills.
-- Jungles grow in tropical jungles.
-- Acacias grow in arid savannas.
-- Dark Oaks grow in only the dark forest biome.
+By default, all Nether, End, and Void biomes, plus the desert biome, are left untagged, and thus all trees will grow as dead bushes there. While the default settings have been fine tuned for a realistic distribution of species, you can customize these tags with your own data pack!
 
-As well, ocean and river biomes allow you to grow trees a bit more easily outside their native habitat.
-
-You can also configure the sky light requirements for trees to grow (and set chances for growth type)! If the sky light level is below your set level, saplings will grow differently to your likings (depending on the preexisting biome growth settings)! Set the light level to 0 and trees will grow as without the modifier. Set it to 1 and trees will grow differently in caves! Or even set the light to 13-14 and have trees grow as shrubs when under other trees!
+Furthermore, Endemic 2.0 features a reworked sky light growth behavior. Now, each tree form has four sub-forms of differing size, and depending on the light level in which a tree is grown, a different form will grow. The sets are as follows:
+- Light 15-12: Full
+- Light 11-08: Large
+- Light 07-04: Medium
+- Light 03-00: Small
 
 #### Compiling
 
@@ -41,10 +46,6 @@ Don't want to bother building from source? Get the releases *[right here](https:
 #### Repositories
 
 You can find Endemic on both *[CurseForge](https://www.curseforge.com/minecraft/mc-mods/endemic)* and *[Modrinth](https://modrinth.com/mod/endemic)*!
-
-#### Credits
-
-Endemic's *[config](https://github.com/TeamMidnightDust/MidnightLib)* is thanks to Minenash and MidnightDust!
 
 #### Community
 
