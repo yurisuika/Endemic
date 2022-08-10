@@ -49,4 +49,4 @@ You can find Endemic on both *[CurseForge](https://www.curseforge.com/minecraft/
 
 #### Community
 
-The one and only! Join the *[SuikaCraft Discord](https://discord.gg/0zdNEkQle7Qg9C1H)* to find the latest discussion on the resource pack and server or just to chat!
+The one and only! Join the *[Discord](https://discord.gg/0zdNEkQle7Qg9C1H)* to find the latest discussion on the resource pack and server or just to chat!
