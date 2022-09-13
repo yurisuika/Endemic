@@ -24,7 +24,7 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
         // ENDEMIC (TALL BIRCH)
         if(world.getBiome(pos).isIn(Endemic.BIRCH_ENDEMIC)) {
             return switch (light) {
-                case 15, 14, 13, 12 -> Endemic.BIRCH_ENDEMIC_FULL;
+                case 15, 14, 13, 12 -> bees ? Endemic.BIRCH_ENDEMIC_FULL_BEES : Endemic.BIRCH_ENDEMIC_FULL;
                 case 11, 10, 9, 8 -> Endemic.BIRCH_ENDEMIC_LARGE;
                 case 7, 6, 5, 4 -> Endemic.BIRCH_ENDEMIC_MEDIUM;
                 default -> Endemic.BIRCH_ENDEMIC_SMALL;
@@ -33,7 +33,7 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
         // NATIVE (BIRCH)
         else if(world.getBiome(pos).isIn(Endemic.BIRCH_NATIVE)) {
             return switch (light) {
-                case 15, 14, 13, 12 -> Endemic.BIRCH_NATIVE_FULL;
+                case 15, 14, 13, 12 -> bees ? Endemic.BIRCH_NATIVE_FULL_BEES : Endemic.BIRCH_NATIVE_FULL;
                 case 11, 10, 9, 8 -> Endemic.BIRCH_NATIVE_LARGE;
                 case 7, 6, 5, 4 -> Endemic.BIRCH_NATIVE_MEDIUM;
                 default -> Endemic.BIRCH_NATIVE_SMALL;

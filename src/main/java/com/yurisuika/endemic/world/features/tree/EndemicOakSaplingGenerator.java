@@ -33,12 +33,12 @@ public abstract class EndemicOakSaplingGenerator extends EndemicSaplingGenerator
         // NATIVE (FANCY OAK + OAK)
         else if(world.getBiome(pos).isIn(Endemic.OAK_NATIVE)) {
             return random.nextInt(10) == 0 ? switch (light) {
-                case 15, 14, 13, 12 -> Endemic.OAK_NATIVE_ALT_FULL;
-                case 11, 10, 9, 8 -> Endemic.OAK_NATIVE_ALT_LARGE;
-                case 7, 6, 5, 4 -> Endemic.OAK_NATIVE_ALT_MEDIUM;
-                default -> Endemic.OAK_NATIVE_ALT_SMALL;
+                case 15, 14, 13, 12 -> bees ? Endemic.OAK_NATIVE_FULL_ALT_BEES : Endemic.OAK_NATIVE_FULL_ALT;
+                case 11, 10, 9, 8 -> Endemic.OAK_NATIVE_LARGE_ALT;
+                case 7, 6, 5, 4 -> Endemic.OAK_NATIVE_MEDIUM_ALT;
+                default -> Endemic.OAK_NATIVE_SMALL_ALT;
             } : switch (light) {
-                case 15, 14, 13, 12 -> Endemic.OAK_NATIVE_FULL;
+                case 15, 14, 13, 12 -> bees ? Endemic.OAK_NATIVE_FULL_BEES : Endemic.OAK_NATIVE_FULL;
                 case 11, 10, 9, 8 -> Endemic.OAK_NATIVE_LARGE;
                 case 7, 6, 5, 4 -> Endemic.OAK_NATIVE_MEDIUM;
                 default -> Endemic.OAK_NATIVE_SMALL;

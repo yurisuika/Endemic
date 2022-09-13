@@ -23,10 +23,7 @@ import net.minecraft.world.gen.foliage.*;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
-import net.minecraft.world.gen.treedecorator.CocoaBeansTreeDecorator;
-import net.minecraft.world.gen.treedecorator.LeavesVineTreeDecorator;
-import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
+import net.minecraft.world.gen.treedecorator.*;
 import net.minecraft.world.gen.trunk.*;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.slf4j.Logger;
@@ -95,6 +92,14 @@ public class Endemic implements ModInitializer {
 			)).ignoreVines().decorators(ImmutableList.of(new LeavesVineTreeDecorator(0.25F))).build());
 
 	// OAK NATIVE (OAK)
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_FULL_BEES = ConfiguredFeatures.register("oak_native_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+					new StraightTrunkPlacer(4, 2, 0),
+					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+					new TwoLayersFeatureSize(1, 0, 1)
+			)).decorators(ImmutableList.of(new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_FULL = ConfiguredFeatures.register("oak_native_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
@@ -129,40 +134,48 @@ public class Endemic implements ModInitializer {
 			)).ignoreVines().build());
 
 	// OAK NATIVE ALT (FANCY OAK)
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_ALT_FULL = ConfiguredFeatures.register("oak_native_alt_full",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_FULL_ALT_BEES = ConfiguredFeatures.register("oak_native_alt_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
 					new LargeOakTrunkPlacer(3, 11, 0),
 					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+					new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+					new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
+			)).decorators(ImmutableList.of(new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_FULL_ALT = ConfiguredFeatures.register("oak_native_alt_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+					new LargeOakTrunkPlacer(3, 11, 0),
+					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+					new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
 					new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_ALT_LARGE = ConfiguredFeatures.register("oak_native_alt_large",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_LARGE_ALT = ConfiguredFeatures.register("oak_native_alt_large",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
 					new LargeOakTrunkPlacer(3, 9, 0),
 					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(3), 3),
+					new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 3),
 					new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_ALT_MEDIUM = ConfiguredFeatures.register("oak_native_alt_medium",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_MEDIUM_ALT = ConfiguredFeatures.register("oak_native_alt_medium",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
 					new LargeOakTrunkPlacer(2, 7, 0),
 					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(2), 2),
+					new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(3), 3),
 					new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
 			)).ignoreVines().build());
-	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_ALT_SMALL = ConfiguredFeatures.register("oak_native_alt_small",
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NATIVE_SMALL_ALT = ConfiguredFeatures.register("oak_native_alt_small",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
-					new LargeOakTrunkPlacer(1, 5, 0),
+					new LargeOakTrunkPlacer(2, 5, 0),
 					new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(2), 2),
+					new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(3), 2),
 					new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
 			)).ignoreVines().build());
 
-	// OAK NONNATIVE
+	// OAK NONNATIVE;
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> OAK_NONNATIVE_FULL = ConfiguredFeatures.register("oak_nonnative_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
@@ -303,6 +316,14 @@ public class Endemic implements ModInitializer {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// BIRCH ENDEMIC (TALL BIRCH)
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> BIRCH_ENDEMIC_FULL_BEES = ConfiguredFeatures.register("birch_endemic_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new StraightTrunkPlacer(5, 2, 6),
+					new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+					new TwoLayersFeatureSize(1, 0, 1)
+			)).decorators(ImmutableList.of(new BeehiveTreeDecorator(0.002F))).ignoreVines().build());
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> BIRCH_ENDEMIC_FULL = ConfiguredFeatures.register("birch_endemic_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
@@ -337,6 +358,14 @@ public class Endemic implements ModInitializer {
 			)).ignoreVines().build());
 
 	// BIRCH NATIVE
+	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> BIRCH_NATIVE_FULL_BEES = ConfiguredFeatures.register("birch_native_full",
+			Feature.TREE, (new TreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new StraightTrunkPlacer(5, 2, 0),
+					new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+					new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+					new TwoLayersFeatureSize(1, 0, 1)
+			)).decorators(ImmutableList.of(new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 	public static final RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> BIRCH_NATIVE_FULL = ConfiguredFeatures.register("birch_native_full",
 			Feature.TREE, (new TreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
