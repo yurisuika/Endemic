@@ -2,13 +2,15 @@ package com.yurisuika.endemic.world.features.tree;
 
 import com.yurisuika.endemic.Endemic;
 import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.LightType;
 import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.Nullable;
+
 public abstract class EndemicAcaciaSaplingGenerator extends EndemicSaplingGenerator {
 
     public EndemicAcaciaSaplingGenerator() {
@@ -16,7 +18,7 @@ public abstract class EndemicAcaciaSaplingGenerator extends EndemicSaplingGenera
 
     @Nullable
     @Override
-    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
+    protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
         int light = world.getLightLevel(LightType.SKY, pos);
 
         // ENDEMIC (ACACIA)
@@ -52,5 +54,6 @@ public abstract class EndemicAcaciaSaplingGenerator extends EndemicSaplingGenera
         }
     }
 
-    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees);
+    protected abstract RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees);
+
 }

@@ -4,9 +4,12 @@ import com.yurisuika.endemic.block.EndemicSaplingBlock;
 import com.yurisuika.endemic.world.features.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,9 +27,8 @@ public class BlocksMixin {
     )
     private static SaplingBlock redirectedOak(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicOakSaplingGenerator() {
-            @Nullable
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(net.minecraft.util.math.random.Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -42,11 +44,11 @@ public class BlocksMixin {
     private static SaplingBlock redirectedSpruce(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicSpruceSaplingGenerator() {
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
-            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -62,7 +64,7 @@ public class BlocksMixin {
     private static SaplingBlock redirectedBirch(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicBirchSaplingGenerator() {
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -78,11 +80,11 @@ public class BlocksMixin {
     private static SaplingBlock redirectedJungle(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicJungleSaplingGenerator() {
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
-            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -98,7 +100,7 @@ public class BlocksMixin {
     private static SaplingBlock redirectedAcacia(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicAcaciaSaplingGenerator() {
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
@@ -114,11 +116,11 @@ public class BlocksMixin {
     private static SaplingBlock redirectedDarkOak(SaplingGenerator generator, AbstractBlock.Settings settings) {
         return new EndemicSaplingBlock(new EndemicDarkOakSaplingGenerator() {
             @Override
-            protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
                 return null;
             }
             @Override
-            protected @Nullable RegistryEntry<? extends ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
+            protected RegistryKey<ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
                 return null;
             }
         }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));

@@ -3,11 +3,13 @@ package com.yurisuika.endemic.block.sapling;
 import java.util.Iterator;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -19,25 +21,30 @@ public abstract class EndemicSaplingGenerator extends SaplingGenerator {
     }
 
     @Nullable
-    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos);
+    protected abstract RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos);
 
     public boolean generate(ServerWorld world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
-        RegistryEntry<? extends ConfiguredFeature<?, ?>> registryEntry = this.getTreeFeature(random, this.areFlowersNearby(world, pos), world, pos);
-        if (registryEntry == null) {
+        RegistryKey<ConfiguredFeature<?, ?>> registryKey = this.getTreeFeature(random, this.areFlowersNearby(world, pos), world, pos);
+        if (registryKey == null) {
             return false;
         } else {
-            ConfiguredFeature<?, ?> configuredFeature = (ConfiguredFeature)registryEntry.value();
-            BlockState blockState = world.getFluidState(pos).getBlockState();
-            world.setBlockState(pos, blockState, 4);
-            if (configuredFeature.generate(world, chunkGenerator, random, pos)) {
-                if (world.getBlockState(pos) == blockState) {
-                    world.updateListeners(pos, state, blockState, 2);
-                }
-
-                return true;
-            } else {
-                world.setBlockState(pos, state, 4);
+            RegistryEntry<ConfiguredFeature<?, ?>> registryEntry = (RegistryEntry)world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).getEntry(registryKey).orElse((RegistryEntry.Reference<ConfiguredFeature<?, ?>>) null);
+            if (registryEntry == null) {
                 return false;
+            } else {
+                ConfiguredFeature<?, ?> configuredFeature = (ConfiguredFeature)registryEntry.value();
+                BlockState blockState = world.getFluidState(pos).getBlockState();
+                world.setBlockState(pos, blockState, 4);
+                if (configuredFeature.generate(world, chunkGenerator, random, pos)) {
+                    if (world.getBlockState(pos) == blockState) {
+                        world.updateListeners(pos, state, blockState, 2);
+                    }
+
+                    return true;
+                } else {
+                    world.setBlockState(pos, state, 4);
+                    return false;
+                }
             }
         }
     }

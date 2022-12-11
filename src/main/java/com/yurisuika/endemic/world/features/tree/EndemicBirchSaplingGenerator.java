@@ -2,10 +2,11 @@ package com.yurisuika.endemic.world.features.tree;
 
 import com.yurisuika.endemic.Endemic;
 import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.LightType;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
@@ -18,7 +19,7 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
 
     @Nullable
     @Override
-    protected RegistryEntry<? extends ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
+    protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees, ServerWorld world, BlockPos pos) {
         int light = world.getLightLevel(LightType.SKY, pos);
 
         // ENDEMIC (TALL BIRCH)
@@ -54,5 +55,6 @@ public abstract class EndemicBirchSaplingGenerator extends EndemicSaplingGenerat
         }
     }
 
-    protected abstract RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees);
+    protected abstract RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees);
+
 }
