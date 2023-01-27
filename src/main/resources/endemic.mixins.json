@@ -1,7 +1,8 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.yurisuika.endemic.mixin",
+  "package": "dev.yurisuika.endemic.mixin",
+  "refmap": "endemic.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "block.BlocksMixin",
