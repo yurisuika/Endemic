@@ -9,7 +9,7 @@
     "yurisuika"
   ],
   "contact": {
-    "homepage": "https://suikacraft.com",
+    "homepage": "https://yurisuika.dev",
     "sources": "https://github.com/yurisuika/Endemic",
     "issues": "https://github.com/yurisuika/Endemic/issues"
   },
@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.yurisuika.endemic.Endemic"
+      "dev.yurisuika.endemic.Endemic"
     ]
   },
   "mixins": [

@@ -1,7 +1,7 @@
-package com.yurisuika.endemic.world.features.tree;
+package dev.yurisuika.endemic.world.features.tree;
 
-import com.yurisuika.endemic.Endemic;
-import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
+import dev.yurisuika.endemic.Endemic;
+import dev.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;

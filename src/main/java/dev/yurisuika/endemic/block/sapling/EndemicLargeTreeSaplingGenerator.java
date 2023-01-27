@@ -1,4 +1,4 @@
-package com.yurisuika.endemic.block.sapling;
+package dev.yurisuika.endemic.block.sapling;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

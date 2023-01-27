@@ -1,9 +1,9 @@
-package com.yurisuika.endemic;
+package dev.yurisuika.endemic;
 
 import com.google.common.collect.ImmutableList;
-import com.yurisuika.endemic.mixin.world.gen.trunk.TrunkPlacerTypeInvoker;
-import com.yurisuika.endemic.world.gen.trunk.DeadTrunkPlacer;
-import com.yurisuika.endemic.world.gen.trunk.GiantDeadTrunkPlacer;
+import dev.yurisuika.endemic.mixin.world.gen.trunk.TrunkPlacerTypeInvoker;
+import dev.yurisuika.endemic.world.gen.trunk.DeadTrunkPlacer;
+import dev.yurisuika.endemic.world.gen.trunk.GiantDeadTrunkPlacer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -1217,6 +1217,10 @@ public class Endemic implements ModInitializer {
 	public static final TagKey<Biome> GIANT_DARK_OAK_NONNATIVE = TagKey.of(RegistryKeys.BIOME, new Identifier("endemic", "giant_dark_oak_nonnative"));
 	public static final TagKey<Biome> GIANT_DARK_OAK_NATIVE = TagKey.of(RegistryKeys.BIOME, new Identifier("endemic", "giant_dark_oak_native"));
 	public static final TagKey<Biome> GIANT_DARK_OAK_ENDEMIC = TagKey.of(RegistryKeys.BIOME, new Identifier("endemic", "giant_dark_oak_endemic"));
+
+	public void buildRegistry(RegistryBuilder registryBuilder) {
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, Endemic::bootstrap);
+	}
 
 	@Override
 	public void onInitialize() {

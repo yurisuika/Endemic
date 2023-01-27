@@ -6,7 +6,7 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = "${project.archives_base_name}-fabric-${project.minecraft_version}"
+archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
@@ -14,8 +14,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.testng:testng:7.1.0'
-
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
@@ -36,23 +34,23 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 loom {
-	accessWidenerPath =  file("src/main/resources/endemic.accesswidener")
+	accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+
+	mixin {
+		defaultRefmapName = "${project.archives_base_name}.refmap.json"
+	}
 }
 
 java {
 	withSourcesJar()
 }
 
-artifacts {
-	archives jar
-}
-
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archives_base_name}"}
-	}
-//	This is not working for some reason:
-//	archiveAppendix = "fabric-${project.minecraft_version}"
+	from("LICENSE")
+	jar.archiveAppendix.set("fabric-${project.minecraft_version}")
+	sourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
+	remapJar.archiveAppendix.set("fabric-${project.minecraft_version}")
+	remapSourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
 }
 
 publishing {

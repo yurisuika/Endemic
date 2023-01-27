@@ -1,7 +1,7 @@
-package com.yurisuika.endemic.mixin.block;
+package dev.yurisuika.endemic.mixin.block;
 
-import com.yurisuika.endemic.block.EndemicSaplingBlock;
-import com.yurisuika.endemic.world.features.tree.*;
+import dev.yurisuika.endemic.block.EndemicSaplingBlock;
+import dev.yurisuika.endemic.world.features.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.registry.RegistryKey;

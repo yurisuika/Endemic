@@ -1,9 +1,9 @@
-package com.yurisuika.endemic.world.gen.trunk;
+package dev.yurisuika.endemic.world.gen.trunk;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.yurisuika.endemic.Endemic;
+import dev.yurisuika.endemic.Endemic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;

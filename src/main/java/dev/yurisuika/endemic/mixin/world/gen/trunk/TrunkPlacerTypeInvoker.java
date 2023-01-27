@@ -1,4 +1,4 @@
-package com.yurisuika.endemic.mixin.world.gen.trunk;
+package dev.yurisuika.endemic.mixin.world.gen.trunk;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.world.gen.trunk.TrunkPlacer;

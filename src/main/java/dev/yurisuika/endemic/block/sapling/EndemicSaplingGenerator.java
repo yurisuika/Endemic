@@ -1,6 +1,9 @@
-package com.yurisuika.endemic.block.sapling;
+package dev.yurisuika.endemic.block.sapling;
 
 import java.util.Iterator;
+import java.util.logging.Logger;
+
+import dev.yurisuika.endemic.Endemic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.registry.RegistryKey;
@@ -26,10 +29,12 @@ public abstract class EndemicSaplingGenerator extends SaplingGenerator {
     public boolean generate(ServerWorld world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
         RegistryKey<ConfiguredFeature<?, ?>> registryKey = this.getTreeFeature(random, this.areFlowersNearby(world, pos), world, pos);
         if (registryKey == null) {
+            Endemic.LOGGER.info("Dang Key is null!");
             return false;
         } else {
             RegistryEntry<ConfiguredFeature<?, ?>> registryEntry = (RegistryEntry)world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).getEntry(registryKey).orElse((RegistryEntry.Reference<ConfiguredFeature<?, ?>>) null);
             if (registryEntry == null) {
+                Endemic.LOGGER.info("Dang Entry is null!");
                 return false;
             } else {
                 ConfiguredFeature<?, ?> configuredFeature = (ConfiguredFeature)registryEntry.value();
@@ -40,9 +45,11 @@ public abstract class EndemicSaplingGenerator extends SaplingGenerator {
                         world.updateListeners(pos, state, blockState, 2);
                     }
 
+                    Endemic.LOGGER.info("Can place!");
                     return true;
                 } else {
                     world.setBlockState(pos, state, 4);
+                    Endemic.LOGGER.info("Cannot place!");
                     return false;
                 }
             }

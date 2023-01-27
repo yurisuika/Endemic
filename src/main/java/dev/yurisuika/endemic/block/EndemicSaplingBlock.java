@@ -1,6 +1,6 @@
-package com.yurisuika.endemic.block;
+package dev.yurisuika.endemic.block;
 
-import com.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
+import dev.yurisuika.endemic.block.sapling.EndemicSaplingGenerator;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;

@@ -1,7 +1,7 @@
-package com.yurisuika.endemic.world.features.tree;
+package dev.yurisuika.endemic.world.features.tree;
 
-import com.yurisuika.endemic.Endemic;
-import com.yurisuika.endemic.block.sapling.EndemicLargeTreeSaplingGenerator;
+import dev.yurisuika.endemic.Endemic;
+import dev.yurisuika.endemic.block.sapling.EndemicLargeTreeSaplingGenerator;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class EndemicJungleSaplingGenerator extends EndemicLargeTreeSaplingGenerator {
