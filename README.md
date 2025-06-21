@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/yurisuika/Endemic/blob/Fabric-1.18.x/src/main/resources/assets/endemic/icon.png?raw=true" width="256" height="256"></p>
+<p align="center"><img src="https://github.com/yurisuika/Endemic/blob/Fabric-1.18.2/src/main/resources/assets/endemic/icon.png?raw=true" width="256" height="256"></p>
 
 **Endemic** is a Fabric mod for Minecraft that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
 
