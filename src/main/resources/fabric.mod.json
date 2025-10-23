@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Endemic",
-  "description": "Trees grow based on biome and luminance!",
+  "description": "Harness the ability to grow any tree from a sapling!",
   "authors": [
     "yurisuika"
   ],
@@ -15,12 +15,15 @@
   },
 
   "license": "GNU Lesser General Public License v3.0",
-  "icon": "assets/endemic/icon.png",
+  "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "dev.yurisuika.endemic.Endemic"
+    ],
+    "fabric-datagen": [
+      "dev.yurisuika.endemic.Endemic\$Data"
     ]
   },
   "mixins": [
@@ -31,7 +34,7 @@
 
   "depends": {
     "fabricloader": ">=0.12.0",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19- <1.20",
     "java": ">=17"
   }
 }
