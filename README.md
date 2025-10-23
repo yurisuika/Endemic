@@ -1,5 +1,3 @@
-<p align="center"><img src="https://github.com/yurisuika/Endemic/blob/Fabric-1.18.2/src/main/resources/assets/endemic/icon.png?raw=true" width="256" height="256"></p>
-
 **Endemic** is a Fabric mod for Minecraft that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
 
 With 2.0, Endemic has been rewritten to use tags! Each species has four categories of biome tags: endemic, native, nonnative, and dead. The last one isn't actually a tag, but any biome that is not is the other three will fall under this category. As you can imagine, any endemic species only grow in special biomes. Native species grow in many biomes and may grow alongside their endemic species. If a species is grown outside of its native habitat, it will grow as a shrubby form. And finally, if a species is deemed to be far too outside of its natives habitat, it is left to grow as a dead bush!
