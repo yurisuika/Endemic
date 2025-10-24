@@ -50,7 +50,8 @@ public class Options {
                                                     "minecraft:meadow",
                                                     "minecraft:forest",
                                                     "minecraft:flower_forest",
-                                                    "minecraft:wooded_badlands"
+                                                    "minecraft:wooded_badlands",
+                                                    "minecraft:sunflower_plains"
                                             )
                                     ),
                                     new Seed.Conditions.Location(
@@ -158,7 +159,6 @@ public class Options {
                                                     "minecraft:river",
                                                     "minecraft:ice_spikes",
                                                     "minecraft:old_growth_pine_taiga",
-                                                    "minecraft:sunflower_plains",
                                                     "minecraft:old_growth_birch_forest",
                                                     "minecraft:eroded_badlands",
                                                     "minecraft:windswept_savanna",
