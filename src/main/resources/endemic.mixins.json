@@ -5,8 +5,9 @@
   "refmap": "endemic.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "block.BlocksMixin",
-    "world.gen.trunk.TrunkPlacerTypeInvoker"
+    "world.level.BiomeInvoker",
+    "world.level.block.grower.AbstractMegaTreeGrowerMixin",
+    "world.level.block.grower.AbstractTreeGrowerMixin"
   ],
   "client": [
   ],

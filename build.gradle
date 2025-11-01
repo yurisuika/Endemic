@@ -3,46 +3,54 @@ plugins {
     id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+base {
+    archivesName = project.mod_id
+}
 
 repositories {
+    maven { url = "https://maven.parchmentmc.org/" }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
-    inputs.property "version", project.version
+    inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": project.mod_version
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
     it.options.release = 17
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+    accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 
     mixin {
-        defaultRefmapName = "${project.archives_base_name}.refmap.json"
+        defaultRefmapName = "${project.mod_id}.refmap.json"
     }
 }
 
 java {
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    version = project.mod_version
+    group = project.maven_group
 }
 
 jar {
@@ -56,7 +64,12 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
         }
     }
 
