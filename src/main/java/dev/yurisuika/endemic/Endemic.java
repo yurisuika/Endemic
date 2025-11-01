@@ -1,41 +1,38 @@
 package dev.yurisuika.endemic;
 
 import dev.yurisuika.endemic.config.Config;
-import dev.yurisuika.endemic.data.EndemicWorldgenGenerator;
-import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
+import dev.yurisuika.endemic.data.EndemicDatapackProvider;
 import dev.yurisuika.endemic.server.commands.EndemicCommand;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.Registries;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-public class Endemic implements ModInitializer {
+@Mod("endemic")
+public class Endemic {
 
-    public static void registerCommands() {
-        CommandRegistrationCallback.EVENT.register(EndemicCommand::register);
+    @Mod.EventBusSubscriber(modid = "endemic", bus = Mod.EventBusSubscriber.Bus.FORGE)
+    public static class GameEvents {
+
+        @SubscribeEvent
+        public static void registerCommands(RegisterCommandsEvent event) {
+            EndemicCommand.register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
+        }
+
     }
 
-    @Override
-    public void onInitialize() {
+    @Mod.EventBusSubscriber(modid = "endemic", bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ModEvents {
+
+        @SubscribeEvent
+        public static void gatherServerData(GatherDataEvent event) {
+            event.getGenerator().addProvider(event.includeServer(), new EndemicDatapackProvider(event.getGenerator().getPackOutput(), event.getLookupProvider()));
+        }
+
+    }
+
+    public Endemic() {
         Config.loadConfig();
-
-        registerCommands();
-    }
-
-    public static class Data implements DataGeneratorEntrypoint {
-
-        @Override
-        public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-            fabricDataGenerator.createPack().addProvider(EndemicWorldgenGenerator::new);
-        }
-
-        @Override
-        public void buildRegistry(RegistrySetBuilder registrySetBuilder) {
-            registrySetBuilder.add(Registries.CONFIGURED_FEATURE, EndemicTreeFeatures::bootstrap);
-        }
-
     }
 
 }
