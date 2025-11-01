@@ -14,7 +14,7 @@ public class EndemicCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context, CommandSelection selection) {
         dispatcher.register(Commands.literal("endemic")
-                .requires(source -> source.hasPermission(4))
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(Commands.literal("config")
                         .then(Commands.literal("reload")
                                 .executes(commandContext -> reloadConfig(
@@ -33,14 +33,14 @@ public class EndemicCommand {
     public static int reloadConfig(CommandSourceStack source) {
         Config.loadConfig();
 
-        source.sendSuccess(Component.translatable("commands.endemic.config.reload"), true);
+        source.sendSuccess(() -> Component.translatable("commands.endemic.config.reload"), true);
         return 1;
     }
 
     public static int resetConfig(CommandSourceStack source) {
         Configure.setSaplings(new Options().getSaplings());
 
-        source.sendSuccess(Component.translatable("commands.endemic.config.reset"), true);
+        source.sendSuccess(() -> Component.translatable("commands.endemic.config.reset"), true);
         return 1;
     }
 
