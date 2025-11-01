@@ -33,14 +33,14 @@ public class EndemicCommand {
     public static int reloadConfig(CommandSourceStack source) {
         Config.loadConfig();
 
-        source.sendSuccess(Component.translatable("commands.endemic.config.reload"), true);
+        source.sendSuccess(() -> Component.translatable("commands.endemic.config.reload"), true);
         return 1;
     }
 
     public static int resetConfig(CommandSourceStack source) {
         Configure.setSaplings(new Options().getSaplings());
 
-        source.sendSuccess(Component.translatable("commands.endemic.config.reset"), true);
+        source.sendSuccess(() -> Component.translatable("commands.endemic.config.reset"), true);
         return 1;
     }
 
