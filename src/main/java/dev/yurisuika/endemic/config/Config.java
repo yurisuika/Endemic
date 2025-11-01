@@ -2,7 +2,7 @@ package dev.yurisuika.endemic.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 
 public class Config {
 
-    public static File file = new File(FabricLoader.getInstance().getConfigDir().toFile(), "endemic.json");
+    public static File file = new File(FMLPaths.CONFIGDIR.get().toFile(), "endemic.json");
     public static Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().disableHtmlEscaping().create();
     public static Options options = new Options();
 
