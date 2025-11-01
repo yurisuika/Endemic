@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractMegaTreeGrower.class)
-public class AbstractMegaTreeGrowerMixin {
+public abstract class AbstractMegaTreeGrowerMixin {
 
     @Inject(method = "growTree", at = @At("HEAD"), cancellable = true)
     private void useEndemicFeature(ServerLevel level, ChunkGenerator generator, BlockPos pos, BlockState state, RandomSource random, CallbackInfoReturnable<Boolean> cir) {
