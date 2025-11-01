@@ -33,8 +33,8 @@
   "accessWidener" : "endemic.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.12.0",
-    "minecraft": ">=1.19- <1.20",
+    "fabricloader": ">=0.14.21",
+    "minecraft": ">=1.20- <1.20.3",
     "java": ">=17"
   }
 }
