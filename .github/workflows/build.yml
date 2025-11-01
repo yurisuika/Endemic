@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: 21
-          distribution: temurin
+          distribution: jetbrains
       - run: chmod +x gradlew
       - run: ./gradlew runDatagen --stacktrace --info
       - run: ./gradlew build --stacktrace --info
