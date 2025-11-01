@@ -7,7 +7,6 @@
   "mixins": [
     "world.level.BiomeAccessor",
     "world.level.BiomeInvoker",
-    "world.level.block.grower.AbstractMegaTreeGrowerMixin",
     "world.level.block.grower.AbstractTreeGrowerMixin"
   ],
   "client": [
