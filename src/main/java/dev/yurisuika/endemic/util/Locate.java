@@ -1,7 +1,7 @@
 package dev.yurisuika.endemic.util;
 
 import dev.yurisuika.endemic.world.level.Seed;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -12,7 +12,7 @@ public class Locate {
     }
 
     public static boolean hasSeeds(Block block) {
-        return hasSeeds(BuiltInRegistries.BLOCK.getKey(block).toString());
+        return hasSeeds(Registry.BLOCK.getKey(block).toString());
     }
 
     public static boolean hasSeeds(String name) {
@@ -24,7 +24,7 @@ public class Locate {
     }
 
     public static Seed[] getSeeds(Block block) {
-        return getSeeds(BuiltInRegistries.BLOCK.getKey(block).toString());
+        return getSeeds(Registry.BLOCK.getKey(block).toString());
     }
 
     public static Seed[] getSeeds(String name) {
