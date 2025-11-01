@@ -1,12 +1,11 @@
 package dev.yurisuika.endemic.world.level.block.grower;
 
-import dev.yurisuika.endemic.mixin.world.level.BiomeAccessor;
 import dev.yurisuika.endemic.mixin.world.level.BiomeInvoker;
 import dev.yurisuika.endemic.util.Locate;
 import dev.yurisuika.endemic.world.level.Seed;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -36,29 +35,26 @@ public class WeightedTreeGrower {
         List<Seed.Entry> multiSaplingsFlowersEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
         multiSaplingsEntries = multiSaplingsFlowersEntries.isEmpty() ? multiSaplingsEntries : multiSaplingsFlowersEntries;
 
-        ResourceKey<ConfiguredFeature<?, ?>> quadrupleSaplingResourceKey = selectWeightedEntry(multiSaplingsEntries, random);
-        if (quadrupleSaplingResourceKey != null) {
-            Holder<ConfiguredFeature<?, ?>> quadrupleSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(quadrupleSaplingResourceKey).orElse(null);
-            if (quadrupleSaplingHolder != null) {
-                for (int i = 0; i >= -1; --i) {
-                    for (int j = 0; j >= -1; --j) {
-                        if (isTwoByTwoSapling(state, level, pos, i, j)) {
-                            ConfiguredFeature<?, ?> quadrupleSaplingConfiguredFeature = quadrupleSaplingHolder.value();
-                            BlockState quadrupleSaplingBlockState = Blocks.AIR.defaultBlockState();
-                            level.setBlock(pos.offset(i, 0, j), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i, 0, j + 1), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j + 1), quadrupleSaplingBlockState, 260);
-                            if (quadrupleSaplingConfiguredFeature.place(level, chunkGenerator, random, pos.offset(i, 0, j))) {
-                                return true;
-                            }
-
-                            level.setBlock(pos.offset(i, 0, j), state, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j), state, 260);
-                            level.setBlock(pos.offset(i, 0, j + 1), state, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j + 1), state, 260);
-                            return false;
+        Holder<ConfiguredFeature<?, ?>> multiSaplingHolder = selectWeightedEntry(multiSaplingsEntries, random);
+        if (multiSaplingHolder != null) {
+            for (int i = 0; i >= -1; --i) {
+                for (int j = 0; j >= -1; --j) {
+                    if (isTwoByTwoSapling(state, level, pos, i, j)) {
+                        ConfiguredFeature<?, ?> multiSaplingConfiguredFeature = multiSaplingHolder.value();
+                        BlockState multiSaplingBlockState = Blocks.AIR.defaultBlockState();
+                        level.setBlock(pos.offset(i, 0, j), multiSaplingBlockState, 260);
+                        level.setBlock(pos.offset(i + 1, 0, j), multiSaplingBlockState, 260);
+                        level.setBlock(pos.offset(i, 0, j + 1), multiSaplingBlockState, 260);
+                        level.setBlock(pos.offset(i + 1, 0, j + 1), multiSaplingBlockState, 260);
+                        if (multiSaplingConfiguredFeature.place(level, chunkGenerator, random, pos.offset(i, 0, j))) {
+                            return true;
                         }
+
+                        level.setBlock(pos.offset(i, 0, j), state, 260);
+                        level.setBlock(pos.offset(i + 1, 0, j), state, 260);
+                        level.setBlock(pos.offset(i, 0, j + 1), state, 260);
+                        level.setBlock(pos.offset(i + 1, 0, j + 1), state, 260);
+                        return false;
                     }
                 }
             }
@@ -68,26 +64,21 @@ public class WeightedTreeGrower {
         List<Seed.Entry> singleSaplingsFlowersEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
         singleSaplingsEntries = singleSaplingsFlowersEntries.isEmpty() ? singleSaplingsEntries : singleSaplingsFlowersEntries;
 
-        ResourceKey<ConfiguredFeature<?, ?>> singleSaplingResourceKey = selectWeightedEntry(singleSaplingsEntries, random);
-        if (singleSaplingResourceKey == null) {
+        Holder<ConfiguredFeature<?, ?>> singleSaplingHolder = selectWeightedEntry(singleSaplingsEntries, random);
+        if (singleSaplingHolder == null) {
             return false;
         } else {
-            Holder<ConfiguredFeature<?, ?>> singleSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(singleSaplingResourceKey).orElse(null);
-            if (singleSaplingHolder == null) {
-                return false;
-            } else {
-                ConfiguredFeature<?, ?> singleSaplingConfiguredFeature = singleSaplingHolder.value();
-                BlockState singleSaplingBlockState = level.getFluidState(pos).createLegacyBlock();
-                level.setBlock(pos, singleSaplingBlockState, 260);
-                if (singleSaplingConfiguredFeature.place(level, chunkGenerator, random, pos)) {
-                    if (level.getBlockState(pos) == singleSaplingBlockState) {
-                        level.sendBlockUpdated(pos, state, singleSaplingBlockState, 2);
-                    }
-                    return true;
-                } else {
-                    level.setBlock(pos, state, 260);
-                    return false;
+            ConfiguredFeature<?, ?> singleSaplingConfiguredFeature = singleSaplingHolder.value();
+            BlockState singleSaplingBlockState = level.getFluidState(pos).createLegacyBlock();
+            level.setBlock(pos, singleSaplingBlockState, 260);
+            if (singleSaplingConfiguredFeature.place(level, chunkGenerator, random, pos)) {
+                if (level.getBlockState(pos) == singleSaplingBlockState) {
+                    level.sendBlockUpdated(pos, state, singleSaplingBlockState, 2);
                 }
+                return true;
+            } else {
+                level.setBlock(pos, state, 260);
+                return false;
             }
         }
     }
@@ -106,7 +97,7 @@ public class WeightedTreeGrower {
         return false;
     }
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> selectWeightedEntry(List<Seed.Entry> entries, RandomSource random) {
+    public static Holder<ConfiguredFeature<?, ?>> selectWeightedEntry(List<Seed.Entry> entries, RandomSource random) {
         if (entries.isEmpty()) {
             return null;
         }
@@ -117,10 +108,10 @@ public class WeightedTreeGrower {
         }
         int randomWeight = random.nextInt(totalWeight);
 
-        ResourceKey<ConfiguredFeature<?, ?>> selected = null;
+        Holder<ConfiguredFeature<?, ?>> selected = null;
         for (Seed.Entry entry : entries) {
             if (randomWeight < entry.getWeight()) {
-                selected = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse(entry.getFeature()));
+                selected = BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), ResourceLocation.tryParse(entry.getFeature())));
                 break;
             } else {
                 randomWeight -= entry.getWeight();
@@ -159,7 +150,7 @@ public class WeightedTreeGrower {
         int elevation = pos.getY();
         int luminance = level.getBrightness(LightLayer.SKY, pos);
         float temperature = ((BiomeInvoker) (Object) level.getBiome(pos).value()).invokeGetTemperature(pos);
-        float precipitation = ((BiomeAccessor) (Object) level.getBiome(pos).value()).getClimateSettings().downfall();
+        float precipitation = level.getBiome(pos).value().getDownfall();
 
         List<Seed.Entry> entries = new ArrayList<>();
         Arrays.asList(Locate.getSeeds(state)).forEach(seed -> {

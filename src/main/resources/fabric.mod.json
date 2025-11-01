@@ -21,9 +21,6 @@
   "entrypoints": {
     "main": [
       "dev.yurisuika.endemic.Endemic"
-    ],
-    "fabric-datagen": [
-      "dev.yurisuika.endemic.Endemic\$Data"
     ]
   },
   "mixins": [
@@ -34,7 +31,7 @@
 
   "depends": {
     "fabricloader": ">=0.12.0",
-    "minecraft": ">=1.19- <1.20",
+    "minecraft": ">=1.19- <1.19.3",
     "java": ">=17"
   }
 }

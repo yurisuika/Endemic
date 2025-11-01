@@ -3,15 +3,12 @@ plugins {
     id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+base {
+    archivesName = project.mod_id
+}
 
 repositories {
-    maven { url "https://maven.parchmentmc.org/" }
+    maven { url = "https://maven.parchmentmc.org/" }
 }
 
 dependencies {
@@ -39,15 +36,21 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+    accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 
     mixin {
-        defaultRefmapName = "${project.archives_base_name}.refmap.json"
+        defaultRefmapName = "${project.mod_id}.refmap.json"
     }
 }
 
 java {
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    version = project.mod_version
+    group = project.maven_group
 }
 
 jar {
@@ -71,11 +74,5 @@ publishing {
     }
 
     repositories {
-    }
-}
-
-fabricApi {
-    configureDataGeneration() {
-        client = true
     }
 }
