@@ -19,15 +19,14 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 
 public class EndemicTreeFeatures {
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:oak_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:spruce_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:birch_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> JUNGLE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:jungle_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ACACIA_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:acacia_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:dark_oak_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MANGROVE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:mangrove_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:cherry_bush"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AZALEA_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse("endemic:azalea_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "oak_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "spruce_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "birch_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> JUNGLE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "jungle_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ACACIA_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "acacia_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "dark_oak_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MANGROVE_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "mangrove_bush"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZALEA_BUSH = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "azalea_bush"));
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         context.register(OAK_BUSH, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -70,12 +69,6 @@ public class EndemicTreeFeatures {
                 new SimpleStateProvider(Blocks.MANGROVE_LOG.defaultBlockState()),
                 new StraightTrunkPlacer(1, 0, 0),
                 new SimpleStateProvider(Blocks.MANGROVE_LEAVES.defaultBlockState()),
-                new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
-                new TwoLayersFeatureSize(0, 0, 0)).build()));
-        context.register(CHERRY_BUSH, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                new SimpleStateProvider(Blocks.CHERRY_LOG.defaultBlockState()),
-                new StraightTrunkPlacer(1, 0, 0),
-                new SimpleStateProvider(Blocks.CHERRY_LEAVES.defaultBlockState()),
                 new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
                 new TwoLayersFeatureSize(0, 0, 0)).build()));
         context.register(AZALEA_BUSH, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
