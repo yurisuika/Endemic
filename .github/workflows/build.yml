@@ -12,7 +12,6 @@ jobs:
           java-version: 21
           distribution: jetbrains
       - run: chmod +x gradlew
-      - run: ./gradlew runDatagen --stacktrace --info
       - run: ./gradlew build --stacktrace --info
       - uses: actions/upload-artifact@v4
         with:
