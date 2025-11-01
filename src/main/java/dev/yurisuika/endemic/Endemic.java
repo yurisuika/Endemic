@@ -1,7 +1,7 @@
 package dev.yurisuika.endemic;
 
 import dev.yurisuika.endemic.config.Config;
-import dev.yurisuika.endemic.data.EndemicWorldgenGenerator;
+import dev.yurisuika.endemic.data.EndemicDatapackProvider;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
 import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import net.fabricmc.api.ModInitializer;
@@ -28,7 +28,7 @@ public class Endemic implements ModInitializer {
 
         @Override
         public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-            fabricDataGenerator.createPack().addProvider(EndemicWorldgenGenerator::new);
+            fabricDataGenerator.createPack().addProvider(EndemicDatapackProvider::new);
         }
 
         @Override

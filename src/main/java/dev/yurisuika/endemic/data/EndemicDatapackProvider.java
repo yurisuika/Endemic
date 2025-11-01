@@ -7,9 +7,9 @@ import net.minecraft.core.registries.Registries;
 
 import java.util.concurrent.CompletableFuture;
 
-public class EndemicWorldgenGenerator extends FabricDynamicRegistryProvider {
+public class EndemicDatapackProvider extends FabricDynamicRegistryProvider {
 
-    public EndemicWorldgenGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public EndemicDatapackProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

@@ -9,6 +9,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface BiomeInvoker {
 
     @Invoker("getTemperature")
-    float invokeGetTemperature(BlockPos pos);
+    float invokeGetTemperature(BlockPos pos, int seaLevel);
 
 }
