@@ -1,41 +1,34 @@
 package dev.yurisuika.endemic;
 
 import dev.yurisuika.endemic.config.Config;
-import dev.yurisuika.endemic.data.EndemicWorldgenGenerator;
-import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
+import dev.yurisuika.endemic.data.EndemicDatapackProvider;
 import dev.yurisuika.endemic.server.commands.EndemicCommand;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.Registries;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
-public class Endemic implements ModInitializer {
+@Mod("endemic")
+public class Endemic {
 
-    public static void registerCommands() {
-        CommandRegistrationCallback.EVENT.register(EndemicCommand::register);
+    @EventBusSubscriber(modid = "endemic")
+    public static class Events {
+
+        @SubscribeEvent
+        public static void registerCommands(RegisterCommandsEvent event) {
+            EndemicCommand.register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
+        }
+
+        @SubscribeEvent
+        public static void gatherServerData(GatherDataEvent.Server event) {
+            event.getGenerator().addProvider(true, new EndemicDatapackProvider(event.getGenerator().getPackOutput(), event.getLookupProvider()));
+        }
+
     }
 
-    @Override
-    public void onInitialize() {
+    public Endemic() {
         Config.loadConfig();
-
-        registerCommands();
-    }
-
-    public static class Data implements DataGeneratorEntrypoint {
-
-        @Override
-        public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-            fabricDataGenerator.createPack().addProvider(EndemicWorldgenGenerator::new);
-        }
-
-        @Override
-        public void buildRegistry(RegistrySetBuilder registrySetBuilder) {
-            registrySetBuilder.add(Registries.CONFIGURED_FEATURE, EndemicTreeFeatures::bootstrap);
-        }
-
     }
 
 }
