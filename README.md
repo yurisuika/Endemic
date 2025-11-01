@@ -1,29 +1,16 @@
-**Endemic** is a Fabric mod for Minecraft that allows you to grow trees endemic to their biomes with vanilla saplings! Now you can regrow those swamp oaks, super birches, pine spruces, and more! However, that is not all; Endemic can also make saplings grow differently depending on their native biomes!
+**Endemic** is a mod for Minecraft that allows you to configure how saplings grow! Do you wish that you could grow all of those endemic trees that you find in the world but once cut down are lost forever? Now you can regrow those swamp oaks, super birches, pine spruces, and more!
 
-With 2.0, Endemic has been rewritten to use tags! Each species has four categories of biome tags: endemic, native, nonnative, and dead. The last one isn't actually a tag, but any biome that is not is the other three will fall under this category. As you can imagine, any endemic species only grow in special biomes. Native species grow in many biomes and may grow alongside their endemic species. If a species is grown outside of its native habitat, it will grow as a shrubby form. And finally, if a species is deemed to be far too outside of its natives habitat, it is left to grow as a dead bush!
+Create sets of trees that you can conditionally grow based on the surrounding dimension and biome, immediate elevation and luminance ranges, and even temperature and precipitation ranges. This means you can create deep configurations in conjunction with mods that change the weather and seasons, make certain tree variants grow at certain altitudes, or make it so you can only grow certain trees in those special places where you find them natively to keep the charm and promote trade and travel!
 
-As mentioned, each species has a few forms it can grow in. Oaks and Birches of course have their additional forms with beehives (not listed here). Here are what each species grows as in its biome groups (all grow as dead shrub otherwise):
-- Oak: Swamp Oak (Endemic) / Oak + Fancy Oak (Native) / Shrub (Nonnative)
-- Birch: Tall Birch (Endemic) / Birch (Native) / Shrub (Nonnative)
-- Spruce: Spruce (Endemic) / Pine (Native) / Shrub (Nonnative)
-- Jungle: Vined Jungle (Endemic) / Jungle (Native) / Shrub (Nonnative)
-- Acacia: Acacia (Endemic + Native) / Shrub (Nonnative)
-- Dark Oak: Shrub (Endemic + Native + Nonnative)
-- Giant Spruce: Giant Spruce (Endemic) / Giant Pine (Native) / Giant Shrub (Nonnative)
-- Giant Jungle: Giant Jungle (Endemic + Native) / Giant Shrub (Nonnative)
-- Giant Dark Oak: Giant Dark Oak (Endemic + Native) / Giant Shrub (Nonnative)
+Endemic allows you to override any sapling that uses the vanilla tree grower, including modded saplings! Any sapling that does not have an entry in the config will just follow its vanilla growth behavior.
 
-By default, all Nether, End, and Void biomes, plus the desert biome, are left untagged, and thus all trees will grow as dead bushes there. While the default settings have been fine tuned for a realistic distribution of species, you can customize these tags with your own data pack!
+By default, Endemic focuses on bringing those endemic tree variants such as swamp oaks back to their biomes, preserves trees growing in their native habitats, and makes saplings grown outside of their native biomes end up growing as new shrub forms. In addition, the dimension for each sapling is filtered to the Overworld, so saplings won't grow up in The Nether and The End. Don't like that behavior? Just give the sapling set an empty dimension/biome list!
 
-Furthermore, Endemic 2.0 features a reworked sky light growth behavior. Now, each tree form has four sub-forms of differing size, and depending on the light level in which a tree is grown, a different form will grow. The sets are as follows:
-- Light 15-12: Full
-- Light 11-08: Large
-- Light 07-04: Medium
-- Light 03-00: Small
+The power is yours to create intricate sapling growth behavior if you so choose. Delve into the possibilities!
 
 #### Compiling
 
-To build from source you will need have JDK 17 to compile and, optionally, Git to clone the repository. Otherwise, download the archive and just run `./gradlew build` from the root project folder.
+To build from source you will need have JDK 21 to compile and, optionally, Git to clone the repository. Otherwise, download the archive and just run `./gradlew build` from the root project folder.
 
 When using Git, just choose a directory you wish to keep the project root folder in, decide which branch you wish to compile, and then run these commands:
 
@@ -32,6 +19,7 @@ git clone --branch <branch> --recursive https://github.com/yurisuika/endemic.git
 
 cd ./endemic
 
+./gradlew runDatagen # Needed for 1.19.3 and up!
 ./gradlew build
 ```
 
