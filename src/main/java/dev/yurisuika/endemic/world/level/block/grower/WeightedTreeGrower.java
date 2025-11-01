@@ -1,6 +1,5 @@
 package dev.yurisuika.endemic.world.level.block.grower;
 
-import dev.yurisuika.endemic.mixin.world.level.BiomeAccessor;
 import dev.yurisuika.endemic.mixin.world.level.BiomeInvoker;
 import dev.yurisuika.endemic.util.Locate;
 import dev.yurisuika.endemic.world.level.Seed;
@@ -36,20 +35,20 @@ public class WeightedTreeGrower {
         List<Seed.Entry> multiSaplingsFlowersEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
         multiSaplingsEntries = multiSaplingsFlowersEntries.isEmpty() ? multiSaplingsEntries : multiSaplingsFlowersEntries;
 
-        ResourceKey<ConfiguredFeature<?, ?>> quadrupleSaplingResourceKey = selectWeightedEntry(multiSaplingsEntries, random);
-        if (quadrupleSaplingResourceKey != null) {
-            Holder<ConfiguredFeature<?, ?>> quadrupleSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(quadrupleSaplingResourceKey).orElse(null);
-            if (quadrupleSaplingHolder != null) {
+        ResourceKey<ConfiguredFeature<?, ?>> multiSaplingResourceKey = selectWeightedEntry(multiSaplingsEntries, random);
+        if (multiSaplingResourceKey != null) {
+            Holder<ConfiguredFeature<?, ?>> multiSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(multiSaplingResourceKey).orElse(null);
+            if (multiSaplingHolder != null) {
                 for (int i = 0; i >= -1; --i) {
                     for (int j = 0; j >= -1; --j) {
                         if (isTwoByTwoSapling(state, level, pos, i, j)) {
-                            ConfiguredFeature<?, ?> quadrupleSaplingConfiguredFeature = quadrupleSaplingHolder.value();
-                            BlockState quadrupleSaplingBlockState = Blocks.AIR.defaultBlockState();
-                            level.setBlock(pos.offset(i, 0, j), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i, 0, j + 1), quadrupleSaplingBlockState, 260);
-                            level.setBlock(pos.offset(i + 1, 0, j + 1), quadrupleSaplingBlockState, 260);
-                            if (quadrupleSaplingConfiguredFeature.place(level, chunkGenerator, random, pos.offset(i, 0, j))) {
+                            ConfiguredFeature<?, ?> multiSaplingConfiguredFeature = multiSaplingHolder.value();
+                            BlockState multiSaplingBlockState = Blocks.AIR.defaultBlockState();
+                            level.setBlock(pos.offset(i, 0, j), multiSaplingBlockState, 260);
+                            level.setBlock(pos.offset(i + 1, 0, j), multiSaplingBlockState, 260);
+                            level.setBlock(pos.offset(i, 0, j + 1), multiSaplingBlockState, 260);
+                            level.setBlock(pos.offset(i + 1, 0, j + 1), multiSaplingBlockState, 260);
+                            if (multiSaplingConfiguredFeature.place(level, chunkGenerator, random, pos.offset(i, 0, j))) {
                                 return true;
                             }
 
@@ -159,7 +158,7 @@ public class WeightedTreeGrower {
         int elevation = pos.getY();
         int luminance = level.getBrightness(LightLayer.SKY, pos);
         float temperature = ((BiomeInvoker) (Object) level.getBiome(pos).value()).invokeGetTemperature(pos);
-        float precipitation = ((BiomeAccessor) (Object) level.getBiome(pos).value()).getClimateSettings().downfall();
+        float precipitation = level.getBiome(pos).value().getDownfall();
 
         List<Seed.Entry> entries = new ArrayList<>();
         Arrays.asList(Locate.getSeeds(state)).forEach(seed -> {

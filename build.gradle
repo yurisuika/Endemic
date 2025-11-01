@@ -1,17 +1,14 @@
 plugins {
-    id "fabric-loom" version "1.11-SNAPSHOT"
+    id "dev.architectury.loom" version "1.11-SNAPSHOT"
     id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+base {
+    archivesName = project.mod_id
+}
 
 repositories {
-    maven { url "https://maven.parchmentmc.org/" }
+    maven { url = "https://maven.parchmentmc.org/" }
 }
 
 dependencies {
@@ -20,15 +17,13 @@ dependencies {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
     }
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    forge "net.minecraftforge:forge:${project.forge_version}"
 }
 
 processResources {
     inputs.property "version", project.mod_version
 
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/mods.toml") {
         expand "version": project.mod_version
     }
 }
@@ -38,24 +33,46 @@ tasks.withType(JavaCompile).configureEach {
     it.options.release = 17
 }
 
-loom {
-    accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+sourceSets {
+    main {
+        resources.srcDir file("src/generated/resources")
+    }
+}
 
+loom {
     mixin {
-        defaultRefmapName = "${project.archives_base_name}.refmap.json"
+        useLegacyMixinAp = true
+        defaultRefmapName = "${project.mod_id}.refmap.json"
+    }
+
+    runs {
+        datagen {
+            data()
+            programArgs "--all"
+            programArgs "--mod", "${project.mod_id}"
+            programArgs "--output", file("src/generated/resources").absolutePath
+            programArgs "--existing", file("src/main/resources").absolutePath
+        }
     }
 }
 
 java {
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    version = project.mod_version
+    group = project.maven_group
 }
 
 jar {
     from("LICENSE")
-    jar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    sourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    remapJar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    remapSourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
+    jar.archiveAppendix.set("forge-${project.minecraft_version}")
+    sourcesJar.archiveAppendix.set("forge-${project.minecraft_version}")
+    remapJar.archiveAppendix.set("forge-${project.minecraft_version}")
+    remapSourcesJar.archiveAppendix.set("forge-${project.minecraft_version}")
+    exclude ".cache"
 }
 
 publishing {
@@ -71,11 +88,5 @@ publishing {
     }
 
     repositories {
-    }
-}
-
-fabricApi {
-    configureDataGeneration() {
-        client = true
     }
 }
