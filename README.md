@@ -19,7 +19,6 @@ git clone --branch <branch> --recursive https://github.com/yurisuika/endemic.git
 
 cd ./endemic
 
-./gradlew runDatagen # Needed for 1.19.3 and up!
 ./gradlew build
 ```
 
