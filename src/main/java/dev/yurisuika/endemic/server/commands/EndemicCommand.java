@@ -38,7 +38,8 @@ public class EndemicCommand {
     }
 
     public static int resetConfig(CommandSourceStack source) {
-        Configure.setSaplings(new Options().getSaplings());
+        Config.setOptions(new Options());
+        Config.saveConfig();
 
         source.sendSuccess(() -> Component.translatable("commands.endemic.config.reset"), true);
         return 1;
