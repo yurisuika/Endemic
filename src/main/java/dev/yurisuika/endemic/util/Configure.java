@@ -1,18 +1,24 @@
 package dev.yurisuika.endemic.util;
 
 import dev.yurisuika.endemic.config.Config;
-import dev.yurisuika.endemic.world.level.Seed;
-
-import java.util.TreeMap;
 
 public class Configure {
 
-    public static TreeMap<String, Seed[]> getSaplings() {
-        return Config.getOptions().getSaplings();
+    public static LightSource getLightSource() {
+        return Config.getOptions().getLightSource();
     }
 
-    public static void setSaplings(TreeMap<String, Seed[]> saplings) {
-        Config.getOptions().setSaplings(saplings);
+    public static void setLightSource(LightSource lightSource) {
+        Config.getOptions().setLightSource(lightSource);
+        Config.saveConfig();
+    }
+
+    public static Transition getTransition() {
+        return Config.getOptions().getTransition();
+    }
+
+    public static void setTransition(Transition transition) {
+        Config.getOptions().setTransition(transition);
         Config.saveConfig();
     }
 
