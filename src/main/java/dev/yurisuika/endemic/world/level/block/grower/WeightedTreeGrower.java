@@ -1,8 +1,10 @@
 package dev.yurisuika.endemic.world.level.block.grower;
 
 import dev.yurisuika.endemic.mixin.world.level.BiomeInvoker;
+import dev.yurisuika.endemic.util.Configure;
+import dev.yurisuika.endemic.util.LightSource;
 import dev.yurisuika.endemic.util.Locate;
-import dev.yurisuika.endemic.world.level.Seed;
+import dev.yurisuika.endemic.world.level.Group;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
@@ -24,11 +26,11 @@ import java.util.*;
 public class WeightedTreeGrower {
 
     public static boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
-        List<Seed.Entry> entries = getPassingGroupsEntries(level, pos, state);
+        List<Group.Entry> entries = filterEntries(level, pos, state);
         Collections.shuffle(entries);
 
-        List<Seed.Entry> multiSaplingsEntries = filterSaplingsEntries(entries, true);
-        List<Seed.Entry> multiSaplingsFlowersEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
+        List<Group.Entry> multiSaplingsEntries = filterSaplingsEntries(entries, true);
+        List<Group.Entry> multiSaplingsFlowersEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
         multiSaplingsEntries = multiSaplingsFlowersEntries.isEmpty() ? multiSaplingsEntries : multiSaplingsFlowersEntries;
 
         Holder<ConfiguredFeature<?, ?>> multiSaplingHolder = selectWeightedEntry(multiSaplingsEntries, random);
@@ -56,8 +58,8 @@ public class WeightedTreeGrower {
             }
         }
 
-        List<Seed.Entry> singleSaplingsEntries = filterSaplingsEntries(entries, false);
-        List<Seed.Entry> singleSaplingsFlowersEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
+        List<Group.Entry> singleSaplingsEntries = filterSaplingsEntries(entries, false);
+        List<Group.Entry> singleSaplingsFlowersEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
         singleSaplingsEntries = singleSaplingsFlowersEntries.isEmpty() ? singleSaplingsEntries : singleSaplingsFlowersEntries;
 
         Holder<ConfiguredFeature<?, ?>> singleSaplingHolder = selectWeightedEntry(singleSaplingsEntries, random);
@@ -93,19 +95,19 @@ public class WeightedTreeGrower {
         return false;
     }
 
-    public static Holder<ConfiguredFeature<?, ?>> selectWeightedEntry(List<Seed.Entry> entries, Random random) {
+    public static Holder<ConfiguredFeature<?, ?>> selectWeightedEntry(List<Group.Entry> entries, Random random) {
         if (entries.isEmpty()) {
             return null;
         }
 
-        int totalWeight = 0;
-        for (Seed.Entry entry : entries) {
+        float totalWeight = 0.0F;
+        for (Group.Entry entry : entries) {
             totalWeight += entry.getWeight();
         }
-        int randomWeight = random.nextInt(totalWeight);
+        float randomWeight = random.nextFloat() * totalWeight;
 
         Holder<ConfiguredFeature<?, ?>> selected = null;
-        for (Seed.Entry entry : entries) {
+        for (Group.Entry entry : entries) {
             if (randomWeight < entry.getWeight()) {
                 selected = BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), ResourceLocation.tryParse(entry.getFeature())));
                 break;
@@ -116,47 +118,60 @@ public class WeightedTreeGrower {
         return selected;
     }
 
-    public static List<Seed.Entry> filterSaplingsEntries(List<Seed.Entry> entries, boolean saplings) {
-        List<Seed.Entry> filteredEntries = new ArrayList<>();
-        for (Seed.Entry entry : entries) {
-            if (saplings && entry.getProximity().getSaplings()) {
+    public static List<Group.Entry> filterSaplingsEntries(List<Group.Entry> entries, boolean saplings) {
+        List<Group.Entry> filteredEntries = new ArrayList<>();
+        for (Group.Entry entry : entries) {
+            if (saplings && entry.getNeighbors().getSaplings()) {
                 filteredEntries.add(entry);
-            } else if (!saplings && !entry.getProximity().getSaplings()) {
-                filteredEntries.add(entry);
-            }
-        }
-        return filteredEntries;
-    }
-
-    public static List<Seed.Entry> filterFlowersEntries(List<Seed.Entry> entries, boolean flowers) {
-        List<Seed.Entry> filteredEntries = new ArrayList<>();
-        for (Seed.Entry entry : entries) {
-            if (flowers && entry.getProximity().getFlowers()) {
-                filteredEntries.add(entry);
-            } else if (!flowers && !entry.getProximity().getFlowers()) {
+            } else if (!saplings && !entry.getNeighbors().getSaplings()) {
                 filteredEntries.add(entry);
             }
         }
         return filteredEntries;
     }
 
-    public static List<Seed.Entry> getPassingGroupsEntries(ServerLevel level, BlockPos pos, BlockState state) {
+    public static List<Group.Entry> filterFlowersEntries(List<Group.Entry> entries, boolean flowers) {
+        List<Group.Entry> filteredEntries = new ArrayList<>();
+        for (Group.Entry entry : entries) {
+            if (flowers && entry.getNeighbors().getFlowers()) {
+                filteredEntries.add(entry);
+            } else if (!flowers && !entry.getNeighbors().getFlowers()) {
+                filteredEntries.add(entry);
+            }
+        }
+        return filteredEntries;
+    }
+
+    public static List<Group.Entry> filterEntries(ServerLevel level, BlockPos pos, BlockState state) {
         String dimension = level.dimension().location().toString();
         String biome = level.getBiome(pos).unwrap().map(key -> key.location().toString(), value -> "");
         int elevation = pos.getY();
-        int luminance = level.getBrightness(LightLayer.SKY, pos);
+        int brightness = Configure.getLightSource().equals(LightSource.RAW) ? level.getRawBrightness(pos, 0) : level.getBrightness(Configure.getLightSource().equals(LightSource.SKY) ? LightLayer.SKY : LightLayer.BLOCK, pos);
         float temperature = ((BiomeInvoker) (Object) level.getBiome(pos).value()).invokeGetTemperature(pos);
-        float precipitation = level.getBiome(pos).value().getDownfall();
+        float downfall = level.getBiome(pos).value().getDownfall();
 
-        List<Seed.Entry> entries = new ArrayList<>();
-        Arrays.asList(Locate.getSeeds(state)).forEach(seed -> {
-            if (seed.getConditions().getRegion().getDimensions().isEmpty() || seed.getConditions().getRegion().getDimensions().contains(dimension)) {
-                if (seed.getConditions().getRegion().getBiomes().isEmpty() || seed.getConditions().getRegion().getBiomes().contains(biome)) {
-                    if (seed.getConditions().getLocation().getElevation().getMin() <= elevation && seed.getConditions().getLocation().getElevation().getMax() >= elevation) {
-                        if (seed.getConditions().getLocation().getLuminance().getMin() <= luminance && seed.getConditions().getLocation().getLuminance().getMax() >= luminance) {
-                            if (seed.getConditions().getClimate().getTemperature().getMin() <= temperature && seed.getConditions().getClimate().getTemperature().getMax() >= temperature) {
-                                if (seed.getConditions().getClimate().getPrecipitation().getMin() <= precipitation && seed.getConditions().getClimate().getPrecipitation().getMax() >= precipitation) {
-                                    entries.addAll(Arrays.asList(seed.getEntries()));
+        List<Group.Entry> entries = new ArrayList<>();
+        Arrays.asList(Locate.getGroupsForSapling(state)).forEach(group -> {
+            if (!group.getRegion().getDimensions().getBlacklist().contains(dimension)) {
+                if (group.getRegion().getDimensions().getWhitelist().isEmpty() || group.getRegion().getDimensions().getWhitelist().contains(dimension)) {
+                    if (!group.getRegion().getBiomes().getBlacklist().contains(biome)) {
+                        if (group.getRegion().getBiomes().getWhitelist().isEmpty() || group.getRegion().getBiomes().getWhitelist().contains(biome)) {
+                            Group.Conditions.Location.Elevation elevationConditions = group.getConditions().getLocation().getElevation();
+                            Group.Conditions.Location.Brightness brightnessConditions = group.getConditions().getLocation().getBrightness();
+                            Group.Conditions.Climate.Temperature temperatureConditions = group.getConditions().getClimate().getTemperature();
+                            Group.Conditions.Climate.Downfall downfallConditions = group.getConditions().getClimate().getDownfall();
+
+                            double elevationModifier = calculateModifier(elevation, elevationConditions.getOptimum().getMin(), elevationConditions.getOptimum().getMax(), elevationConditions.getTolerance().getMin(), elevationConditions.getTolerance().getMax());
+                            double brightnessModifier = calculateModifier(brightness, brightnessConditions.getOptimum().getMin(), brightnessConditions.getOptimum().getMax(), brightnessConditions.getTolerance().getMin(), brightnessConditions.getTolerance().getMax());
+                            double temperatureModifier = calculateModifier(temperature, temperatureConditions.getOptimum().getMin(), temperatureConditions.getOptimum().getMax(), temperatureConditions.getTolerance().getMin(), temperatureConditions.getTolerance().getMax());
+                            double downfallModifier = calculateModifier(downfall, downfallConditions.getOptimum().getMin(), downfallConditions.getOptimum().getMax(), downfallConditions.getTolerance().getMin(), downfallConditions.getTolerance().getMax());
+
+                            double modifier = elevationModifier * brightnessModifier * temperatureModifier * downfallModifier;
+
+                            for (Group.Entry entry : group.getEntries()) {
+                                double modifiedWeight = entry.getWeight() * group.getWeight() * modifier;
+                                if (modifiedWeight > 0.0D) {
+                                    entries.add(new Group.Entry(entry.getFeature(), modifiedWeight, entry.getNeighbors()));
                                 }
                             }
                         }
@@ -164,7 +179,29 @@ public class WeightedTreeGrower {
                 }
             }
         });
+        entries.sort(Comparator.comparing(Group.Entry::getWeight).reversed());
         return entries;
+    }
+
+    public static double calculateModifier(double value, double optimalMin, double optimalMax, double toleranceMin, double toleranceMax) {
+        if (toleranceMin <= toleranceMax && optimalMin <= optimalMax) {
+            if (toleranceMin <= optimalMin && toleranceMax >= optimalMax) {
+                if (value >= optimalMin && value <= optimalMax) {
+                    return 1.0D;
+                } else if (value < optimalMin) {
+                    if (toleranceMin < optimalMin && value > toleranceMin) {
+                        double x = Math.abs((value - toleranceMin) / (optimalMin - toleranceMin));
+                        return Math.abs(Configure.getTransition().transition(x));
+                    }
+                } else if (value > optimalMax) {
+                    if (toleranceMax > optimalMax && value < toleranceMax) {
+                        double x = Math.abs((value - toleranceMax) / (toleranceMax - optimalMax));
+                        return Math.abs(Configure.getTransition().transition(x));
+                    }
+                }
+            }
+        }
+        return 0.0D;
     }
 
 }
