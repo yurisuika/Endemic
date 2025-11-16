@@ -3,6 +3,7 @@ package dev.yurisuika.endemic;
 import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.data.EndemicDatapackProvider;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
+import dev.yurisuika.endemic.registry.SaplingRegistry;
 import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -17,11 +18,17 @@ public class Endemic implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(EndemicCommand::register);
     }
 
+    public static void registerSaplings() {
+        SaplingRegistry.bootstrap();
+        SaplingRegistry.loadAllSaplingConfigs();
+    }
+
     @Override
     public void onInitialize() {
         Config.loadConfig();
 
         registerCommands();
+        registerSaplings();
     }
 
     public static class Data implements DataGeneratorEntrypoint {
