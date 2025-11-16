@@ -1,33 +1,31 @@
 modLoader = "javafml"
-loaderVersion = "[1,)"
-license = "GNU Lesser General Public License v3.0"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
 
 [[mods]]
-modId = "endemic"
-version = "${version}"
-displayName = "Endemic"
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
 displayTest = "IGNORE_SERVER_VERSION"
-displayURL = "https://github.com/yurisuika/Endemic"
-issueTrackerURL = "https://github.com/yurisuika/Endemic/issues"
+displayURL = "https://github.com/${mod_author}/${mod_name}"
+issueTrackerURL = "https://github.com/${mod_author}/${mod_name}/issues"
 logoFile = "icon.png"
-authors = "yurisuika"
-description = '''
-Harness the ability to grow any tree from a sapling!
-'''
+authors = "${mod_author}"
+description = "${mod_description}"
 
 [[mixins]]
-config = "endemic.mixins.json"
+config = "${mod_id}.mixins.json"
 
-[[dependencies.endemic]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21,1.21.2)"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
-side = "BOTH"
+side = "SERVER"
 
-[[dependencies.endemic]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21,21.2)"
+versionRange = "${api_version_range}"
 ordering = "NONE"
-side = "BOTH"
+side = "SERVER"
