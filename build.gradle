@@ -1,10 +1,9 @@
 plugins {
     id "dev.architectury.loom" version "1.11-SNAPSHOT"
-    id "maven-publish"
 }
 
 base {
-    archivesName = project.mod_id
+    archivesName = mod_id
 }
 
 repositories {
@@ -12,19 +11,36 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
     }
-    forge "net.minecraftforge:forge:${project.forge_version}"
+    forge "net.minecraftforge:forge:${minecraft_version}-${api_version}"
 }
 
 processResources {
-    inputs.property "version", project.mod_version
+    var properties = [
+            java_version: java_version,
+            minecraft_version: minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            parchment_version: parchment_version,
+            api_version: api_version,
+            api_version_range: api_version_range,
+            loader_version: loader_version,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id,
+            mod_name: mod_name,
+            mod_version: mod_version,
+            mod_author: mod_author,
+            mod_group: mod_group,
+            mod_description: mod_description,
+            mod_license: mod_license
+    ]
+    inputs.properties properties
 
     filesMatching("META-INF/mods.toml") {
-        expand "version": project.mod_version
+        expand properties + [project: project]
     }
 }
 
@@ -36,7 +52,7 @@ tasks.withType(JavaCompile).configureEach {
 loom {
     mixin {
         useLegacyMixinAp = true
-        defaultRefmapName = "${project.mod_id}.refmap.json"
+        defaultRefmapName = "${mod_id}.refmap.json"
     }
 }
 
@@ -46,30 +62,15 @@ java {
     sourceCompatibility = JavaVersion.VERSION_16
     targetCompatibility = JavaVersion.VERSION_16
 
-    version = project.mod_version
-    group = project.maven_group
+    version = mod_version
+    group = mod_group
 }
 
 jar {
-    from("LICENSE")
-    jar.archiveAppendix.set("forge-${project.minecraft_version}")
-    sourcesJar.archiveAppendix.set("forge-${project.minecraft_version}")
-    remapJar.archiveAppendix.set("forge-${project.minecraft_version}")
-    remapSourcesJar.archiveAppendix.set("forge-${project.minecraft_version}")
-}
+    from "LICENSE"
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
-        }
-    }
-
-    repositories {
-    }
+    jar.archiveAppendix.set("forge-${minecraft_version}")
+    sourcesJar.archiveAppendix.set("forge-${minecraft_version}")
+    remapJar.archiveAppendix.set("forge-${minecraft_version}")
+    remapSourcesJar.archiveAppendix.set("forge-${minecraft_version}")
 }
