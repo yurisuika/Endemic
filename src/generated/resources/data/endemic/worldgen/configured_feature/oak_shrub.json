@@ -11,13 +11,13 @@
     "foliage_placer": {
       "type": "minecraft:bush_foliage_placer",
       "height": 2,
-      "offset": 1,
+      "offset": 0,
       "radius": 2
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:spruce_leaves",
+        "Name": "minecraft:oak_leaves",
         "Properties": {
           "distance": "7",
           "persistent": "false",
@@ -26,7 +26,7 @@
       }
     },
     "force_dirt": false,
-    "ignore_vines": false,
+    "ignore_vines": true,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",
       "limit": 0,
@@ -42,7 +42,7 @@
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:spruce_log",
+        "Name": "minecraft:oak_log",
         "Properties": {
           "axis": "y"
         }
