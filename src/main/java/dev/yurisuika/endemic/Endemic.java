@@ -2,11 +2,13 @@ package dev.yurisuika.endemic;
 
 import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.data.EndemicDatapackProvider;
+import dev.yurisuika.endemic.registry.SaplingRegistry;
 import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod("endemic")
 public class Endemic {
@@ -23,6 +25,12 @@ public class Endemic {
 
     @Mod.EventBusSubscriber(modid = "endemic", bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModEvents {
+
+        @SubscribeEvent
+        public static void registerSaplings(FMLCommonSetupEvent event) {
+            SaplingRegistry.bootstrap();
+            SaplingRegistry.loadAllSaplingConfigs();
+        }
 
         @SubscribeEvent
         public static void gatherServerData(GatherDataEvent event) {
