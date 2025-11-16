@@ -1,10 +1,9 @@
 plugins {
     id "fabric-loom" version "1.12-SNAPSHOT"
-    id "maven-publish"
 }
 
 base {
-    archivesName = project.mod_id
+    archivesName = mod_id
 }
 
 repositories {
@@ -12,21 +11,38 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
     }
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${api_version}"
 }
 
 processResources {
-    inputs.property "version", project.mod_version
+    var properties = [
+            java_version: java_version,
+            minecraft_version: minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            parchment_version: parchment_version,
+            api_version: api_version,
+            api_version_range: api_version_range,
+            loader_version: loader_version,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id,
+            mod_name: mod_name,
+            mod_version: mod_version,
+            mod_author: mod_author,
+            mod_group: mod_group,
+            mod_description: mod_description,
+            mod_license: mod_license
+    ]
+    inputs.properties properties
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.mod_version
+        expand properties + [project: project]
     }
 }
 
@@ -36,10 +52,10 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
+    accessWidenerPath = file("src/main/resources/${mod_id}.accesswidener")
 
     mixin {
-        defaultRefmapName = "${project.mod_id}.refmap.json"
+        defaultRefmapName = "${mod_id}.refmap.json"
     }
 }
 
@@ -49,33 +65,19 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 
-    version = project.mod_version
-    group = project.maven_group
+    version = mod_version
+    group = mod_group
 }
 
 jar {
-    from("LICENSE")
-    jar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    sourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    remapJar.archiveAppendix.set("fabric-${project.minecraft_version}")
-    remapSourcesJar.archiveAppendix.set("fabric-${project.minecraft_version}")
+    from "LICENSE"
+
+    jar.archiveAppendix.set("fabric-${minecraft_version}")
+    sourcesJar.archiveAppendix.set("fabric-${minecraft_version}")
+    remapJar.archiveAppendix.set("fabric-${minecraft_version}")
+    remapSourcesJar.archiveAppendix.set("fabric-${minecraft_version}")
+
     exclude ".cache"
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
-        }
-    }
-
-    repositories {
-    }
 }
 
 fabricApi {
