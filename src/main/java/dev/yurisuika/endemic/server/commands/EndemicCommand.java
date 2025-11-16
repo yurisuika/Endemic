@@ -3,7 +3,6 @@ package dev.yurisuika.endemic.server.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.config.Options;
-import dev.yurisuika.endemic.util.Configure;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -38,7 +37,8 @@ public class EndemicCommand {
     }
 
     public static int resetConfig(CommandSourceStack source) {
-        Configure.setSaplings(new Options().getSaplings());
+        Config.setOptions(new Options());
+        Config.saveConfig();
 
         source.sendSuccess(() -> Component.translatable("commands.endemic.config.reset"), true);
         return 1;
