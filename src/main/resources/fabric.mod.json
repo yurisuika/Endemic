@@ -1,37 +1,38 @@
 {
   "schemaVersion": 1,
-  "id": "endemic",
-  "version": "${version}",
+  "id": "${mod_id}",
+  "version": "${mod_version}",
 
-  "name": "Endemic",
-  "description": "Harness the ability to grow any tree from a sapling!",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
   "authors": [
-    "yurisuika"
+    "${mod_author}"
   ],
   "contact": {
-    "homepage": "https://yurisuika.dev",
-    "sources": "https://github.com/yurisuika/Endemic",
-    "issues": "https://github.com/yurisuika/Endemic/issues"
+    "homepage": "https://${mod_author}.dev",
+    "sources": "https://github.com/${mod_author}/${mod_name}",
+    "issues": "https://github.com/${mod_author}/${mod_name}/issues"
   },
 
-  "license": "GNU Lesser General Public License v3.0",
+  "license": "${mod_license}",
   "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.yurisuika.endemic.Endemic"
+      "${mod_group}.${mod_name}"
     ]
   },
   "mixins": [
-    "endemic.mixins.json"
+    "${mod_id}.mixins.json"
   ],
 
-  "accessWidener" : "endemic.accesswidener",
+  "accessWidener": "${mod_id}.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.12.0",
-    "minecraft": ">=1.16- <1.17",
-    "java": ">=8"
+    "fabricloader": "${loader_version_range}",
+    "minecraft": "${minecraft_version_range}",
+    "java": ">=${java_version}",
+    "fabric-api": "${api_version_range}"
   }
 }
