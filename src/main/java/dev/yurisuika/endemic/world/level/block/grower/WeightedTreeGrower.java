@@ -1,6 +1,6 @@
 package dev.yurisuika.endemic.world.level.block.grower;
 
-import dev.yurisuika.endemic.mixin.world.level.BiomeInvoker;
+import dev.yurisuika.endemic.mixin.minecraft.world.level.BiomeInvoker;
 import dev.yurisuika.endemic.util.Configure;
 import dev.yurisuika.endemic.util.LightSource;
 import dev.yurisuika.endemic.util.Locate;
