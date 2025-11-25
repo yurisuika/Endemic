@@ -5,8 +5,8 @@
   "refmap": "endemic.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "world.level.block.grower.AbstractMegaTreeGrowerMixin",
-    "world.level.block.grower.AbstractTreeGrowerMixin"
+    "minecraft.world.level.block.grower.AbstractMegaTreeGrowerMixin",
+    "minecraft.world.level.block.grower.AbstractTreeGrowerMixin"
   ],
   "client": [
   ],
