@@ -1,4 +1,4 @@
-package dev.yurisuika.endemic.mixin.world.level;
+package dev.yurisuika.endemic.mixin.minecraft.world.level;
 
 import net.minecraft.world.level.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
