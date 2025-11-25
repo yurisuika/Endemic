@@ -56,6 +56,12 @@ public class Endemic {
             Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation("endemic", "azalea_shrub"), EndemicTreeFeatures.AZALEA_SHRUB);
         }
 
+        @SubscribeEvent
+        public static void registerSaplings(FMLCommonSetupEvent event) {
+            SaplingRegistry.bootstrap();
+            SaplingRegistry.loadAllSaplingConfigs();
+        }
+
     }
 
     public Endemic() {
