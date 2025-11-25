@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.yurisuika.endemic.world.level.Group;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,10 +15,10 @@ public class SaplingConfig {
 
     public File file;
     public static Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().disableHtmlEscaping().create();
-    public ResourceLocation name;
+    public Identifier name;
     public Group[] groups;
 
-    public SaplingConfig(ResourceLocation name, Group[] groups) {
+    public SaplingConfig(Identifier name, Group[] groups) {
         this.name = name;
         this.groups = groups;
         this.file = new File(new File(new File(FabricLoader.getInstance().getConfigDir().toFile(), "endemic"), name.getNamespace()), name.getPath() + ".json");

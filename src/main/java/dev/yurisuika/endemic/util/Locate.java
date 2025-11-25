@@ -3,7 +3,7 @@ package dev.yurisuika.endemic.util;
 import dev.yurisuika.endemic.registry.SaplingRegistry;
 import dev.yurisuika.endemic.world.level.Group;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -18,10 +18,10 @@ public class Locate {
     }
 
     public static boolean hasSaplingConfig(String name) {
-        return hasSaplingConfig(ResourceLocation.tryParse(name));
+        return hasSaplingConfig(Identifier.tryParse(name));
     }
 
-    public static boolean hasSaplingConfig(ResourceLocation name) {
+    public static boolean hasSaplingConfig(Identifier name) {
         return SaplingRegistry.SAPLINGS.containsKey(name);
     }
 
@@ -34,10 +34,10 @@ public class Locate {
     }
 
     public static Group[] getGroupsForSapling(String name) {
-        return getGroupsForSapling(ResourceLocation.tryParse(name));
+        return getGroupsForSapling(Identifier.tryParse(name));
     }
 
-    public static Group[] getGroupsForSapling(ResourceLocation name) {
+    public static Group[] getGroupsForSapling(Identifier name) {
         return SaplingRegistry.SAPLINGS.get(name);
     }
 

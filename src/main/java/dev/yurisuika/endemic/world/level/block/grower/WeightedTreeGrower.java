@@ -9,8 +9,8 @@ import dev.yurisuika.endemic.world.level.Group;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -119,7 +119,7 @@ public class WeightedTreeGrower {
         ResourceKey<ConfiguredFeature<?, ?>> selected = null;
         for (Group.Entry entry : entries) {
             if (randomWeight < entry.getWeight()) {
-                selected = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.tryParse(entry.getFeature()));
+                selected = ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.tryParse(entry.getFeature()));
                 break;
             } else {
                 randomWeight -= entry.getWeight();
@@ -153,8 +153,8 @@ public class WeightedTreeGrower {
     }
 
     public static List<Group.Entry> filterEntries(ServerLevel level, BlockPos pos, BlockState state) {
-        String dimension = level.dimension().location().toString();
-        String biome = level.getBiome(pos).unwrap().map(key -> key.location().toString(), value -> "");
+        String dimension = level.dimension().identifier().toString();
+        String biome = level.getBiome(pos).unwrap().map(key -> key.identifier().toString(), value -> "");
         int elevation = pos.getY();
         int brightness = Configure.getLightSource().equals(LightSource.RAW) ? level.getRawBrightness(pos, 0) : level.getBrightness(Configure.getLightSource().equals(LightSource.SKY) ? LightLayer.SKY : LightLayer.BLOCK, pos);
         double temperature = ((BiomeInvoker) (Object) level.getBiome(pos).value()).invokeGetTemperature(pos, level.getSeaLevel());
