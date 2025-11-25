@@ -1,4 +1,4 @@
-package dev.yurisuika.endemic.mixin.world.level.block.grower;
+package dev.yurisuika.endemic.mixin.minecraft.world.level.block.grower;
 
 import dev.yurisuika.endemic.util.Locate;
 import dev.yurisuika.endemic.world.level.block.grower.WeightedTreeGrower;
