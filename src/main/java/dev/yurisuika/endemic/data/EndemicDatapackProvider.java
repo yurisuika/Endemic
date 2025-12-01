@@ -9,8 +9,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class EndemicDatapackProvider extends FabricDynamicRegistryProvider {
 
-    public EndemicDatapackProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, registriesFuture);
+    public EndemicDatapackProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
     }
 
     @Override
