@@ -1,0 +1,2 @@
+- Added API for registering default sapling configuration.
+- Added sapling config system for replacing vanilla tree grower behavior with conditional weighted feature sets.
