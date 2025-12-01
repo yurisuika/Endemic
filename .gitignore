@@ -28,7 +28,7 @@ bin/
 
 *.DS_Store
 
-# fabric
+# minecraft
 
 run/
 src/generated/resources/.cache/
