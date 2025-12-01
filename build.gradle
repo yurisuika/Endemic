@@ -115,7 +115,7 @@ modrinth {
 }
 
 curseforge {
-    apiKey = System.getenv("CURSEFORGE_TOKEN")
+    apiKey = System.getenv("CURSEFORGE_TOKEN") ?: ""
     project {
         id = "${repo_id_curseforge}"
         releaseType = "release"
@@ -134,8 +134,23 @@ curseforge {
             displayName = "${mod_name} ${mod_version} (NeoForge ${minecraft_version})"
             relations {}
         }
+        afterEvaluate {
+            uploadTask.dependsOn(remapJar)
+        }
     }
     options {
         debug = true
+        javaVersionAutoDetect = false
+        javaIntegration = false
+        forgeGradleIntegration = false
     }
+}
+
+afterEvaluate {
+    upload.dependsOn(remapJar)
+}
+
+tasks.register("upload") {
+    dependsOn("modrinth")
+    dependsOn("curseforge")
 }
