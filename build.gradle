@@ -1,5 +1,7 @@
 plugins {
-    id "dev.architectury.loom" version "1.11-SNAPSHOT"
+    id "dev.architectury.loom" version "1.13-SNAPSHOT"
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.+"
 }
 
 base {
@@ -14,7 +16,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${parchment_version}@zip")
     }
     forge "net.minecraftforge:forge:${minecraft_version}-${api_version}"
 }
@@ -73,4 +75,52 @@ jar {
     sourcesJar.archiveAppendix.set("forge-${minecraft_version}")
     remapJar.archiveAppendix.set("forge-${minecraft_version}")
     remapSourcesJar.archiveAppendix.set("forge-${minecraft_version}")
+
+    exclude ".cache"
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "${repo_id_modrinth}"
+    versionName = "${mod_name} ${mod_version} (Forge ${minecraft_version})"
+    versionNumber = "Forge-${minecraft_version}-${mod_version}"
+    versionType = "release"
+    loaders = [
+            "forge"
+    ]
+    gameVersions = [
+            "1.17",
+            "1.17.1"
+    ]
+    changelog = project.file("CHANGELOG.md").text
+    uploadFile = remapJar
+    dependencies {}
+    debugMode = true
+}
+
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_TOKEN")
+    project {
+        id = "${repo_id_curseforge}"
+        releaseType = "release"
+        changelog = project.file("CHANGELOG.md").text
+        changelogType = "markdown"
+        gameVersionStrings = [
+                "Server",
+
+                "Java ${java_version}",
+
+                "Forge",
+
+                "1.17",
+                "1.17.1"
+        ]
+        mainArtifact(remapJar) {
+            displayName = "${mod_name} ${mod_version} (Forge ${minecraft_version})"
+            relations {}
+        }
+    }
+    options {
+        debug = true
+    }
 }
