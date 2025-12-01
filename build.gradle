@@ -1,5 +1,7 @@
 plugins {
-    id "fabric-loom" version "1.12-SNAPSHOT"
+    id "fabric-loom" version "1.13-SNAPSHOT"
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.+"
 }
 
 base {
@@ -14,7 +16,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${parchment_version}@zip")
     }
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
@@ -76,4 +78,113 @@ jar {
     sourcesJar.archiveAppendix.set("fabric-${minecraft_version}")
     remapJar.archiveAppendix.set("fabric-${minecraft_version}")
     remapSourcesJar.archiveAppendix.set("fabric-${minecraft_version}")
+
+    exclude ".cache"
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "${repo_id_modrinth}"
+    versionName = "${mod_name} ${mod_version} (Fabric ${minecraft_version})"
+    versionNumber = "Fabric-${minecraft_version}-${mod_version}"
+    versionType = "release"
+    loaders = [
+            "fabric"
+    ]
+    gameVersions = [
+            "20w06a",
+            "20w07a",
+            "20w08a",
+            "20w09a",
+            "20w10a",
+            "20w11a",
+            "20w12a",
+            "20w13a",
+            "20w13b",
+            "20w14infinite",
+            "20w14a",
+            "20w15a",
+            "20w16a",
+            "20w17a",
+            "20w18a",
+            "20w19a",
+            "20w20a",
+            "20w20b",
+            "20w21a",
+            "20w22a",
+            "1.16-pre1",
+            "1.16-pre2",
+            "1.16-pre3",
+            "1.16-pre4",
+            "1.16-pre5",
+            "1.16-pre6",
+            "1.16-pre7",
+            "1.16-pre8",
+            "1.16-rc1",
+            "1.16",
+            "1.16.1",
+            "20w27a",
+            "20w28a",
+            "20w29a",
+            "20w30a",
+            "1.16.2-pre1",
+            "1.16.2-pre2",
+            "1.16.2-pre3",
+            "1.16.2-rc1",
+            "1.16.2-rc2",
+            "1.16.2",
+            "1.16.3-rc1",
+            "1.16.3",
+            "1.16.4-pre1",
+            "1.16.4-pre2",
+            "1.16.4-rc1",
+            "1.16.4",
+            "20w45a",
+            "20w46a",
+            "20w48a",
+            "20w49a",
+            "20w51a",
+            "1.16.5-rc1",
+            "1.16.5"
+    ]
+    changelog = project.file("CHANGELOG.md").text
+    uploadFile = remapJar
+    dependencies {
+        required.project "fabric-api"
+    }
+    debugMode = true
+}
+
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_TOKEN")
+    project {
+        id = "${repo_id_curseforge}"
+        releaseType = "release"
+        changelog = project.file("CHANGELOG.md").text
+        changelogType = "markdown"
+        gameVersionStrings = [
+                "Server",
+
+                "Java ${java_version}",
+
+                "Fabric",
+
+                "1.16-snapshot",
+                "1.16",
+                "1.16.1",
+                "1.16.2",
+                "1.16.3",
+                "1.16.4",
+                "1.16.5"
+        ]
+        mainArtifact(remapJar) {
+            displayName = "${mod_name} ${mod_version} (Fabric ${minecraft_version})"
+            relations {
+                requiredDependency("fabric-api")
+            }
+        }
+    }
+    options {
+        debug = true
+    }
 }
