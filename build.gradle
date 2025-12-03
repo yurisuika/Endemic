@@ -146,8 +146,8 @@ curseforge {
 
                 "Fabric",
 
-                "1.17",
                 "1.17-Snapshot",
+                "1.17",
                 "1.17.1"
         ]
         mainArtifact(remapJar) {
