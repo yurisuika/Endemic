@@ -1,0 +1,4 @@
+{
+  "commands.endemic.config.reload": "Endemic config reloaded",
+  "commands.endemic.config.reset": "Endemic config reset to defaults"
+}

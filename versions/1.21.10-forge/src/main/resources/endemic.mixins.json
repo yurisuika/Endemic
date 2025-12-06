@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.yurisuika.endemic.mixin",
+  "refmap": "endemic.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "minecraft.world.level.BiomeAccessor",
+    "minecraft.world.level.BiomeInvoker",
+    "minecraft.world.level.block.grower.AbstractTreeGrowerMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

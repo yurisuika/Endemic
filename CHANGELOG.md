@@ -1,0 +1,3 @@
+- Added API for registering default sapling configurations.
+- Added sapling config system for replacing vanilla tree grower behavior with conditional weighted feature sets.
+- Added "stunted tree" and "shrub" features for all vanilla trees.
