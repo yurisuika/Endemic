@@ -1,6 +1,7 @@
 {
     "pack": {
         "description": "Endemic",
-        "pack_format": 32
+        "pack_format": 32,
+        "supported_formats": [22, 32]
     }
 }
