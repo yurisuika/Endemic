@@ -1,7 +1,6 @@
 package dev.yurisuika.endemic.data.sapling;
 
 import com.google.common.collect.Maps;
-import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import dev.yurisuika.endemic.Endemic;
 import dev.yurisuika.endemic.core.registries.EndemicRegistries;
@@ -47,10 +46,7 @@ public class SaplingProvider implements DataProvider {
     }
 
     public void save(CachedOutput cache) {
-        DATA.forEach((key, value) -> {
-            JsonElement jsonelement = Sapling.CODEC.encodeStart(JsonOps.INSTANCE, value).getOrThrow(false, Endemic.LOGGER::error);
-            DataProvider.saveStable(cache, jsonelement, getPath(key));
-        });
+        DATA.forEach((key, value) -> DataProvider.saveStable(cache, Sapling.CODEC.encodeStart(JsonOps.INSTANCE, value).getOrThrow(false, Endemic.LOGGER::error), getPath(key)));
     }
 
     public static void add(ResourceKey<Sapling> resourceKey, Sapling sapling) {
