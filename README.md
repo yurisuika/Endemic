@@ -9,7 +9,9 @@ Make saplings grow up conditionally based on the surrounding dimension, biome, e
 By default, Endemic focuses on bringing those endemic tree variants such as swamp oaks back to their biomes, preserves trees growing in their native habitats, and makes saplings grown outside their native biomes and in low light end up growing as stunted and shrub forms.
 
 ### Any and all trees are welcome!
-Endemic allows you to override any sapling that uses the vanilla tree grower, including modded saplings! Any sapling that does not have a configuration set will just follow its vanilla growth behavior.
+Using a data-driven design, Endemic allows you to override any sapling that uses the vanilla tree grower, including modded saplings! Any sapling that does not have a configuration set will just follow its vanilla growth behavior.
+
+Any block that uses the vanilla tree grower will instead use Endemic's if there is a JSON for the block found in the data path of `data/<namespace>/endemic/sapling/<path>.json`. For example, the vanilla oak sapling has a configuration under `data/minecraft/endemic/sapling/oak_sapling.json`.
 
 With Endemic, you have the option to make saplings grow as intricately as you so choose. See the possibilities unfurl for yourself!
 

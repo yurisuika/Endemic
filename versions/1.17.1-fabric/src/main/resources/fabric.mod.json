@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "dev.yurisuika.endemic.Endemic"
+    ],
+    "fabric-datagen": [
+      "dev.yurisuika.endemic.EndemicData"
     ]
   },
   "mixins": [

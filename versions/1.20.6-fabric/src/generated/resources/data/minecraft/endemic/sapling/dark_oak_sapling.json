@@ -1,0 +1,219 @@
+{
+  "group": [
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.8,
+              "min": 0.8
+            },
+            "tolerance": {
+              "max": 0.9,
+              "min": 0.7
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.7,
+              "min": 0.7
+            },
+            "tolerance": {
+              "max": 0.8,
+              "min": 0.6
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 15,
+              "min": 15
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 14
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 95,
+              "min": 56
+            },
+            "tolerance": {
+              "max": 127,
+              "min": 48
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:dark_oak",
+          "neighbors": {
+            "flowers": false,
+            "saplings": true
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:dark_forest"
+          ]
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 1.0
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.9,
+              "min": 0.7
+            },
+            "tolerance": {
+              "max": 1.1,
+              "min": 0.5
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.8,
+              "min": 0.6
+            },
+            "tolerance": {
+              "max": 1.0,
+              "min": 0.4
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 14,
+              "min": 13
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 11
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 127,
+              "min": 48
+            },
+            "tolerance": {
+              "max": 191,
+              "min": 32
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_dark_oak",
+          "neighbors": {
+            "flowers": false,
+            "saplings": true
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.5
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 1.1,
+              "min": 0.5
+            },
+            "tolerance": {
+              "max": 1.5,
+              "min": 0.1
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 1.0,
+              "min": 0.4
+            },
+            "tolerance": {
+              "max": 1.4,
+              "min": 0.0
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 12,
+              "min": 4
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 0
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 191,
+              "min": 32
+            },
+            "tolerance": {
+              "max": 255,
+              "min": 0
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:dark_oak_shrub",
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.25
+    }
+  ]
+}

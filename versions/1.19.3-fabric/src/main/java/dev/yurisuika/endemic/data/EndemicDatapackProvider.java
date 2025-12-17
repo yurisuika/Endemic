@@ -20,7 +20,7 @@ public class EndemicDatapackProvider extends FabricDynamicRegistryProvider {
 
     @Override
     public String getName() {
-        return "endemic";
+        return "Endemic Data";
     }
 
 }

@@ -113,9 +113,9 @@ publishMods {
 
     modrinth {
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        projectId = "${property("modrinth.id")}"
+        projectId = "${property("publish.modrinth.id")}"
 
-        minecraftVersions.addAll(property("modrinth.version_range").toString().split(' '))
+        minecraftVersions.addAll(property("publish.version_range").toString().split(' '))
 
         requires {
             slug = "fabric-api"
@@ -126,12 +126,12 @@ publishMods {
 
     curseforge {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        projectId = "${property("curseforge.id")}"
+        projectId = "${property("publish.curseforge.id")}"
 
         clientRequired = false
         serverRequired = true
         javaVersions.add(requiredJava)
-        minecraftVersions.addAll(property("curseforge.version_range").toString().split(' '))
+        minecraftVersions.addAll(property("publish.version_range").toString().split(' '))
 
         requires {
             slug = "fabric-api"
@@ -162,11 +162,11 @@ publishMods {
 
         content = changelog.map { "# Check out ${project.property("mod.name")} ${project.property("mod.version")}!\n" + it}
 
-        username = "yuribot"
+        username = "suikabot"
 
         style {
             look = "MODERN"
-            thumbnailUrl = "https://cdn.modrinth.com/data/${project.property("modrinth.id")}/icon.png"
+            thumbnailUrl = "https://cdn.modrinth.com/data/${project.property("publish.modrinth.id")}/icon.png"
         }
     }
 }

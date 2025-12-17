@@ -1,0 +1,219 @@
+{
+  "group": [
+    {
+      "weight": 1.0,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:lush_caves"
+          ]
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 56,
+              "max": 95
+            },
+            "tolerance": {
+              "min": 48,
+              "max": 127
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 15,
+              "max": 15
+            },
+            "tolerance": {
+              "min": 14,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.5,
+              "max": 0.5
+            },
+            "tolerance": {
+              "min": 0.4,
+              "max": 0.6
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.5,
+              "max": 0.5
+            },
+            "tolerance": {
+              "min": 0.4,
+              "max": 0.6
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:azalea_tree",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.5,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 48,
+              "max": 127
+            },
+            "tolerance": {
+              "min": 32,
+              "max": 191
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 13,
+              "max": 14
+            },
+            "tolerance": {
+              "min": 11,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.4,
+              "max": 0.6
+            },
+            "tolerance": {
+              "min": 0.2,
+              "max": 0.8
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.4,
+              "max": 0.6
+            },
+            "tolerance": {
+              "min": 0.2,
+              "max": 0.8
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_azalea",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.25,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 32,
+              "max": 191
+            },
+            "tolerance": {
+              "min": 0,
+              "max": 255
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 4,
+              "max": 12
+            },
+            "tolerance": {
+              "min": 0,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.2,
+              "max": 0.8
+            },
+            "tolerance": {
+              "min": -0.2,
+              "max": 1.2
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.2,
+              "max": 0.8
+            },
+            "tolerance": {
+              "min": -0.2,
+              "max": 1.2
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:azalea_shrub",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    }
+  ]
+}

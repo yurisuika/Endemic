@@ -2,6 +2,7 @@ package dev.yurisuika.endemic.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dev.yurisuika.endemic.Endemic;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -11,7 +12,7 @@ import java.nio.file.Files;
 
 public class Config {
 
-    public static File file = new File(FabricLoader.getInstance().getConfigDir().toFile(), "endemic.json");
+    public static File file = new File(FabricLoader.getInstance().getConfigDir().toFile(), Endemic.MOD_ID + ".json");
     public static Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().disableHtmlEscaping().create();
     public static Options options = new Options();
 

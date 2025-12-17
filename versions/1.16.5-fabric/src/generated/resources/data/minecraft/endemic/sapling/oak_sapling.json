@@ -1,0 +1,600 @@
+{
+  "group": [
+    {
+      "weight": 1.0,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ]
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 56,
+              "max": 95
+            },
+            "tolerance": {
+              "min": 48,
+              "max": 127
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 15,
+              "max": 15
+            },
+            "tolerance": {
+              "min": 14,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.8,
+              "max": 0.8
+            },
+            "tolerance": {
+              "min": 0.7,
+              "max": 0.9
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.9,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": 0.8,
+              "max": 1.0
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:swamp_oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 1.0,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ],
+          "whitelist": [
+            "minecraft:bamboo_jungle",
+            "minecraft:bamboo_jungle_hills",
+            "minecraft:cold_ocean",
+            "minecraft:dark_forest",
+            "minecraft:deep_cold_ocean",
+            "minecraft:deep_frozen_ocean",
+            "minecraft:deep_lukewarm_ocean",
+            "minecraft:deep_ocean",
+            "minecraft:deep_warm_ocean",
+            "minecraft:flower_forest",
+            "minecraft:forest",
+            "minecraft:frozen_ocean",
+            "minecraft:frozen_river",
+            "minecraft:gravelly_mountains",
+            "minecraft:grove",
+            "minecraft:jungle",
+            "minecraft:jungle_edge",
+            "minecraft:jungle_hills",
+            "minecraft:lukewarm_ocean",
+            "minecraft:meadow",
+            "minecraft:modified_gravelly_mountains",
+            "minecraft:modified_jungle",
+            "minecraft:modified_jungle_edge",
+            "minecraft:mountains",
+            "minecraft:mountain_edge",
+            "minecraft:ocean",
+            "minecraft:plains",
+            "minecraft:river",
+            "minecraft:sunflower_plains",
+            "minecraft:warm_ocean",
+            "minecraft:wooded_hills",
+            "minecraft:wooded_mountains"
+          ]
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 56,
+              "max": 95
+            },
+            "tolerance": {
+              "min": 48,
+              "max": 127
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 15,
+              "max": 15
+            },
+            "tolerance": {
+              "min": 14,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.0,
+              "max": 0.95
+            },
+            "tolerance": {
+              "min": -0.1,
+              "max": 1.05
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.3,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": 0.2,
+              "max": 1.0
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:fancy_oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        },
+        {
+          "feature": "minecraft:fancy_oak_bees_005",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": true,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 1.0,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ],
+          "whitelist": [
+            "minecraft:cold_ocean",
+            "minecraft:dark_forest",
+            "minecraft:deep_cold_ocean",
+            "minecraft:deep_frozen_ocean",
+            "minecraft:deep_lukewarm_ocean",
+            "minecraft:deep_ocean",
+            "minecraft:deep_warm_ocean",
+            "minecraft:flower_forest",
+            "minecraft:forest",
+            "minecraft:frozen_ocean",
+            "minecraft:frozen_river",
+            "minecraft:gravelly_mountains",
+            "minecraft:grove",
+            "minecraft:lukewarm_ocean",
+            "minecraft:meadow",
+            "minecraft:modified_gravelly_mountains",
+            "minecraft:modified_wooded_badlands_plateau",
+            "minecraft:mountains",
+            "minecraft:mountain_edge",
+            "minecraft:ocean",
+            "minecraft:plains",
+            "minecraft:river",
+            "minecraft:savanna",
+            "minecraft:savanna_plateau",
+            "minecraft:shattered_savanna",
+            "minecraft:shattered_savanna_plateau",
+            "minecraft:sunflower_plains",
+            "minecraft:warm_ocean",
+            "minecraft:wooded_badlands_plateau",
+            "minecraft:wooded_hills",
+            "minecraft:wooded_mountains"
+          ]
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 56,
+              "max": 95
+            },
+            "tolerance": {
+              "min": 48,
+              "max": 127
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 15,
+              "max": 15
+            },
+            "tolerance": {
+              "min": 14,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.0,
+              "max": 2.0
+            },
+            "tolerance": {
+              "min": -0.1,
+              "max": 2.1
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.0,
+              "max": 0.8
+            },
+            "tolerance": {
+              "min": -0.1,
+              "max": 0.9
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        },
+        {
+          "feature": "minecraft:oak_bees_005",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": true,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.5,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ]
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 48,
+              "max": 127
+            },
+            "tolerance": {
+              "min": 32,
+              "max": 191
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 13,
+              "max": 14
+            },
+            "tolerance": {
+              "min": 11,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": 0.7,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": 0.5,
+              "max": 1.1
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.8,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": 0.6,
+              "max": 1.1
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_swamp_oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.5,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ],
+          "whitelist": []
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 48,
+              "max": 127
+            },
+            "tolerance": {
+              "min": 32,
+              "max": 191
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 13,
+              "max": 14
+            },
+            "tolerance": {
+              "min": 11,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": -0.1,
+              "max": 1.05
+            },
+            "tolerance": {
+              "min": -0.3,
+              "max": 1.25
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": 0.2,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": 0.0,
+              "max": 1.1
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_fancy_oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.5,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [
+            "minecraft:swamp",
+            "minecraft:swamp_hills"
+          ],
+          "whitelist": []
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 48,
+              "max": 127
+            },
+            "tolerance": {
+              "min": 32,
+              "max": 191
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 13,
+              "max": 14
+            },
+            "tolerance": {
+              "min": 11,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": -0.1,
+              "max": 2.1
+            },
+            "tolerance": {
+              "min": -0.3,
+              "max": 2.3
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": -0.1,
+              "max": 0.9
+            },
+            "tolerance": {
+              "min": -0.3,
+              "max": 1.1
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_oak",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "weight": 0.25,
+      "region": {
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        },
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        }
+      },
+      "conditions": {
+        "location": {
+          "elevation": {
+            "optimum": {
+              "min": 32,
+              "max": 191
+            },
+            "tolerance": {
+              "min": 0,
+              "max": 255
+            }
+          },
+          "brightness": {
+            "optimum": {
+              "min": 4,
+              "max": 12
+            },
+            "tolerance": {
+              "min": 0,
+              "max": 16
+            }
+          }
+        },
+        "climate": {
+          "temperature": {
+            "optimum": {
+              "min": -0.3,
+              "max": 2.3
+            },
+            "tolerance": {
+              "min": -0.7,
+              "max": 2.7
+            }
+          },
+          "downfall": {
+            "optimum": {
+              "min": -0.3,
+              "max": 1.1
+            },
+            "tolerance": {
+              "min": -0.7,
+              "max": 1.5
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:oak_shrub",
+          "weight": 1.0,
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -22,7 +22,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class WeightedTreeGrower {
 
@@ -103,17 +106,17 @@ public class WeightedTreeGrower {
 
         float totalWeight = 0.0F;
         for (Group.Entry entry : entries) {
-            totalWeight += entry.getWeight();
+            totalWeight += entry.weight();
         }
         float randomWeight = random.nextFloat() * totalWeight;
 
         Holder<ConfiguredFeature<?, ?>> selected = null;
         for (Group.Entry entry : entries) {
-            if (randomWeight < entry.getWeight()) {
-                selected = BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), ResourceLocation.tryParse(entry.getFeature())));
+            if (randomWeight < entry.weight()) {
+                selected = BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), ResourceLocation.tryParse(entry.feature())));
                 break;
             } else {
-                randomWeight -= entry.getWeight();
+                randomWeight -= entry.weight();
             }
         }
         return selected;
@@ -122,9 +125,9 @@ public class WeightedTreeGrower {
     public static List<Group.Entry> filterSaplingsEntries(List<Group.Entry> entries, boolean saplings) {
         List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (saplings && entry.getNeighbors().getSaplings()) {
+            if (saplings && entry.neighbors().saplings()) {
                 filteredEntries.add(entry);
-            } else if (!saplings && !entry.getNeighbors().getSaplings()) {
+            } else if (!saplings && !entry.neighbors().saplings()) {
                 filteredEntries.add(entry);
             }
         }
@@ -134,9 +137,9 @@ public class WeightedTreeGrower {
     public static List<Group.Entry> filterFlowersEntries(List<Group.Entry> entries, boolean flowers) {
         List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (flowers && entry.getNeighbors().getFlowers()) {
+            if (flowers && entry.neighbors().flowers()) {
                 filteredEntries.add(entry);
-            } else if (!flowers && !entry.getNeighbors().getFlowers()) {
+            } else if (!flowers && !entry.neighbors().flowers()) {
                 filteredEntries.add(entry);
             }
         }
@@ -152,27 +155,27 @@ public class WeightedTreeGrower {
         float downfall = level.getBiome(pos).value().getDownfall();
 
         List<Group.Entry> entries = new ArrayList<>();
-        Arrays.asList(Locate.getGroupsForSapling(state)).forEach(group -> {
-            if (!group.getRegion().getDimensions().getBlacklist().contains(dimension)) {
-                if (group.getRegion().getDimensions().getWhitelist().isEmpty() || group.getRegion().getDimensions().getWhitelist().contains(dimension)) {
-                    if (!group.getRegion().getBiomes().getBlacklist().contains(biome)) {
-                        if (group.getRegion().getBiomes().getWhitelist().isEmpty() || group.getRegion().getBiomes().getWhitelist().contains(biome)) {
-                            Group.Conditions.Location.Elevation elevationConditions = group.getConditions().getLocation().getElevation();
-                            Group.Conditions.Location.Brightness brightnessConditions = group.getConditions().getLocation().getBrightness();
-                            Group.Conditions.Climate.Temperature temperatureConditions = group.getConditions().getClimate().getTemperature();
-                            Group.Conditions.Climate.Downfall downfallConditions = group.getConditions().getClimate().getDownfall();
+        Locate.getSapling(level, state).groups().forEach(group -> {
+            if (!group.region().dimensions().blacklist().contains(dimension)) {
+                if (group.region().dimensions().whitelist().isEmpty() || group.region().dimensions().whitelist().contains(dimension)) {
+                    if (!group.region().biomes().blacklist().contains(biome)) {
+                        if (group.region().biomes().whitelist().isEmpty() || group.region().biomes().whitelist().contains(biome)) {
+                            Group.Conditions.Location.Elevation elevationConditions = group.conditions().location().elevation();
+                            Group.Conditions.Location.Brightness brightnessConditions = group.conditions().location().brightness();
+                            Group.Conditions.Climate.Temperature temperatureConditions = group.conditions().climate().temperature();
+                            Group.Conditions.Climate.Downfall downfallConditions = group.conditions().climate().downfall();
 
-                            double elevationModifier = calculateModifier(elevation, elevationConditions.getOptimum().getMin(), elevationConditions.getOptimum().getMax(), elevationConditions.getTolerance().getMin(), elevationConditions.getTolerance().getMax());
-                            double brightnessModifier = calculateModifier(brightness, brightnessConditions.getOptimum().getMin(), brightnessConditions.getOptimum().getMax(), brightnessConditions.getTolerance().getMin(), brightnessConditions.getTolerance().getMax());
-                            double temperatureModifier = calculateModifier(temperature, temperatureConditions.getOptimum().getMin(), temperatureConditions.getOptimum().getMax(), temperatureConditions.getTolerance().getMin(), temperatureConditions.getTolerance().getMax());
-                            double downfallModifier = calculateModifier(downfall, downfallConditions.getOptimum().getMin(), downfallConditions.getOptimum().getMax(), downfallConditions.getTolerance().getMin(), downfallConditions.getTolerance().getMax());
+                            double elevationModifier = calculateModifier(elevation, elevationConditions.optimum().min(), elevationConditions.optimum().max(), elevationConditions.tolerance().min(), elevationConditions.tolerance().max());
+                            double brightnessModifier = calculateModifier(brightness, brightnessConditions.optimum().min(), brightnessConditions.optimum().max(), brightnessConditions.tolerance().min(), brightnessConditions.tolerance().max());
+                            double temperatureModifier = calculateModifier(temperature, temperatureConditions.optimum().min(), temperatureConditions.optimum().max(), temperatureConditions.tolerance().min(), temperatureConditions.tolerance().max());
+                            double downfallModifier = calculateModifier(downfall, downfallConditions.optimum().min(), downfallConditions.optimum().max(), downfallConditions.tolerance().min(), downfallConditions.tolerance().max());
 
                             double modifier = elevationModifier * brightnessModifier * temperatureModifier * downfallModifier;
 
-                            for (Group.Entry entry : group.getEntries()) {
-                                double modifiedWeight = entry.getWeight() * group.getWeight() * modifier;
+                            for (Group.Entry entry : group.entries()) {
+                                double modifiedWeight = entry.weight() * group.weight() * modifier;
                                 if (modifiedWeight > 0.0D) {
-                                    entries.add(new Group.Entry(entry.getFeature(), modifiedWeight, entry.getNeighbors()));
+                                    entries.add(new Group.Entry(entry.feature(), modifiedWeight, entry.neighbors()));
                                 }
                             }
                         }
@@ -180,7 +183,7 @@ public class WeightedTreeGrower {
                 }
             }
         });
-        entries.sort(Comparator.comparing(Group.Entry::getWeight).reversed());
+        entries.sort(Comparator.comparing(Group.Entry::weight).reversed());
         return entries;
     }
 

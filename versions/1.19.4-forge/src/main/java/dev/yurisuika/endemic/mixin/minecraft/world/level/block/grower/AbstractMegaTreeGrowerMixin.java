@@ -18,7 +18,7 @@ public abstract class AbstractMegaTreeGrowerMixin {
 
     @Inject(method = "growTree", at = @At("HEAD"), cancellable = true)
     private void useEndemicFeature(ServerLevel level, ChunkGenerator generator, BlockPos pos, BlockState state, RandomSource random, CallbackInfoReturnable<Boolean> cir) {
-        if (Locate.hasSaplingConfig(state)) {
+        if (Locate.hasSapling(level, state)) {
             cir.setReturnValue(WeightedTreeGrower.growTree(level, generator, pos, state, random));
         }
     }

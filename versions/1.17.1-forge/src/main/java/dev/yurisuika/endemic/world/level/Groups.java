@@ -43,10 +43,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:swamp_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:swamp_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group FANCY_OAK = new Group(
@@ -121,15 +123,17 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:fancy_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
-            ),
-            new Group.Entry(
-                    "minecraft:fancy_oak_bees_005",
-                    1.0D,
-                    new Group.Entry.Neighbors(true, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:fancy_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    ),
+                    new Group.Entry(
+                            "minecraft:fancy_oak_bees_005",
+                            1.0D,
+                            new Group.Entry.Neighbors(true, false)
+                    )
             )
     );
     public static Group OAK = new Group(
@@ -203,15 +207,17 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
-            ),
-            new Group.Entry(
-                    "minecraft:oak_bees_005",
-                    1.0D,
-                    new Group.Entry.Neighbors(true, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    ),
+                    new Group.Entry(
+                            "minecraft:oak_bees_005",
+                            1.0D,
+                            new Group.Entry.Neighbors(true, false)
+                    )
             )
     );
     public static Group STUNTED_SWAMP_OAK = new Group(
@@ -253,10 +259,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_swamp_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_swamp_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_FANCY_OAK = new Group(
@@ -298,10 +306,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_fancy_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_fancy_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_OAK = new Group(
@@ -343,10 +353,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group OAK_SHRUB = new Group(
@@ -385,10 +397,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:oak_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:oak_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group MEGA_PINE = new Group(
@@ -430,10 +444,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:mega_pine",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:mega_pine",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group MEGA_SPRUCE = new Group(
@@ -477,10 +493,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:mega_spruce",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:mega_spruce",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group PINE = new Group(
@@ -532,10 +550,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:pine",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:pine",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group SPRUCE = new Group(
@@ -595,10 +615,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:spruce",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:spruce",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_MEGA_PINE = new Group(
@@ -637,10 +659,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_mega_pine",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_mega_pine",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group STUNTED_MEGA_SPRUCE = new Group(
@@ -679,10 +703,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_mega_spruce",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_mega_spruce",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group STUNTED_PINE = new Group(
@@ -721,10 +747,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_pine",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_pine",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_SPRUCE = new Group(
@@ -763,10 +791,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_spruce",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_spruce",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group SPRUCE_SHRUB = new Group(
@@ -805,10 +835,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:spruce_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:spruce_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group SUPER_BIRCH = new Group(
@@ -851,15 +883,17 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:super_birch_bees_0002",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
-            ),
-            new Group.Entry(
-                    "minecraft:super_birch_bees",
-                    1.0D,
-                    new Group.Entry.Neighbors(true, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:super_birch_bees_0002",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    ),
+                    new Group.Entry(
+                            "minecraft:super_birch_bees",
+                            1.0D,
+                            new Group.Entry.Neighbors(true, false)
+                    )
             )
     );
     public static Group BIRCH = new Group(
@@ -911,15 +945,17 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:birch",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
-            ),
-            new Group.Entry(
-                    "minecraft:birch_bees_005",
-                    1.0D,
-                    new Group.Entry.Neighbors(true, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:birch",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    ),
+                    new Group.Entry(
+                            "minecraft:birch_bees_005",
+                            1.0D,
+                            new Group.Entry.Neighbors(true, false)
+                    )
             )
     );
     public static Group STUNTED_SUPER_BIRCH = new Group(
@@ -958,10 +994,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_super_birch",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_super_birch",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_BIRCH = new Group(
@@ -1000,10 +1038,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_birch",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_birch",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group BIRCH_SHRUB = new Group(
@@ -1042,10 +1082,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:birch_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:birch_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group MEGA_JUNGLE = new Group(
@@ -1090,10 +1132,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:mega_jungle_tree",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:mega_jungle_tree",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group JUNGLE = new Group(
@@ -1138,15 +1182,17 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:jungle_tree",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
-            ),
-            new Group.Entry(
-                    "minecraft:jungle_tree_no_vine",
-                    0.1D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:jungle_tree",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    ),
+                    new Group.Entry(
+                            "minecraft:jungle_tree_no_vine",
+                            0.1D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_MEGA_JUNGLE = new Group(
@@ -1185,10 +1231,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_mega_jungle",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_mega_jungle",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group STUNTED_JUNGLE = new Group(
@@ -1227,10 +1275,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_jungle",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_jungle",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group JUNGLE_SHRUB = new Group(
@@ -1269,10 +1319,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:jungle_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:jungle_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group ACACIA = new Group(
@@ -1316,10 +1368,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:acacia",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:acacia",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_ACACIA = new Group(
@@ -1358,10 +1412,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_acacia",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_acacia",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group ACACIA_SHRUB = new Group(
@@ -1400,10 +1456,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:acacia_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:acacia_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group DARK_OAK = new Group(
@@ -1445,10 +1503,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:dark_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:dark_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group STUNTED_DARK_OAK = new Group(
@@ -1487,10 +1547,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_dark_oak",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, true)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_dark_oak",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, true)
+                    )
             )
     );
     public static Group DARK_OAK_SHRUB = new Group(
@@ -1529,10 +1591,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:dark_oak_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:dark_oak_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group AZALEA = new Group(
@@ -1573,10 +1637,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "minecraft:azalea_tree",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "minecraft:azalea_tree",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group STUNTED_AZALEA = new Group(
@@ -1615,10 +1681,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:stunted_azalea",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:stunted_azalea",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
     public static Group AZALEA_SHRUB = new Group(
@@ -1657,10 +1725,12 @@ public class Groups {
                             )
                     )
             ),
-            new Group.Entry(
-                    "endemic:azalea_shrub",
-                    1.0D,
-                    new Group.Entry.Neighbors(false, false)
+            Arrays.asList(
+                    new Group.Entry(
+                            "endemic:azalea_shrub",
+                            1.0D,
+                            new Group.Entry.Neighbors(false, false)
+                    )
             )
     );
 

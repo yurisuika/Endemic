@@ -1,0 +1,374 @@
+{
+  "group": [
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.9,
+              "min": 0.9
+            },
+            "tolerance": {
+              "max": 1.0,
+              "min": 0.8
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.95,
+              "min": 0.95
+            },
+            "tolerance": {
+              "max": 1.05,
+              "min": 0.85
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 15,
+              "min": 15
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 14
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 95,
+              "min": 56
+            },
+            "tolerance": {
+              "max": 127,
+              "min": 48
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:mega_jungle_tree",
+          "neighbors": {
+            "flowers": false,
+            "saplings": true
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:bamboo_jungle",
+            "minecraft:jungle"
+          ]
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 1.0
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.9,
+              "min": 0.8
+            },
+            "tolerance": {
+              "max": 1.0,
+              "min": 0.7
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.95,
+              "min": 0.95
+            },
+            "tolerance": {
+              "max": 1.05,
+              "min": 0.85
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 15,
+              "min": 15
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 14
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 95,
+              "min": 56
+            },
+            "tolerance": {
+              "max": 127,
+              "min": 48
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "minecraft:jungle_tree",
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          },
+          "weight": 1.0
+        },
+        {
+          "feature": "minecraft:jungle_tree_no_vine",
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          },
+          "weight": 0.1
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:bamboo_jungle",
+            "minecraft:jungle",
+            "minecraft:sparse_jungle"
+          ]
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 1.0
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 1.0,
+              "min": 0.8
+            },
+            "tolerance": {
+              "max": 1.2,
+              "min": 0.6
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 1.05,
+              "min": 0.85
+            },
+            "tolerance": {
+              "max": 1.25,
+              "min": 0.65
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 14,
+              "min": 13
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 11
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 127,
+              "min": 48
+            },
+            "tolerance": {
+              "max": 191,
+              "min": 32
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_mega_jungle",
+          "neighbors": {
+            "flowers": false,
+            "saplings": true
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.5
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 1.0,
+              "min": 0.7
+            },
+            "tolerance": {
+              "max": 1.2,
+              "min": 0.5
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 1.05,
+              "min": 0.95
+            },
+            "tolerance": {
+              "max": 1.25,
+              "min": 0.65
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 14,
+              "min": 13
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 11
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 127,
+              "min": 48
+            },
+            "tolerance": {
+              "max": 191,
+              "min": 32
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:stunted_jungle",
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.5
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 1.2,
+              "min": 0.5
+            },
+            "tolerance": {
+              "max": 1.6,
+              "min": 0.1
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 1.25,
+              "min": 0.65
+            },
+            "tolerance": {
+              "max": 1.65,
+              "min": 0.25
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 12,
+              "min": 4
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 0
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 191,
+              "min": 32
+            },
+            "tolerance": {
+              "max": 255,
+              "min": 0
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:jungle_shrub",
+          "neighbors": {
+            "flowers": false,
+            "saplings": false
+          },
+          "weight": 1.0
+        }
+      ],
+      "region": {
+        "biomes": {
+          "blacklist": [],
+          "whitelist": []
+        },
+        "dimensions": {
+          "blacklist": [],
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.25
+    }
+  ]
+}

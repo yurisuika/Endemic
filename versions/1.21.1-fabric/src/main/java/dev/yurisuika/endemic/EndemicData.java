@@ -1,7 +1,9 @@
 package dev.yurisuika.endemic;
 
+import dev.yurisuika.endemic.core.registries.EndemicRegistries;
 import dev.yurisuika.endemic.data.EndemicDatapackProvider;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
+import dev.yurisuika.endemic.world.level.sapling.Saplings;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;
@@ -16,7 +18,7 @@ public class EndemicData implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistrySetBuilder registrySetBuilder) {
-        registrySetBuilder.add(Registries.CONFIGURED_FEATURE, EndemicTreeFeatures::bootstrap);
+        registrySetBuilder.add(Registries.CONFIGURED_FEATURE, EndemicTreeFeatures::bootstrap).add(EndemicRegistries.SAPLING, Saplings::bootstrap);
     }
 
 }

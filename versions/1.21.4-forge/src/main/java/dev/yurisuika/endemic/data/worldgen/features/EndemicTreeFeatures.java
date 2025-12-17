@@ -1,6 +1,7 @@
 package dev.yurisuika.endemic.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
+import dev.yurisuika.endemic.Endemic;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -34,34 +35,34 @@ import java.util.OptionalInt;
 
 public class EndemicTreeFeatures {
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SWAMP_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_swamp_oak"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_FANCY_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_fancy_oak"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_oak"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_PINE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_mega_pine"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_SPRUCE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_mega_spruce"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_PINE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_pine"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SPRUCE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_spruce"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SUPER_BIRCH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_super_birch"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_BIRCH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_birch"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_JUNGLE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_mega_jungle"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_JUNGLE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_jungle"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_ACACIA = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_acacia"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_DARK_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_dark_oak"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_TALL_MANGROVE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_tall_mangrove"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MANGROVE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_mangrove"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_CHERRY = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_cherry"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_PALE_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_pale_oak"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_AZALEA = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "stunted_azalea"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "oak_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "spruce_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "birch_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> JUNGLE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "jungle_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ACACIA_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "acacia_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "dark_oak_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MANGROVE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "mangrove_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "cherry_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "pale_oak_shrub"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AZALEA_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("endemic", "azalea_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SWAMP_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_swamp_oak"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_FANCY_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_fancy_oak"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_oak"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_PINE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_mega_pine"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_SPRUCE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_mega_spruce"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_PINE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_pine"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SPRUCE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_spruce"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_SUPER_BIRCH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_super_birch"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_BIRCH = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_birch"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MEGA_JUNGLE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_mega_jungle"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_JUNGLE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_jungle"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_ACACIA = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_acacia"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_DARK_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_dark_oak"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_TALL_MANGROVE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_tall_mangrove"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_MANGROVE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_mangrove"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_CHERRY = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_cherry"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_PALE_OAK = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_pale_oak"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STUNTED_AZALEA = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "stunted_azalea"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "oak_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "spruce_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "birch_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> JUNGLE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "jungle_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ACACIA_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "acacia_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "dark_oak_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MANGROVE_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "mangrove_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "cherry_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "pale_oak_shrub"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZALEA_SHRUB = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Endemic.MOD_ID, "azalea_shrub"));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         context.register(STUNTED_SWAMP_OAK, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(

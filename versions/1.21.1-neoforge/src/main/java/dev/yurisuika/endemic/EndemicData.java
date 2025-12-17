@@ -6,10 +6,10 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@Mod("endemic")
+@Mod(Endemic.MOD_ID)
 public class EndemicData {
 
-    @EventBusSubscriber(modid = "endemic", bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = Endemic.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
     public static class ModEvents {
 
         @SubscribeEvent

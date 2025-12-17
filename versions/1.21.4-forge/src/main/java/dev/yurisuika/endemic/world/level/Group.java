@@ -1,352 +1,71 @@
 package dev.yurisuika.endemic.world.level;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import java.util.List;
 
-public class Group {
+public record Group(double weight, Region region, Conditions conditions, List<Entry> entries) {
 
-    public double weight;
-    public Region region;
-    public Conditions conditions;
-    public Entry[] entries;
+    public static final Codec<Group> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.fieldOf("weight").forGetter(Group::weight), Region.CODEC.fieldOf("region").forGetter(Group::region), Conditions.CODEC.fieldOf("conditions").forGetter(Group::conditions), Entry.CODEC.listOf().fieldOf("entries").forGetter(Group::entries)).apply(instance, Group::new));
 
-    public Group(double weight, Region region, Conditions conditions, Entry... entries) {
-        setWeight(weight);
-        setRegion(region);
-        setConditions(conditions);
-        setEntries(entries);
-    }
+    public record Region(Dimensions dimensions, Biomes biomes) {
 
-    public double getWeight() {
-        return weight;
-    }
+        public static final Codec<Region> CODEC = RecordCodecBuilder.create(instance -> instance.group(Dimensions.CODEC.fieldOf("dimensions").forGetter(Region::dimensions), Biomes.CODEC.fieldOf("biomes").forGetter(Region::biomes)).apply(instance, Region::new));
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
+        public record Dimensions(List<String> blacklist, List<String> whitelist) {
 
-    public Region getRegion() {
-        return region;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
-    }
-
-    public Conditions getConditions() {
-        return conditions;
-    }
-
-    public void setConditions(Conditions conditions) {
-        this.conditions = conditions;
-    }
-
-    public Entry[] getEntries() {
-        return entries;
-    }
-
-    public void setEntries(Entry... entries) {
-        this.entries = entries;
-    }
-
-    public static class Region {
-
-        public Dimensions dimensions;
-        public Biomes biomes;
-
-        public Region(Dimensions dimensions, Biomes biomes) {
-            setDimensions(dimensions);
-            setBiomes(biomes);
-        }
-
-        public Dimensions getDimensions() {
-            return dimensions;
-        }
-
-        public void setDimensions(Dimensions dimensions) {
-            this.dimensions = dimensions;
-        }
-
-        public Biomes getBiomes() {
-            return biomes;
-        }
-
-        public void setBiomes(Biomes biomes) {
-            this.biomes = biomes;
-        }
-
-        public static class Dimensions {
-
-            public List<String> blacklist;
-            public List<String> whitelist;
-
-            public Dimensions(List<String> blacklist, List<String> whitelist) {
-                setBlacklist(blacklist);
-                setWhitelist(whitelist);
-            }
-
-            public List<String> getBlacklist() {
-                return blacklist;
-            }
-
-            public void setBlacklist(List<String> blacklist) {
-                this.blacklist = blacklist;
-            }
-
-            public List<String> getWhitelist() {
-                return whitelist;
-            }
-
-            public void setWhitelist(List<String> whitelist) {
-                this.whitelist = whitelist;
-            }
+            public static final Codec<Dimensions> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().fieldOf("blacklist").forGetter(Dimensions::blacklist), Codec.STRING.listOf().fieldOf("whitelist").forGetter(Dimensions::whitelist)).apply(instance, Dimensions::new));
 
         }
 
-        public static class Biomes {
+        public record Biomes(List<String> blacklist, List<String> whitelist) {
 
-            public List<String> blacklist;
-            public List<String> whitelist;
-
-            public Biomes(List<String> blacklist, List<String> whitelist) {
-                setBlacklist(blacklist);
-                setWhitelist(whitelist);
-            }
-
-            public List<String> getBlacklist() {
-                return blacklist;
-            }
-
-            public void setBlacklist(List<String> blacklist) {
-                this.blacklist = blacklist;
-            }
-
-            public List<String> getWhitelist() {
-                return whitelist;
-            }
-
-            public void setWhitelist(List<String> whitelist) {
-                this.whitelist = whitelist;
-            }
+            public static final Codec<Biomes> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().fieldOf("blacklist").forGetter(Biomes::blacklist), Codec.STRING.listOf().fieldOf("whitelist").forGetter(Biomes::whitelist)).apply(instance, Biomes::new));
 
         }
 
     }
 
-    public static class Conditions {
+    public record Conditions(Location location, Climate climate) {
 
-        public Location location;
-        public Climate climate;
+        public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(Location.CODEC.fieldOf("location").forGetter(Conditions::location), Climate.CODEC.fieldOf("climate").forGetter(Conditions::climate)).apply(instance, Conditions::new));
 
-        public Conditions(Location location, Climate climate) {
-            setLocation(location);
-            setClimate(climate);
-        }
+        public record Location(Elevation elevation, Brightness brightness) {
 
-        public Location getLocation() {
-            return  location;
-        }
+            public static final Codec<Location> CODEC = RecordCodecBuilder.create(instance -> instance.group(Elevation.CODEC.fieldOf("elevation").forGetter(Location::elevation), Brightness.CODEC.fieldOf("brightness").forGetter(Location::brightness)).apply(instance, Location::new));
 
-        public void setLocation(Location location) {
-            this.location = location;
-        }
+            public record Elevation(Optimum optimum, Tolerance tolerance) {
 
-        public Climate getClimate() {
-            return climate;
-        }
+                public static final Codec<Elevation> CODEC = RecordCodecBuilder.create(instance -> instance.group(Optimum.CODEC.fieldOf("optimum").forGetter(Elevation::optimum), Tolerance.CODEC.fieldOf("tolerance").forGetter(Elevation::tolerance)).apply(instance, Elevation::new));
 
-        public void setClimate(Climate climate) {
-            this.climate = climate;
-        }
+                public record Optimum(int min, int max) {
 
-        public static class Location {
-
-            public Elevation elevation;
-            public Brightness brightness;
-
-            public Location(Elevation elevation, Brightness brightness) {
-                setElevation(elevation);
-                setBrightness(brightness);
-            }
-
-            public Elevation getElevation() {
-                return elevation;
-            }
-
-            public void setElevation(Elevation elevation) {
-                this.elevation = elevation;
-            }
-
-            public Brightness getBrightness() {
-                return brightness;
-            }
-
-            public void setBrightness(Brightness brightness) {
-                this.brightness = brightness;
-            }
-
-            public static class Elevation {
-
-                public Optimum optimum;
-                public Tolerance tolerance;
-
-                public Elevation(Optimum optimum, Tolerance tolerance) {
-                    setOptimum(optimum);
-                    setTolerance(tolerance);
-                }
-
-                public Optimum getOptimum() {
-                    return optimum;
-                }
-                
-                public void setOptimum(Optimum optimum) {
-                    this.optimum = optimum;
-                }
-
-                public Tolerance getTolerance() {
-                    return tolerance;
-                }
-                
-                public void setTolerance(Tolerance tolerance) {
-                    this.tolerance = tolerance;
-                }
-
-                public static class Optimum {
-
-                    public int min;
-                    public int max;
-
-                    public Optimum(int min, int max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public int getMin() {
-                        return min;
-                    }
-
-                    public void setMin(int min) {
-                        this.min = min;
-                    }
-
-                    public int getMax() {
-                        return max;
-                    }
-
-                    public void setMax(int max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Optimum> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.fieldOf("min").forGetter(Optimum::min), Codec.INT.fieldOf("max").forGetter(Optimum::max)).apply(instance, Optimum::new));
 
                 }
 
-                public static class Tolerance {
+                public record Tolerance(int min, int max) {
 
-                    public int min;
-                    public int max;
-
-                    public Tolerance(int min, int max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public int getMin() {
-                        return min;
-                    }
-
-                    public void setMin(int min) {
-                        this.min = min;
-                    }
-
-                    public int getMax() {
-                        return max;
-                    }
-
-                    public void setMax(int max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Tolerance> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.fieldOf("min").forGetter(Tolerance::min), Codec.INT.fieldOf("max").forGetter(Tolerance::max)).apply(instance, Tolerance::new));
 
                 }
 
             }
 
-            public static class Brightness {
+            public record Brightness(Optimum optimum, Tolerance tolerance) {
 
-                public Optimum optimum;
-                public Tolerance tolerance;
+                public static final Codec<Brightness> CODEC = RecordCodecBuilder.create(instance -> instance.group(Brightness.Optimum.CODEC.fieldOf("optimum").forGetter(Brightness::optimum), Brightness.Tolerance.CODEC.fieldOf("tolerance").forGetter(Brightness::tolerance)).apply(instance, Brightness::new));
 
-                public Brightness(Optimum optimum, Tolerance tolerance) {
-                    setOptimum(optimum);
-                    setTolerance(tolerance);
-                }
+                public record Optimum(int min, int max) {
 
-                public Optimum getOptimum() {
-                    return optimum;
-                }
-
-                public void setOptimum(Optimum optimum) {
-                    this.optimum = optimum;
-                }
-
-                public Tolerance getTolerance() {
-                    return tolerance;
-                }
-
-                public void setTolerance(Tolerance tolerance) {
-                    this.tolerance = tolerance;
-                }
-
-                public static class Optimum {
-
-                    public int min;
-                    public int max;
-
-                    public Optimum(int min, int max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public int getMin() {
-                        return min;
-                    }
-
-                    public void setMin(int min) {
-                        this.min = min;
-                    }
-
-                    public int getMax() {
-                        return max;
-                    }
-
-                    public void setMax(int max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Optimum> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.fieldOf("min").forGetter(Optimum::min), Codec.INT.fieldOf("max").forGetter(Optimum::max)).apply(instance, Optimum::new));
 
                 }
 
-                public static class Tolerance {
+                public record Tolerance(int min, int max) {
 
-                    public int min;
-                    public int max;
-
-                    public Tolerance(int min, int max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public int getMin() {
-                        return min;
-                    }
-
-                    public void setMin(int min) {
-                        this.min = min;
-                    }
-
-                    public int getMax() {
-                        return max;
-                    }
-
-                    public void setMax(int max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Tolerance> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.fieldOf("min").forGetter(Tolerance::min), Codec.INT.fieldOf("max").forGetter(Tolerance::max)).apply(instance, Tolerance::new));
 
                 }
 
@@ -354,195 +73,41 @@ public class Group {
 
         }
 
-        public static class Climate {
+        public record Climate(Temperature temperature, Downfall downfall) {
 
-            public Temperature temperature;
-            public Downfall downfall;
+            public static final Codec<Climate> CODEC = RecordCodecBuilder.create(instance -> instance.group(Temperature.CODEC.fieldOf("temperature").forGetter(Climate::temperature), Downfall.CODEC.fieldOf("downfall").forGetter(Climate::downfall)).apply(instance, Climate::new));
 
-            public Climate(Temperature temperature, Downfall downfall) {
-                setTemperature(temperature);
-                setDownfall(downfall);
-            }
+            public record Temperature(Optimum optimum, Tolerance tolerance) {
 
-            public Temperature getTemperature() {
-                return temperature;
-            }
+                public static final Codec<Temperature> CODEC = RecordCodecBuilder.create(instance -> instance.group(Optimum.CODEC.fieldOf("optimum").forGetter(Temperature::optimum), Tolerance.CODEC.fieldOf("tolerance").forGetter(Temperature::tolerance)).apply(instance, Temperature::new));
 
-            public void setTemperature(Temperature temperature) {
-                this.temperature = temperature;
-            }
+                public record Optimum(double min, double max) {
 
-            public Downfall getDownfall() {
-                return downfall;
-            }
-
-            public void setDownfall(Downfall downfall) {
-                this.downfall = downfall;
-            }
-
-            public static class Temperature {
-
-                public Optimum optimum;
-                public Tolerance tolerance;
-
-                public Temperature(Optimum optimum, Tolerance tolerance) {
-                    setOptimum(optimum);
-                    setTolerance(tolerance);
-                }
-
-                public Optimum getOptimum() {
-                    return optimum;
-                }
-
-                public void setOptimum(Optimum optimum) {
-                    this.optimum = optimum;
-                }
-
-                public Tolerance getTolerance() {
-                    return tolerance;
-                }
-
-                public void setTolerance(Tolerance tolerance) {
-                    this.tolerance = tolerance;
-                }
-
-                public static class Optimum {
-
-                    public double min;
-                    public double max;
-
-                    public Optimum(double min, double max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public double getMin() {
-                        return min;
-                    }
-
-                    public void setMin(double min) {
-                        this.min = min;
-                    }
-
-                    public double getMax() {
-                        return max;
-                    }
-
-                    public void setMax(double max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Optimum> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.fieldOf("min").forGetter(Optimum::min), Codec.DOUBLE.fieldOf("max").forGetter(Optimum::max)).apply(instance, Optimum::new));
 
                 }
 
-                public static class Tolerance {
+                public record Tolerance(double min, double max) {
 
-                    public double min;
-                    public double max;
-
-                    public Tolerance(double min, double max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public double getMin() {
-                        return min;
-                    }
-
-                    public void setMin(double min) {
-                        this.min = min;
-                    }
-
-                    public double getMax() {
-                        return max;
-                    }
-
-                    public void setMax(double max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Tolerance> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.fieldOf("min").forGetter(Tolerance::min), Codec.DOUBLE.fieldOf("max").forGetter(Tolerance::max)).apply(instance, Tolerance::new));
 
                 }
 
             }
 
-            public static class Downfall {
+            public record Downfall(Optimum optimum, Tolerance tolerance) {
 
-                public Optimum optimum;
-                public Tolerance tolerance;
+                public static final Codec<Downfall> CODEC = RecordCodecBuilder.create(instance -> instance.group(Downfall.Optimum.CODEC.fieldOf("optimum").forGetter(Downfall::optimum), Downfall.Tolerance.CODEC.fieldOf("tolerance").forGetter(Downfall::tolerance)).apply(instance, Downfall::new));
 
-                public Downfall(Optimum optimum, Tolerance tolerance) {
-                    setOptimum(optimum);
-                    setTolerance(tolerance);
-                }
+                public record Optimum(double min, double max) {
 
-                public Optimum getOptimum() {
-                    return optimum;
-                }
-
-                public void setOptimum(Optimum optimum) {
-                    this.optimum = optimum;
-                }
-
-                public Tolerance getTolerance() {
-                    return tolerance;
-                }
-
-                public void setTolerance(Tolerance tolerance) {
-                    this.tolerance = tolerance;
-                }
-
-                public static class Optimum {
-
-                    public double min;
-                    public double max;
-
-                    public Optimum(double min, double max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public double getMin() {
-                        return min;
-                    }
-
-                    public void setMin(double min) {
-                        this.min = min;
-                    }
-
-                    public double getMax() {
-                        return max;
-                    }
-
-                    public void setMax(double max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Optimum> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.fieldOf("min").forGetter(Optimum::min), Codec.DOUBLE.fieldOf("max").forGetter(Optimum::max)).apply(instance, Optimum::new));
 
                 }
 
-                public static class Tolerance {
+                public record Tolerance(double min, double max) {
 
-                    public double min;
-                    public double max;
-
-                    public Tolerance(double min, double max) {
-                        setMin(min);
-                        setMax(max);
-                    }
-
-                    public double getMin() {
-                        return min;
-                    }
-
-                    public void setMin(double min) {
-                        this.min = min;
-                    }
-
-                    public double getMax() {
-                        return max;
-                    }
-
-                    public void setMax(double max) {
-                        this.max = max;
-                    }
+                    public static final Codec<Tolerance> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.fieldOf("min").forGetter(Tolerance::min), Codec.DOUBLE.fieldOf("max").forGetter(Tolerance::max)).apply(instance, Tolerance::new));
 
                 }
 
@@ -552,67 +117,13 @@ public class Group {
 
     }
 
-    public static class Entry {
+    public record Entry(String feature, double weight, Neighbors neighbors) {
 
-        public String feature;
-        public double weight;
-        public Neighbors neighbors;
+        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.fieldOf("feature").forGetter(Entry::feature), Codec.DOUBLE.fieldOf("weight").forGetter(Entry::weight), Neighbors.CODEC.fieldOf("neighbors").forGetter(Entry::neighbors)).apply(instance, Entry::new));
 
-        public Entry(String feature, double weight, Neighbors neighbors) {
-            setFeature(feature);
-            setWeight(weight);
-            setNeighbors(neighbors);
-        }
+        public record Neighbors(boolean flowers, boolean saplings) {
 
-        public String getFeature() {
-            return feature;
-        }
-
-        public void setFeature(String feature) {
-            this.feature = feature;
-        }
-
-        public double getWeight() {
-            return weight;
-        }
-
-        public void setWeight(double weight) {
-            this.weight = weight;
-        }
-
-        public Neighbors getNeighbors() {
-            return neighbors;
-        }
-
-        public void setNeighbors(Neighbors neighbors) {
-            this.neighbors = neighbors;
-        }
-
-        public static class Neighbors {
-
-            public boolean flowers;
-            public boolean saplings;
-
-            public Neighbors(boolean flowers, boolean saplings) {
-                setFlowers(flowers);
-                setSaplings(saplings);
-            }
-
-            public boolean getFlowers() {
-                return flowers;
-            }
-
-            public void setFlowers(boolean flowers) {
-                this.flowers = flowers;
-            }
-
-            public boolean getSaplings() {
-                return saplings;
-            }
-
-            public void setSaplings(boolean saplings) {
-                this.saplings = saplings;
-            }
+            public static final Codec<Neighbors> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.BOOL.fieldOf("flowers").forGetter(Neighbors::flowers), Codec.BOOL.fieldOf("saplings").forGetter(Neighbors::saplings)).apply(instance, Neighbors::new));
 
         }
 

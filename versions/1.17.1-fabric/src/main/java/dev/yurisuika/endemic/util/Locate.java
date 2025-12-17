@@ -1,44 +1,37 @@
 package dev.yurisuika.endemic.util;
 
-import dev.yurisuika.endemic.registry.SaplingRegistry;
-import dev.yurisuika.endemic.world.level.Group;
+import dev.yurisuika.endemic.data.sapling.SaplingManager;
+import dev.yurisuika.endemic.world.level.sapling.Sapling;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Locate {
 
-    public static boolean hasSaplingConfig(BlockState state) {
-        return hasSaplingConfig(state.getBlock());
+    public static boolean hasSapling(Level level, BlockState state) {
+        return hasSapling(level, state.getBlock());
     }
 
-    public static boolean hasSaplingConfig(Block block) {
-        return hasSaplingConfig(Registry.BLOCK.getKey(block).toString());
+    public static boolean hasSapling(Level level, Block block) {
+        return hasSapling(level, Registry.BLOCK.getKey(block));
     }
 
-    public static boolean hasSaplingConfig(String name) {
-        return hasSaplingConfig(ResourceLocation.tryParse(name));
+    public static boolean hasSapling(Level level, ResourceLocation location) {
+        return SaplingManager.SAPLINGS.containsKey(location);
     }
 
-    public static boolean hasSaplingConfig(ResourceLocation name) {
-        return SaplingRegistry.SAPLINGS.containsKey(name);
+    public static Sapling getSapling(Level level, BlockState state) {
+        return getSapling(level, state.getBlock());
     }
 
-    public static Group[] getGroupsForSapling(BlockState state) {
-        return getGroupsForSapling(state.getBlock());
+    public static Sapling getSapling(Level level, Block block) {
+        return getSapling(level, Registry.BLOCK.getKey(block));
     }
 
-    public static Group[] getGroupsForSapling(Block block) {
-        return getGroupsForSapling(Registry.BLOCK.getKey(block).toString());
-    }
-
-    public static Group[] getGroupsForSapling(String name) {
-        return getGroupsForSapling(ResourceLocation.tryParse(name));
-    }
-
-    public static Group[] getGroupsForSapling(ResourceLocation name) {
-        return SaplingRegistry.SAPLINGS.get(name);
+    public static Sapling getSapling(Level level, ResourceLocation location) {
+        return SaplingManager.SAPLINGS.get(location);
     }
 
 }
