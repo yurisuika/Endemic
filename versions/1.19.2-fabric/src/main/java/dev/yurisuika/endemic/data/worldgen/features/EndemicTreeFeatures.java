@@ -29,7 +29,7 @@ import java.util.OptionalInt;
 
 public class EndemicTreeFeatures {
     
-        public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_SWAMP_OAK = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+    public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_SWAMP_OAK = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()),
             new StraightTrunkPlacer(4, 2, 0), 
             new SimpleStateProvider(Blocks.OAK_LEAVES.defaultBlockState()),
