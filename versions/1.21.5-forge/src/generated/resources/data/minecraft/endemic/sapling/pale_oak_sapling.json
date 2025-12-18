@@ -130,7 +130,10 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_pale_oak"
+          "feature": "endemic:stunted_pale_oak",
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          }
         }
       ],
       "region": {

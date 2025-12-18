@@ -1,13 +1,16 @@
 package dev.yurisuika.endemic.world.level.sapling.group;
 
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+
 public class Groups {
 
     public static Group SWAMP_OAK = new Group.Builder(
             new Group.Entry.Builder("minecraft:swamp_oak")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -23,33 +26,33 @@ public class Groups {
             new Group.Entry.Builder("minecraft:fancy_oak_bees_005")
                     .requiresFlowersNearby()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeBlacklist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
-            .biomeWhitelist("minecraft:bamboo_jungle",
-                    "minecraft:cold_ocean",
-                    "minecraft:dark_forest",
-                    "minecraft:deep_cold_ocean",
-                    "minecraft:deep_frozen_ocean",
-                    "minecraft:deep_lukewarm_ocean",
-                    "minecraft:deep_ocean",
-                    "minecraft:flower_forest",
-                    "minecraft:forest",
-                    "minecraft:frozen_ocean",
-                    "minecraft:frozen_river",
-                    "minecraft:jungle",
-                    "minecraft:lukewarm_ocean",
-                    "minecraft:meadow",
-                    "minecraft:ocean",
-                    "minecraft:plains",
-                    "minecraft:river",
-                    "minecraft:snowy_plains",
-                    "minecraft:sparse_jungle",
-                    "minecraft:sunflower_plains",
-                    "minecraft:warm_ocean",
-                    "minecraft:windswept_forest",
-                    "minecraft:windswept_gravelly_hills",
-                    "minecraft:windswept_hills")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeBlacklist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
+            .biomeWhitelist(Biomes.BAMBOO_JUNGLE.location(),
+                    Biomes.COLD_OCEAN.location(),
+                    Biomes.DARK_FOREST.location(),
+                    Biomes.DEEP_COLD_OCEAN.location(),
+                    Biomes.DEEP_FROZEN_OCEAN.location(),
+                    Biomes.DEEP_LUKEWARM_OCEAN.location(),
+                    Biomes.DEEP_OCEAN.location(),
+                    Biomes.FLOWER_FOREST.location(),
+                    Biomes.FOREST.location(),
+                    Biomes.FROZEN_OCEAN.location(),
+                    Biomes.FROZEN_RIVER.location(),
+                    Biomes.JUNGLE.location(),
+                    Biomes.LUKEWARM_OCEAN.location(),
+                    Biomes.MEADOW.location(),
+                    Biomes.OCEAN.location(),
+                    Biomes.PLAINS.location(),
+                    Biomes.RIVER.location(),
+                    Biomes.SNOWY_PLAINS.location(),
+                    Biomes.SPARSE_JUNGLE.location(),
+                    Biomes.SUNFLOWER_PLAINS.location(),
+                    Biomes.WARM_OCEAN.location(),
+                    Biomes.WINDSWEPT_FOREST.location(),
+                    Biomes.WINDSWEPT_GRAVELLY_HILLS.location(),
+                    Biomes.WINDSWEPT_HILLS.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -65,34 +68,34 @@ public class Groups {
             new Group.Entry.Builder("minecraft:oak_bees_005")
                     .requiresFlowersNearby()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeBlacklist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
-            .biomeWhitelist("minecraft:cold_ocean",
-                    "minecraft:dark_forest",
-                    "minecraft:deep_cold_ocean",
-                    "minecraft:deep_frozen_ocean",
-                    "minecraft:deep_lukewarm_ocean",
-                    "minecraft:deep_ocean",
-                    "minecraft:flower_forest",
-                    "minecraft:forest",
-                    "minecraft:frozen_ocean",
-                    "minecraft:frozen_river",
-                    "minecraft:lukewarm_ocean",
-                    "minecraft:meadow",
-                    "minecraft:ocean",
-                    "minecraft:plains",
-                    "minecraft:river",
-                    "minecraft:savanna",
-                    "minecraft:savanna_plateau",
-                    "minecraft:snowy_plains",
-                    "minecraft:sunflower_plains",
-                    "minecraft:warm_ocean",
-                    "minecraft:windswept_forest",
-                    "minecraft:windswept_gravelly_hills",
-                    "minecraft:windswept_hills",
-                    "minecraft:windswept_savanna",
-                    "minecraft:wooded_badlands")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeBlacklist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
+            .biomeWhitelist(Biomes.COLD_OCEAN.location(),
+                    Biomes.DARK_FOREST.location(),
+                    Biomes.DEEP_COLD_OCEAN.location(),
+                    Biomes.DEEP_FROZEN_OCEAN.location(),
+                    Biomes.DEEP_LUKEWARM_OCEAN.location(),
+                    Biomes.DEEP_OCEAN.location(),
+                    Biomes.FLOWER_FOREST.location(),
+                    Biomes.FOREST.location(),
+                    Biomes.FROZEN_OCEAN.location(),
+                    Biomes.FROZEN_RIVER.location(),
+                    Biomes.LUKEWARM_OCEAN.location(),
+                    Biomes.MEADOW.location(),
+                    Biomes.OCEAN.location(),
+                    Biomes.PLAINS.location(),
+                    Biomes.RIVER.location(),
+                    Biomes.SAVANNA.location(),
+                    Biomes.SAVANNA_PLATEAU.location(),
+                    Biomes.SNOWY_PLAINS.location(),
+                    Biomes.SUNFLOWER_PLAINS.location(),
+                    Biomes.WARM_OCEAN.location(),
+                    Biomes.WINDSWEPT_FOREST.location(),
+                    Biomes.WINDSWEPT_GRAVELLY_HILLS.location(),
+                    Biomes.WINDSWEPT_HILLS.location(),
+                    Biomes.WINDSWEPT_SAVANNA.location(),
+                    Biomes.WOODED_BADLANDS.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -106,9 +109,9 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_swamp_oak")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -122,9 +125,9 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_fancy_oak")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeBlacklist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeBlacklist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -138,9 +141,9 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_oak")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeBlacklist("minecraft:swamp",
-                    "minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeBlacklist(Biomes.SWAMP.location(),
+                    Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -154,7 +157,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:oak_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -168,8 +171,8 @@ public class Groups {
             new Group.Entry.Builder("minecraft:mega_pine")
                     .requiresAdjacentSaplings()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:old_growth_pine_taiga")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.OLD_GROWTH_PINE_TAIGA.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -183,9 +186,9 @@ public class Groups {
             new Group.Entry.Builder("minecraft:mega_spruce")
                     .requiresAdjacentSaplings()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:old_growth_pine_taiga",
-                    "minecraft:old_growth_spruce_taiga")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.OLD_GROWTH_PINE_TAIGA.location(),
+                    Biomes.OLD_GROWTH_SPRUCE_TAIGA.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -198,13 +201,13 @@ public class Groups {
     public static Group PINE = new Group.Builder(
             new Group.Entry.Builder("minecraft:pine")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:grove",
-                    "minecraft:old_growth_pine_taiga",
-                    "minecraft:old_growth_spruce_taiga",
-                    "minecraft:snowy_slopes",
-                    "minecraft:snowy_taiga",
-                    "minecraft:taiga")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.GROVE.location(),
+                    Biomes.OLD_GROWTH_PINE_TAIGA.location(),
+                    Biomes.OLD_GROWTH_SPRUCE_TAIGA.location(),
+                    Biomes.SNOWY_SLOPES.location(),
+                    Biomes.SNOWY_TAIGA.location(),
+                    Biomes.TAIGA.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -217,18 +220,18 @@ public class Groups {
     public static Group SPRUCE = new Group.Builder(
             new Group.Entry.Builder("minecraft:spruce")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:grove",
-                    "minecraft:old_growth_pine_taiga",
-                    "minecraft:old_growth_spruce_taiga",
-                    "minecraft:frozen_river",
-                    "minecraft:snowy_plains",
-                    "minecraft:snowy_slopes",
-                    "minecraft:snowy_taiga",
-                    "minecraft:taiga",
-                    "minecraft:windswept_forest",
-                    "minecraft:windswept_gravelly_hills",
-                    "minecraft:windswept_hills")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.GROVE.location(),
+                    Biomes.OLD_GROWTH_PINE_TAIGA.location(),
+                    Biomes.OLD_GROWTH_SPRUCE_TAIGA.location(),
+                    Biomes.FROZEN_RIVER.location(),
+                    Biomes.SNOWY_PLAINS.location(),
+                    Biomes.SNOWY_SLOPES.location(),
+                    Biomes.SNOWY_TAIGA.location(),
+                    Biomes.TAIGA.location(),
+                    Biomes.WINDSWEPT_FOREST.location(),
+                    Biomes.WINDSWEPT_GRAVELLY_HILLS.location(),
+                    Biomes.WINDSWEPT_HILLS.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -243,7 +246,7 @@ public class Groups {
                     .requiresAdjacentSaplings()
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -258,7 +261,7 @@ public class Groups {
                     .requiresAdjacentSaplings()
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -272,7 +275,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_pine")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -286,7 +289,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_spruce")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -300,7 +303,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:spruce_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -316,9 +319,9 @@ public class Groups {
             new Group.Entry.Builder("minecraft:super_birch_bees")
                     .requiresFlowersNearby()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:meadow",
-                    "minecraft:old_growth_birch_forest")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.MEADOW.location(),
+                    Biomes.OLD_GROWTH_BIRCH_FOREST.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -334,14 +337,14 @@ public class Groups {
             new Group.Entry.Builder("minecraft:birch_bees_005")
                     .requiresFlowersNearby()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:birch_forest",
-                    "minecraft:dark_forest",
-                    "minecraft:flower_forest",
-                    "minecraft:forest",
-                    "minecraft:old_growth_birch_forest",
-                    "minecraft:windswept_forest",
-                    "minecraft:windswept_hills")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.BIRCH_FOREST.location(),
+                    Biomes.DARK_FOREST.location(),
+                    Biomes.FLOWER_FOREST.location(),
+                    Biomes.FOREST.location(),
+                    Biomes.OLD_GROWTH_BIRCH_FOREST.location(),
+                    Biomes.WINDSWEPT_FOREST.location(),
+                    Biomes.WINDSWEPT_HILLS.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -355,7 +358,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_super_birch")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -369,7 +372,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_birch")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -383,7 +386,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:birch_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -397,9 +400,9 @@ public class Groups {
             new Group.Entry.Builder("minecraft:mega_jungle_tree")
                     .requiresAdjacentSaplings()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:bamboo_jungle",
-                    "minecraft:jungle")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.BAMBOO_JUNGLE.location(),
+                    Biomes.JUNGLE.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -415,10 +418,10 @@ public class Groups {
             new Group.Entry.Builder("minecraft:jungle_tree_no_vine")
                     .weight(0.1D)
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:bamboo_jungle",
-                    "minecraft:jungle",
-                    "minecraft:sparse_jungle")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.BAMBOO_JUNGLE.location(),
+                    Biomes.JUNGLE.location(),
+                    Biomes.SPARSE_JUNGLE.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -433,7 +436,7 @@ public class Groups {
                     .requiresAdjacentSaplings()
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -447,7 +450,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_jungle")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -461,7 +464,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:jungle_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -474,10 +477,10 @@ public class Groups {
     public static Group ACACIA = new Group.Builder(
             new Group.Entry.Builder("minecraft:acacia")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:savanna",
-                    "minecraft:savanna_plateau",
-                    "minecraft:windswept_savanna")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.SAVANNA.location(),
+                    Biomes.SAVANNA_PLATEAU.location(),
+                    Biomes.WINDSWEPT_SAVANNA.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -491,7 +494,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_acacia")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -505,7 +508,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:acacia_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -519,8 +522,8 @@ public class Groups {
             new Group.Entry.Builder("minecraft:dark_oak")
                     .requiresAdjacentSaplings()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:dark_forest")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.DARK_FOREST.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -532,9 +535,10 @@ public class Groups {
             .build();
     public static Group STUNTED_DARK_OAK = new Group.Builder(
             new Group.Entry.Builder("endemic:stunted_dark_oak")
+                    .requiresAdjacentSaplings()
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -548,7 +552,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:dark_oak_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -562,8 +566,8 @@ public class Groups {
             new Group.Entry.Builder("minecraft:tall_mangrove")
                     .weight(0.85D)
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -576,8 +580,8 @@ public class Groups {
     public static Group MANGROVE = new Group.Builder(
             new Group.Entry.Builder("minecraft:mangrove")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:mangrove_swamp")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.MANGROVE_SWAMP.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -592,7 +596,7 @@ public class Groups {
                     .weight(0.85D)
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -606,7 +610,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_mangrove")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -620,7 +624,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:mangrove_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -633,8 +637,8 @@ public class Groups {
     public static Group CHERRY = new Group.Builder(
             new Group.Entry.Builder("minecraft:cherry")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:cherry_grove")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.CHERRY_GROVE.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -648,7 +652,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_cherry")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -662,7 +666,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:cherry_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -684,8 +688,8 @@ public class Groups {
                     .weight(0.01D)
                     .requiresAdjacentSaplings()
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:pale_garden")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.PALE_GARDEN.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -697,9 +701,10 @@ public class Groups {
             .build();
     public static Group STUNTED_PALE_OAK = new Group.Builder(
             new Group.Entry.Builder("endemic:stunted_pale_oak")
+                    .requiresAdjacentSaplings()
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -713,7 +718,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:pale_oak_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)
@@ -726,8 +731,8 @@ public class Groups {
     public static Group AZALEA = new Group.Builder(
             new Group.Entry.Builder("minecraft:azalea_tree")
                     .build())
-            .dimensionWhitelist("minecraft:overworld")
-            .biomeWhitelist("minecraft:lush_caves")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
+            .biomeWhitelist(Biomes.LUSH_CAVES.location())
             .elevationOptimum(56, 95)
             .elevationTolerance(48, 127)
             .brightnessOptimum(15, 15)
@@ -741,7 +746,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:stunted_azalea")
                     .build())
             .weight(0.5D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(48, 127)
             .elevationTolerance(32, 191)
             .brightnessOptimum(13, 14)
@@ -755,7 +760,7 @@ public class Groups {
             new Group.Entry.Builder("endemic:azalea_shrub")
                     .build())
             .weight(0.25D)
-            .dimensionWhitelist("minecraft:overworld")
+            .dimensionWhitelist(BuiltinDimensionTypes.OVERWORLD.location())
             .elevationOptimum(32, 191)
             .elevationTolerance(0, 255)
             .brightnessOptimum(4, 12)

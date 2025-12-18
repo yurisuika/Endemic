@@ -2,6 +2,7 @@ package dev.yurisuika.endemic.world.level.sapling.group;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,16 +16,16 @@ public record Group(double weight, Region region, Conditions conditions, List<En
         public static final Codec<Region> CODEC = RecordCodecBuilder.create(instance -> instance.group(Dimensions.CODEC.optionalFieldOf("dimensions", new Dimensions(Arrays.asList(), Arrays.asList())).forGetter(Region::dimensions), Biomes.CODEC.optionalFieldOf("biomes", new Biomes(Arrays.asList(), Arrays.asList())).forGetter(Region::biomes)).apply(instance, Region::new));
         public static final Region DEFAULT = new Region(Dimensions.DEFAULT, Biomes.DEFAULT);
 
-        public record Dimensions(List<String> blacklist, List<String> whitelist) {
+        public record Dimensions(List<ResourceLocation> blacklist, List<ResourceLocation> whitelist) {
 
-            public static final Codec<Dimensions> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Dimensions::blacklist), Codec.STRING.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Dimensions::whitelist)).apply(instance, Dimensions::new));
+            public static final Codec<Dimensions> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Dimensions::blacklist), ResourceLocation.CODEC.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Dimensions::whitelist)).apply(instance, Dimensions::new));
             public static final Dimensions DEFAULT = new Dimensions(Arrays.asList(), Arrays.asList());
 
         }
 
-        public record Biomes(List<String> blacklist, List<String> whitelist) {
+        public record Biomes(List<ResourceLocation> blacklist, List<ResourceLocation> whitelist) {
 
-            public static final Codec<Biomes> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Biomes::blacklist), Codec.STRING.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Biomes::whitelist)).apply(instance, Biomes::new));
+            public static final Codec<Biomes> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Biomes::blacklist), ResourceLocation.CODEC.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Biomes::whitelist)).apply(instance, Biomes::new));
             public static final Biomes DEFAULT = new Biomes(Arrays.asList(), Arrays.asList());
 
         }
@@ -194,10 +195,10 @@ public record Group(double weight, Region region, Conditions conditions, List<En
     public static class Builder {
 
         private double weight = 1.0D;
-        private List<String> dimensionBlacklist = Arrays.asList();
-        private List<String> dimensionWhitelist = Arrays.asList();
-        private List<String> biomeBlacklist = Arrays.asList();
-        private List<String> biomeWhitelist = Arrays.asList();
+        private List<ResourceLocation> dimensionBlacklist = Arrays.asList();
+        private List<ResourceLocation> dimensionWhitelist = Arrays.asList();
+        private List<ResourceLocation> biomeBlacklist = Arrays.asList();
+        private List<ResourceLocation> biomeWhitelist = Arrays.asList();
         private int elevationOptimumMin = -2048;
         private int elevationOptimumMax = 2048;
         private int elevationToleranceMin = -2048;
@@ -225,22 +226,22 @@ public record Group(double weight, Region region, Conditions conditions, List<En
             return this;
         }
 
-        public Builder dimensionBlacklist(String... dimensions) {
+        public Builder dimensionBlacklist(ResourceLocation... dimensions) {
             this.dimensionBlacklist = Arrays.asList(dimensions);
             return this;
         }
 
-        public Builder dimensionWhitelist(String... dimensions) {
+        public Builder dimensionWhitelist(ResourceLocation... dimensions) {
             this.dimensionWhitelist = Arrays.asList(dimensions);
             return this;
         }
 
-        public Builder biomeBlacklist(String... biomes) {
+        public Builder biomeBlacklist(ResourceLocation... biomes) {
             this.biomeBlacklist = Arrays.asList(biomes);
             return this;
         }
 
-        public Builder biomeWhitelist(String... biomes) {
+        public Builder biomeWhitelist(ResourceLocation... biomes) {
             this.biomeWhitelist = Arrays.asList(biomes);
             return this;
         }

@@ -2,6 +2,7 @@ package dev.yurisuika.endemic.world.level.sapling.group;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,21 +60,21 @@ public final class Group {
 
         public static final class Dimensions {
 
-            public static final Codec<Dimensions> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Dimensions::blacklist), Codec.STRING.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Dimensions::whitelist)).apply(instance, Dimensions::new));
+            public static final Codec<Dimensions> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Dimensions::blacklist), ResourceLocation.CODEC.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Dimensions::whitelist)).apply(instance, Dimensions::new));
             public static final Dimensions DEFAULT = new Dimensions(Arrays.asList(), Arrays.asList());
-            public final List<String> blacklist;
-            public final List<String> whitelist;
+            public final List<ResourceLocation> blacklist;
+            public final List<ResourceLocation> whitelist;
 
-            public Dimensions(List<String> blacklist, List<String> whitelist) {
+            public Dimensions(List<ResourceLocation> blacklist, List<ResourceLocation> whitelist) {
                 this.blacklist = blacklist;
                 this.whitelist = whitelist;
             }
 
-            public List<String> blacklist() {
+            public List<ResourceLocation> blacklist() {
                 return blacklist;
             }
 
-            public List<String> whitelist() {
+            public List<ResourceLocation> whitelist() {
                 return whitelist;
             }
 
@@ -81,21 +82,21 @@ public final class Group {
 
         public static final class Biomes {
 
-            public static final Codec<Biomes> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Biomes::blacklist), Codec.STRING.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Biomes::whitelist)).apply(instance, Biomes::new));
+            public static final Codec<Biomes> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.listOf().optionalFieldOf("blacklist", Arrays.asList()).forGetter(Biomes::blacklist), ResourceLocation.CODEC.listOf().optionalFieldOf("whitelist", Arrays.asList()).forGetter(Biomes::whitelist)).apply(instance, Biomes::new));
             public static final Biomes DEFAULT = new Biomes(Arrays.asList(), Arrays.asList());
-            public final List<String> blacklist;
-            public final List<String> whitelist;
+            public final List<ResourceLocation> blacklist;
+            public final List<ResourceLocation> whitelist;
 
-            public Biomes(List<String> blacklist, List<String> whitelist) {
+            public Biomes(List<ResourceLocation> blacklist, List<ResourceLocation> whitelist) {
                 this.blacklist = blacklist;
                 this.whitelist = whitelist;
             }
 
-            public List<String> blacklist() {
+            public List<ResourceLocation> blacklist() {
                 return blacklist;
             }
 
-            public List<String> whitelist() {
+            public List<ResourceLocation> whitelist() {
                 return whitelist;
             }
 
@@ -527,10 +528,10 @@ public final class Group {
     public static class Builder {
 
         private double weight = 1.0D;
-        private List<String> dimensionBlacklist = Arrays.asList();
-        private List<String> dimensionWhitelist = Arrays.asList();
-        private List<String> biomeBlacklist = Arrays.asList();
-        private List<String> biomeWhitelist = Arrays.asList();
+        private List<ResourceLocation> dimensionBlacklist = Arrays.asList();
+        private List<ResourceLocation> dimensionWhitelist = Arrays.asList();
+        private List<ResourceLocation> biomeBlacklist = Arrays.asList();
+        private List<ResourceLocation> biomeWhitelist = Arrays.asList();
         private int elevationOptimumMin = -2048;
         private int elevationOptimumMax = 2048;
         private int elevationToleranceMin = -2048;
@@ -558,22 +559,22 @@ public final class Group {
             return this;
         }
 
-        public Builder dimensionBlacklist(String... dimensions) {
+        public Builder dimensionBlacklist(ResourceLocation... dimensions) {
             this.dimensionBlacklist = Arrays.asList(dimensions);
             return this;
         }
 
-        public Builder dimensionWhitelist(String... dimensions) {
+        public Builder dimensionWhitelist(ResourceLocation... dimensions) {
             this.dimensionWhitelist = Arrays.asList(dimensions);
             return this;
         }
 
-        public Builder biomeBlacklist(String... biomes) {
+        public Builder biomeBlacklist(ResourceLocation... biomes) {
             this.biomeBlacklist = Arrays.asList(biomes);
             return this;
         }
 
-        public Builder biomeWhitelist(String... biomes) {
+        public Builder biomeWhitelist(ResourceLocation... biomes) {
             this.biomeWhitelist = Arrays.asList(biomes);
             return this;
         }

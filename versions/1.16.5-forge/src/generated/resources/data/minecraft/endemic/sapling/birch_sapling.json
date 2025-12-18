@@ -9,9 +9,8 @@
         },
         "biomes": {
           "whitelist": [
-            "minecraft:meadow",
             "minecraft:tall_birch_forest",
-            "minecraft:tall_birch_forest_hills"
+            "minecraft:tall_birch_hills"
           ]
         }
       },
@@ -90,7 +89,7 @@
             "minecraft:mountains",
             "minecraft:mountain_edge",
             "minecraft:tall_birch_forest",
-            "minecraft:tall_birch_forest_hills",
+            "minecraft:tall_birch_hills",
             "minecraft:wooded_hills",
             "minecraft:wooded_mountains"
           ]

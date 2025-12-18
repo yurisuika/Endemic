@@ -124,7 +124,10 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_dark_oak"
+          "feature": "endemic:stunted_dark_oak",
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          }
         }
       ]
     },

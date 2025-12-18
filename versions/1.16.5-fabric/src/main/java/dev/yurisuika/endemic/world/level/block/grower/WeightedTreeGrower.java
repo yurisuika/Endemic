@@ -137,8 +137,8 @@ public class WeightedTreeGrower {
     }
 
     public static List<Group.Entry> filterEntries(ServerLevel level, BlockPos pos, BlockState state) {
-        String dimension = level.dimension().location().toString();
-        String biome = level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(level.getBiome(pos)).toString();
+        ResourceLocation dimension = level.dimension().location();
+        ResourceLocation biome = level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(level.getBiome(pos));
         int elevation = pos.getY();
         int brightness = level.getRawBrightness(pos, 0);
         float temperature = level.getBiome(pos).getTemperature(pos);
