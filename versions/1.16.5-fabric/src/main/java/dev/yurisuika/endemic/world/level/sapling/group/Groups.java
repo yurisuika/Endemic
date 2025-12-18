@@ -3,7 +3,7 @@ package dev.yurisuika.endemic.world.level.sapling.group;
 public class Groups {
 
     public static Group SWAMP_OAK = new Group.Builder(
-            new Group.Entry.Builder("minecraft:swamp_oak")
+            new Group.Entry.Builder("minecraft:swamp_tree")
                     .build())
             .dimensionWhitelist("minecraft:overworld")
             .biomeWhitelist("minecraft:swamp",
