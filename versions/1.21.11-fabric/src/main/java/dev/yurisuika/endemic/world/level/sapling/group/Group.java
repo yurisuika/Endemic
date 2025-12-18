@@ -3,6 +3,7 @@ package dev.yurisuika.endemic.world.level.sapling.group;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 
 import java.util.Arrays;
 import java.util.List;
@@ -137,9 +138,9 @@ public record Group(double weight, Region region, Conditions conditions, List<En
 
     }
 
-    public record Entry(double weight, String feature, Surroundings surroundings) {
+    public record Entry(double weight, Identifier feature, Surroundings surroundings) {
 
-        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.optionalFieldOf("weight", 1.0D).forGetter(Entry::weight), Codec.STRING.fieldOf("feature").forGetter(Entry::feature), Surroundings.CODEC.optionalFieldOf("surroundings", Surroundings.DEFAULT).forGetter(Entry::surroundings)).apply(instance, Entry::new));
+        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.optionalFieldOf("weight", 1.0D).forGetter(Entry::weight), Identifier.CODEC.fieldOf("feature").forGetter(Entry::feature), Surroundings.CODEC.optionalFieldOf("surroundings", Surroundings.DEFAULT).forGetter(Entry::surroundings)).apply(instance, Entry::new));
 
         public record Surroundings(boolean requiresFlowersNearby, boolean requiresAdjacentSaplings) {
 
@@ -150,12 +151,20 @@ public record Group(double weight, Region region, Conditions conditions, List<En
 
         public static class Builder {
 
-            private final String feature;
+            private final Identifier feature;
             private double weight = 1.0D;
             private boolean requiresFlowersNearby = false;
             private boolean requiresAdjacentSaplings = false;
 
             public Builder(String feature) {
+                this.feature = Identifier.tryParse(feature);
+            }
+
+            public Builder(ResourceKey<?> feature) {
+                this.feature = feature.identifier();
+            }
+
+            public Builder(Identifier feature) {
                 this.feature = feature;
             }
 
@@ -226,8 +235,28 @@ public record Group(double weight, Region region, Conditions conditions, List<En
             return this;
         }
 
+        public Builder dimensionBlacklist(String... dimensions) {
+            this.dimensionBlacklist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(Identifier::tryParse).toArray());
+            return this;
+        }
+
+        public Builder dimensionBlacklist(ResourceKey<?>... dimensions) {
+            this.dimensionBlacklist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(ResourceKey::identifier).toArray());
+            return this;
+        }
+
         public Builder dimensionBlacklist(Identifier... dimensions) {
             this.dimensionBlacklist = Arrays.asList(dimensions);
+            return this;
+        }
+
+        public Builder dimensionWhitelist(String... dimensions) {
+            this.dimensionWhitelist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(Identifier::tryParse).toArray());
+            return this;
+        }
+
+        public Builder dimensionWhitelist(ResourceKey<?>... dimensions) {
+            this.dimensionWhitelist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(ResourceKey::identifier).toArray());
             return this;
         }
 
@@ -236,8 +265,28 @@ public record Group(double weight, Region region, Conditions conditions, List<En
             return this;
         }
 
+        public Builder biomeBlacklist(String... biomes) {
+            this.biomeBlacklist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(Identifier::tryParse).toArray());
+            return this;
+        }
+
+        public Builder biomeBlacklist(ResourceKey<?>... biomes) {
+            this.biomeBlacklist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(ResourceKey::identifier).toArray());
+            return this;
+        }
+
         public Builder biomeBlacklist(Identifier... biomes) {
             this.biomeBlacklist = Arrays.asList(biomes);
+            return this;
+        }
+
+        public Builder biomeWhitelist(String... biomes) {
+            this.biomeWhitelist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(Identifier::tryParse).toArray());
+            return this;
+        }
+
+        public Builder biomeWhitelist(ResourceKey<?>... biomes) {
+            this.biomeWhitelist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(ResourceKey::identifier).toArray());
             return this;
         }
 

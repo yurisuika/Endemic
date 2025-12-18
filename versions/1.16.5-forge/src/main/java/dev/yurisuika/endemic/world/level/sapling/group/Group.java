@@ -2,6 +2,7 @@ package dev.yurisuika.endemic.world.level.sapling.group;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Arrays;
@@ -436,12 +437,12 @@ public final class Group {
 
     public static final class Entry {
 
-        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.optionalFieldOf("weight", 1.0D).forGetter(Entry::weight), Codec.STRING.fieldOf("feature").forGetter(Entry::feature), Surroundings.CODEC.optionalFieldOf("surroundings", Surroundings.DEFAULT).forGetter(Entry::surroundings)).apply(instance, Entry::new));
+        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.DOUBLE.optionalFieldOf("weight", 1.0D).forGetter(Entry::weight), ResourceLocation.CODEC.fieldOf("feature").forGetter(Entry::feature), Surroundings.CODEC.optionalFieldOf("surroundings", Surroundings.DEFAULT).forGetter(Entry::surroundings)).apply(instance, Entry::new));
         public final double weight;
-        public final String feature;
+        public final ResourceLocation feature;
         public final Surroundings surroundings;
 
-        public Entry(double weight, String feature, Surroundings surroundings) {
+        public Entry(double weight, ResourceLocation feature, Surroundings surroundings) {
             this.weight = weight;
             this.feature = feature;
             this.surroundings = surroundings;
@@ -451,7 +452,7 @@ public final class Group {
             return weight;
         }
 
-        public String feature() {
+        public ResourceLocation feature() {
             return feature;
         }
 
@@ -483,12 +484,20 @@ public final class Group {
 
         public static class Builder {
 
-            private final String feature;
+            private final ResourceLocation feature;
             private double weight = 1.0D;
             private boolean requiresFlowersNearby = false;
             private boolean requiresAdjacentSaplings = false;
 
             public Builder(String feature) {
+                this.feature = ResourceLocation.tryParse(feature);
+            }
+
+            public Builder(ResourceKey<?> feature) {
+                this.feature = feature.location();
+            }
+
+            public Builder(ResourceLocation feature) {
                 this.feature = feature;
             }
 
@@ -559,8 +568,28 @@ public final class Group {
             return this;
         }
 
+        public Builder dimensionBlacklist(String... dimensions) {
+            this.dimensionBlacklist = Arrays.asList((ResourceLocation[]) Arrays.stream(dimensions).map(ResourceLocation::tryParse).toArray());
+            return this;
+        }
+
+        public Builder dimensionBlacklist(ResourceKey<?>... dimensions) {
+            this.dimensionBlacklist = Arrays.asList((ResourceLocation[]) Arrays.stream(dimensions).map(ResourceKey::location).toArray());
+            return this;
+        }
+
         public Builder dimensionBlacklist(ResourceLocation... dimensions) {
             this.dimensionBlacklist = Arrays.asList(dimensions);
+            return this;
+        }
+
+        public Builder dimensionWhitelist(String... dimensions) {
+            this.dimensionWhitelist = Arrays.asList((ResourceLocation[]) Arrays.stream(dimensions).map(ResourceLocation::tryParse).toArray());
+            return this;
+        }
+
+        public Builder dimensionWhitelist(ResourceKey<?>... dimensions) {
+            this.dimensionWhitelist = Arrays.asList((ResourceLocation[]) Arrays.stream(dimensions).map(ResourceKey::location).toArray());
             return this;
         }
 
@@ -569,8 +598,28 @@ public final class Group {
             return this;
         }
 
+        public Builder biomeBlacklist(String... biomes) {
+            this.biomeBlacklist = Arrays.asList((ResourceLocation[]) Arrays.stream(biomes).map(ResourceLocation::tryParse).toArray());
+            return this;
+        }
+
+        public Builder biomeBlacklist(ResourceKey<?>... biomes) {
+            this.biomeBlacklist = Arrays.asList((ResourceLocation[]) Arrays.stream(biomes).map(ResourceKey::location).toArray());
+            return this;
+        }
+
         public Builder biomeBlacklist(ResourceLocation... biomes) {
             this.biomeBlacklist = Arrays.asList(biomes);
+            return this;
+        }
+
+        public Builder biomeWhitelist(String... biomes) {
+            this.biomeWhitelist = Arrays.asList((ResourceLocation[]) Arrays.stream(biomes).map(ResourceLocation::tryParse).toArray());
+            return this;
+        }
+
+        public Builder biomeWhitelist(ResourceKey<?>... biomes) {
+            this.biomeWhitelist = Arrays.asList((ResourceLocation[]) Arrays.stream(biomes).map(ResourceKey::location).toArray());
             return this;
         }
 

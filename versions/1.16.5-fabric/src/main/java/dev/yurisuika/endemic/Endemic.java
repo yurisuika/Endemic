@@ -1,12 +1,12 @@
 package dev.yurisuika.endemic;
 
 import dev.yurisuika.endemic.data.sapling.SaplingManager;
+import dev.yurisuika.endemic.data.worldgen.EndemicFeatures;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,25 +17,25 @@ public class Endemic implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void registerConfiguredFeatures() {
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_swamp_oak"), EndemicTreeFeatures.STUNTED_SWAMP_OAK);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_fancy_oak"), EndemicTreeFeatures.STUNTED_FANCY_OAK);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_oak"), EndemicTreeFeatures.STUNTED_OAK);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_mega_pine"), EndemicTreeFeatures.STUNTED_MEGA_PINE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_mega_spruce"), EndemicTreeFeatures.STUNTED_MEGA_SPRUCE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_pine"), EndemicTreeFeatures.STUNTED_PINE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_spruce"), EndemicTreeFeatures.STUNTED_SPRUCE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_super_birch"), EndemicTreeFeatures.STUNTED_SUPER_BIRCH);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_birch"), EndemicTreeFeatures.STUNTED_BIRCH);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_mega_jungle"), EndemicTreeFeatures.STUNTED_MEGA_JUNGLE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_jungle"), EndemicTreeFeatures.STUNTED_JUNGLE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_acacia"), EndemicTreeFeatures.STUNTED_ACACIA);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_dark_oak"), EndemicTreeFeatures.STUNTED_DARK_OAK);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "oak_shrub"), EndemicTreeFeatures.OAK_SHRUB);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "spruce_shrub"), EndemicTreeFeatures.SPRUCE_SHRUB);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "birch_shrub"), EndemicTreeFeatures.BIRCH_SHRUB);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "jungle_shrub"), EndemicTreeFeatures.JUNGLE_SHRUB);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "acacia_shrub"), EndemicTreeFeatures.ACACIA_SHRUB);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "dark_oak_shrub"), EndemicTreeFeatures.DARK_OAK_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_SWAMP_OAK, EndemicFeatures.STUNTED_SWAMP_OAK);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_FANCY_OAK, EndemicFeatures.STUNTED_FANCY_OAK);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_OAK, EndemicFeatures.STUNTED_OAK);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_MEGA_PINE, EndemicFeatures.STUNTED_MEGA_PINE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_MEGA_SPRUCE, EndemicFeatures.STUNTED_MEGA_SPRUCE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_PINE, EndemicFeatures.STUNTED_PINE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_SPRUCE, EndemicFeatures.STUNTED_SPRUCE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_SUPER_BIRCH, EndemicFeatures.STUNTED_SUPER_BIRCH);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_BIRCH, EndemicFeatures.STUNTED_BIRCH);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_MEGA_JUNGLE, EndemicFeatures.STUNTED_MEGA_JUNGLE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_JUNGLE, EndemicFeatures.STUNTED_JUNGLE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_ACACIA, EndemicFeatures.STUNTED_ACACIA);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.STUNTED_DARK_OAK, EndemicFeatures.STUNTED_DARK_OAK);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.OAK_SHRUB, EndemicFeatures.OAK_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.SPRUCE_SHRUB, EndemicFeatures.SPRUCE_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.BIRCH_SHRUB, EndemicFeatures.BIRCH_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.JUNGLE_SHRUB, EndemicFeatures.JUNGLE_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.ACACIA_SHRUB, EndemicFeatures.ACACIA_SHRUB);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, EndemicTreeFeatures.DARK_OAK_SHRUB, EndemicFeatures.DARK_OAK_SHRUB);
     }
 
     public static void registerReloadListeners() {

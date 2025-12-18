@@ -103,7 +103,7 @@ public class WeightedTreeGrower {
         ConfiguredFeature<?, ?> selected = null;
         for (Group.Entry entry : entries) {
             if (randomWeight < entry.weight()) {
-                selected = BuiltinRegistries.CONFIGURED_FEATURE.get(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), ResourceLocation.tryParse(entry.feature())));
+                selected = BuiltinRegistries.CONFIGURED_FEATURE.get(ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), entry.feature()));
                 break;
             } else {
                 randomWeight -= entry.weight();
