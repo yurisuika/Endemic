@@ -27,7 +27,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -49,37 +48,21 @@
       },
       "entries": [
         {
-          "feature": "minecraft:cherry",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
-        },
-        {
-          "feature": "minecraft:cherry_bees_005",
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "minecraft:cherry"
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:cherry_grove"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -130,21 +113,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_cherry",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_cherry"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -183,8 +156,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -201,21 +173,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:cherry_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:cherry_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

@@ -1,14 +1,11 @@
 package dev.yurisuika.endemic;
 
-import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.data.sapling.SaplingManager;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
-import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -21,17 +18,8 @@ public class Endemic {
     public static final String MOD_ID = "endemic";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static void loadConfiguration() {
-        Config.loadConfig();
-    }
-
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class GameEvents {
-
-        @SubscribeEvent
-        public static void registerCommands(RegisterCommandsEvent event) {
-            EndemicCommand.register(event.getDispatcher(), event.getEnvironment());
-        }
 
         @SubscribeEvent
         public static void registerReloadListeners(AddReloadListenerEvent event) {
@@ -70,8 +58,6 @@ public class Endemic {
 
     }
 
-    public Endemic() {
-        loadConfiguration();
-    }
+    public Endemic() {}
 
 }

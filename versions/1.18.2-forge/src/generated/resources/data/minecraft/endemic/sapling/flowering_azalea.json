@@ -1,16 +1,13 @@
 {
   "group": [
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:lush_caves"
           ]
@@ -30,8 +27,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -64,12 +60,7 @@
       },
       "entries": [
         {
-          "feature": "minecraft:azalea_tree",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:azalea_tree"
         }
       ]
     },
@@ -77,14 +68,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -135,12 +121,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_azalea",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_azalea"
         }
       ]
     },
@@ -148,14 +129,9 @@
       "weight": 0.25,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -176,7 +152,6 @@
               "max": 12
             },
             "tolerance": {
-              "min": 0,
               "max": 16
             }
           }
@@ -206,12 +181,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:azalea_shrub",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:azalea_shrub"
         }
       ]
     }

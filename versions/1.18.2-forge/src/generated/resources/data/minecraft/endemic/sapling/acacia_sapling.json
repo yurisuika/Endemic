@@ -1,16 +1,13 @@
 {
   "group": [
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:savanna",
             "minecraft:savanna_plateau",
@@ -32,8 +29,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -44,8 +40,7 @@
         "climate": {
           "temperature": {
             "optimum": {
-              "min": 2.0,
-              "max": 2.0
+              "min": 2.0
             },
             "tolerance": {
               "min": 1.9,
@@ -54,7 +49,6 @@
           },
           "downfall": {
             "optimum": {
-              "min": 0.0,
               "max": 0.0
             },
             "tolerance": {
@@ -66,12 +60,7 @@
       },
       "entries": [
         {
-          "feature": "minecraft:acacia",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:acacia"
         }
       ]
     },
@@ -79,14 +68,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -137,12 +121,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_acacia",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_acacia"
         }
       ]
     },
@@ -150,14 +129,9 @@
       "weight": 0.25,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -178,7 +152,6 @@
               "max": 12
             },
             "tolerance": {
-              "min": 0,
               "max": 16
             }
           }
@@ -208,12 +181,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:acacia_shrub",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:acacia_shrub"
         }
       ]
     }

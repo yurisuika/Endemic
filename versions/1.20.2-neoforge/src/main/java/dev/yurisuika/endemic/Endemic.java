@@ -1,12 +1,9 @@
 package dev.yurisuika.endemic;
 
-import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.core.registries.EndemicRegistries;
-import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import dev.yurisuika.endemic.world.level.sapling.Sapling;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,20 +13,6 @@ public class Endemic {
 
     public static final String MOD_ID = "endemic";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-    public static void loadConfiguration() {
-        Config.loadConfig();
-    }
-
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public static class GameEvents {
-
-        @SubscribeEvent
-        public static void registerCommands(RegisterCommandsEvent event) {
-            EndemicCommand.register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
-        }
-
-    }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModEvents {
@@ -41,8 +24,6 @@ public class Endemic {
 
     }
 
-    public Endemic() {
-        loadConfiguration();
-    }
+    public Endemic() {}
 
 }

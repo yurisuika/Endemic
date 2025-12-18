@@ -1,16 +1,13 @@
 {
   "group": [
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:old_growth_pine_taiga"
           ]
@@ -30,8 +27,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -65,25 +61,20 @@
       "entries": [
         {
           "feature": "minecraft:mega_pine",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           }
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:old_growth_pine_taiga",
             "minecraft:old_growth_spruce_taiga"
@@ -104,8 +95,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -139,25 +129,20 @@
       "entries": [
         {
           "feature": "minecraft:mega_spruce",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           }
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:grove",
             "minecraft:old_growth_pine_taiga",
@@ -182,8 +167,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -216,26 +200,18 @@
       },
       "entries": [
         {
-          "feature": "minecraft:pine",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:pine"
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:grove",
             "minecraft:old_growth_pine_taiga",
@@ -265,8 +241,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -299,12 +274,7 @@
       },
       "entries": [
         {
-          "feature": "minecraft:spruce",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:spruce"
         }
       ]
     },
@@ -312,14 +282,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -371,10 +336,8 @@
       "entries": [
         {
           "feature": "endemic:stunted_mega_pine",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           }
         }
       ]
@@ -383,14 +346,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -442,10 +400,8 @@
       "entries": [
         {
           "feature": "endemic:stunted_mega_spruce",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           }
         }
       ]
@@ -454,14 +410,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -512,12 +463,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_pine",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_pine"
         }
       ]
     },
@@ -525,14 +471,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -583,12 +524,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_spruce",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_spruce"
         }
       ]
     },
@@ -596,14 +532,9 @@
       "weight": 0.25,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -624,7 +555,6 @@
               "max": 12
             },
             "tolerance": {
-              "min": 0,
               "max": 16
             }
           }
@@ -654,12 +584,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:spruce_shrub",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:spruce_shrub"
         }
       ]
     }

@@ -1,11 +1,8 @@
 package dev.yurisuika.endemic;
 
-import dev.yurisuika.endemic.config.Config;
 import dev.yurisuika.endemic.data.sapling.SaplingManager;
 import dev.yurisuika.endemic.data.worldgen.features.EndemicTreeFeatures;
-import dev.yurisuika.endemic.server.commands.EndemicCommand;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -18,10 +15,6 @@ public class Endemic implements ModInitializer {
 
     public static final String MOD_ID = "endemic";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-    public static void loadConfiguration() {
-        Config.loadConfig();
-    }
 
     public static void registerConfiguredFeatures() {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "stunted_swamp_oak"), EndemicTreeFeatures.STUNTED_SWAMP_OAK);
@@ -47,19 +40,13 @@ public class Endemic implements ModInitializer {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "azalea_shrub"), EndemicTreeFeatures.AZALEA_SHRUB);
     }
 
-    public static void registerCommands() {
-        CommandRegistrationCallback.EVENT.register(EndemicCommand::register);
-    }
-
     public static void registerReloadListeners() {
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SaplingManager());
     }
 
     @Override
     public void onInitialize() {
-        loadConfiguration();
         registerConfiguredFeatures();
-        registerCommands();
         registerReloadListeners();
     }
 

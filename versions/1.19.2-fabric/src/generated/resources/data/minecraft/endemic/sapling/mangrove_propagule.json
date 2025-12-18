@@ -9,7 +9,6 @@
               "min": 0.9
             },
             "tolerance": {
-              "max": 1.0,
               "min": 0.8
             }
           },
@@ -27,7 +26,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -50,28 +48,21 @@
       "entries": [
         {
           "feature": "minecraft:tall_mangrove",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
           "weight": 0.85
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:mangrove_swamp"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -82,7 +73,6 @@
               "min": 0.9
             },
             "tolerance": {
-              "max": 1.0,
               "min": 0.8
             }
           },
@@ -100,7 +90,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -122,36 +111,27 @@
       },
       "entries": [
         {
-          "feature": "minecraft:mangrove",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "minecraft:mangrove"
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:mangrove_swamp"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
         "climate": {
           "downfall": {
             "optimum": {
-              "max": 1.0,
               "min": 0.8
             },
             "tolerance": {
@@ -196,20 +176,11 @@
       "entries": [
         {
           "feature": "endemic:stunted_tall_mangrove",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
           "weight": 0.85
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -222,7 +193,6 @@
         "climate": {
           "downfall": {
             "optimum": {
-              "max": 1.0,
               "min": 0.8
             },
             "tolerance": {
@@ -266,21 +236,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_mangrove",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_mangrove"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -319,8 +279,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -337,21 +296,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:mangrove_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:mangrove_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

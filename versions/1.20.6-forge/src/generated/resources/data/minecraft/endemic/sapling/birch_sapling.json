@@ -27,7 +27,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -49,38 +48,28 @@
       },
       "entries": [
         {
-          "feature": "minecraft:super_birch_bees_0002",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "minecraft:super_birch_bees_0002"
         },
         {
           "feature": "minecraft:super_birch_bees",
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
-          },
-          "weight": 1.0
+          "surroundings": {
+            "requires_flowers_nearby": true
+          }
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:meadow",
             "minecraft:old_growth_birch_forest"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -109,7 +98,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -131,25 +119,17 @@
       },
       "entries": [
         {
-          "feature": "minecraft:birch",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "minecraft:birch"
         },
         {
           "feature": "minecraft:birch_bees_005",
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
-          },
-          "weight": 1.0
+          "surroundings": {
+            "requires_flowers_nearby": true
+          }
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:birch_forest",
             "minecraft:dark_forest",
@@ -161,13 +141,11 @@
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -218,21 +196,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_super_birch",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_super_birch"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -289,21 +257,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_birch",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_birch"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -342,8 +300,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -360,21 +317,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:birch_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:birch_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

@@ -2,10 +2,8 @@ package dev.yurisuika.endemic.world.level.block.grower;
 
 import dev.yurisuika.endemic.mixin.minecraft.world.level.BiomeAccessor;
 import dev.yurisuika.endemic.mixin.minecraft.world.level.BiomeInvoker;
-import dev.yurisuika.endemic.util.Configure;
-import dev.yurisuika.endemic.util.LightSource;
 import dev.yurisuika.endemic.util.Locate;
-import dev.yurisuika.endemic.world.level.Group;
+import dev.yurisuika.endemic.world.level.sapling.group.Group;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -16,7 +14,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -113,11 +110,11 @@ public class WeightedTreeGrower {
             return null;
         }
 
-        float totalWeight = 0.0F;
+        double totalWeight = 0.0D;
         for (Group.Entry entry : entries) {
             totalWeight += entry.weight();
         }
-        float randomWeight = random.nextFloat() * totalWeight;
+        double randomWeight = random.nextDouble() * totalWeight;
 
         ResourceKey<ConfiguredFeature<?, ?>> selected = null;
         for (Group.Entry entry : entries) {
@@ -134,9 +131,9 @@ public class WeightedTreeGrower {
     public static List<Group.Entry> filterSaplingsEntries(List<Group.Entry> entries, boolean saplings) {
         List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (saplings && entry.neighbors().saplings()) {
+            if (saplings && entry.surroundings().requiresAdjacentSaplings()) {
                 filteredEntries.add(entry);
-            } else if (!saplings && !entry.neighbors().saplings()) {
+            } else if (!saplings && !entry.surroundings().requiresAdjacentSaplings()) {
                 filteredEntries.add(entry);
             }
         }
@@ -146,9 +143,9 @@ public class WeightedTreeGrower {
     public static List<Group.Entry> filterFlowersEntries(List<Group.Entry> entries, boolean flowers) {
         List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (flowers && entry.neighbors().flowers()) {
+            if (flowers && entry.surroundings().requiresFlowersNearby()) {
                 filteredEntries.add(entry);
-            } else if (!flowers && !entry.neighbors().flowers()) {
+            } else if (!flowers && !entry.surroundings().requiresFlowersNearby()) {
                 filteredEntries.add(entry);
             }
         }
@@ -159,15 +156,15 @@ public class WeightedTreeGrower {
         String dimension = level.dimension().location().toString();
         String biome = level.getBiome(pos).unwrap().map(key -> key.location().toString(), value -> "");
         int elevation = pos.getY();
-        int brightness = Configure.getLightSource().equals(LightSource.RAW) ? level.getRawBrightness(pos, 0) : level.getBrightness(Configure.getLightSource().equals(LightSource.SKY) ? LightLayer.SKY : LightLayer.BLOCK, pos);
+        int brightness = level.getRawBrightness(pos, 0);
         float temperature = ((BiomeInvoker) (Object) level.getBiome(pos).value()).invokeGetTemperature(pos);
         float downfall = ((BiomeAccessor) (Object) level.getBiome(pos).value()).getClimateSettings().downfall();
 
         List<Group.Entry> entries = new ArrayList<>();
         Locate.getSapling(level, state).groups().forEach(group -> {
-            if (!group.region().dimensions().blacklist().contains(dimension)) {
+            if (group.region().dimensions().blacklist().isEmpty() || !group.region().dimensions().blacklist().contains(dimension)) {
                 if (group.region().dimensions().whitelist().isEmpty() || group.region().dimensions().whitelist().contains(dimension)) {
-                    if (!group.region().biomes().blacklist().contains(biome)) {
+                    if (group.region().biomes().blacklist().isEmpty() || !group.region().biomes().blacklist().contains(biome)) {
                         if (group.region().biomes().whitelist().isEmpty() || group.region().biomes().whitelist().contains(biome)) {
                             Group.Conditions.Location.Elevation elevationConditions = group.conditions().location().elevation();
                             Group.Conditions.Location.Brightness brightnessConditions = group.conditions().location().brightness();
@@ -184,7 +181,7 @@ public class WeightedTreeGrower {
                             for (Group.Entry entry : group.entries()) {
                                 double modifiedWeight = entry.weight() * group.weight() * modifier;
                                 if (modifiedWeight > 0.0D) {
-                                    entries.add(new Group.Entry(entry.feature(), modifiedWeight, entry.neighbors()));
+                                    entries.add(new Group.Entry(modifiedWeight, entry.feature(), entry.surroundings()));
                                 }
                             }
                         }
@@ -203,18 +200,22 @@ public class WeightedTreeGrower {
                     return 1.0D;
                 } else if (value < optimalMin) {
                     if (toleranceMin < optimalMin && value > toleranceMin) {
-                        double x = Math.abs((value - toleranceMin) / (optimalMin - toleranceMin));
-                        return Math.abs(Configure.getTransition().transition(x));
+                        double d = Math.abs((value - toleranceMin) / (optimalMin - toleranceMin));
+                        return Math.abs(ease(d));
                     }
                 } else if (value > optimalMax) {
                     if (toleranceMax > optimalMax && value < toleranceMax) {
-                        double x = Math.abs((value - toleranceMax) / (toleranceMax - optimalMax));
-                        return Math.abs(Configure.getTransition().transition(x));
+                        double d = Math.abs((value - toleranceMax) / (toleranceMax - optimalMax));
+                        return Math.abs(ease(d));
                     }
                 }
             }
         }
         return 0.0D;
+    }
+
+    public static double ease(double d) {
+        return 1.0D - Math.sqrt(1.0D - Math.pow(d, 2.0D));
     }
 
 }

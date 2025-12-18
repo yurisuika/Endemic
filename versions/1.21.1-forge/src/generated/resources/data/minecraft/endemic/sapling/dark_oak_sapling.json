@@ -27,7 +27,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -50,28 +49,23 @@
       "entries": [
         {
           "feature": "minecraft:dark_oak",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
-          },
-          "weight": 1.0
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          }
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:dark_forest"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -122,21 +116,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_dark_oak",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_dark_oak"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -175,8 +159,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -193,21 +176,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:dark_oak_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:dark_oak_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

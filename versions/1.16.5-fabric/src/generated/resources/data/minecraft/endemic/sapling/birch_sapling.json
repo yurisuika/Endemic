@@ -1,16 +1,13 @@
 {
   "group": [
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:meadow",
             "minecraft:tall_birch_forest",
@@ -32,8 +29,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -66,34 +62,24 @@
       },
       "entries": [
         {
-          "feature": "minecraft:super_birch_bees_0002",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:super_birch_bees_0002"
         },
         {
           "feature": "minecraft:super_birch_bees",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
+          "surroundings": {
+            "requires_flowers_nearby": true
           }
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:birch_forest",
             "minecraft:birch_forest_hills",
@@ -124,8 +110,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -158,19 +143,12 @@
       },
       "entries": [
         {
-          "feature": "minecraft:birch",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:birch"
         },
         {
           "feature": "minecraft:birch_bees_005",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
+          "surroundings": {
+            "requires_flowers_nearby": true
           }
         }
       ]
@@ -179,14 +157,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -237,12 +210,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_super_birch",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_super_birch"
         }
       ]
     },
@@ -250,14 +218,9 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -308,12 +271,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_birch",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_birch"
         }
       ]
     },
@@ -321,14 +279,9 @@
       "weight": 0.25,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -349,7 +302,6 @@
               "max": 12
             },
             "tolerance": {
-              "min": 0,
               "max": 16
             }
           }
@@ -379,12 +331,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:birch_shrub",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:birch_shrub"
         }
       ]
     }

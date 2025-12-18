@@ -2,7 +2,7 @@ package dev.yurisuika.endemic.world.level.sapling;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.yurisuika.endemic.world.level.Group;
+import dev.yurisuika.endemic.world.level.sapling.group.Group;
 
 import java.util.List;
 

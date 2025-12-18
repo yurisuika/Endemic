@@ -27,7 +27,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -50,44 +49,37 @@
       "entries": [
         {
           "feature": "minecraft:pale_oak_bonemeal",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
-          },
-          "weight": 1.0
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          }
         },
         {
           "feature": "minecraft:pale_oak",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           },
           "weight": 0.1
         },
         {
           "feature": "minecraft:pale_oak_creaking",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
+          "surroundings": {
+            "requires_adjacent_saplings": true
           },
-          "weight": 0.05
+          "weight": 0.01
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:pale_garden"
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -138,21 +130,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_pale_oak",
-          "neighbors": {
-            "flowers": false,
-            "saplings": true
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_pale_oak"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -191,8 +173,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -209,21 +190,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:pale_oak_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:pale_oak_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

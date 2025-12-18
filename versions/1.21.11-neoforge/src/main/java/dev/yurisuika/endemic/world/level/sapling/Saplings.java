@@ -1,8 +1,8 @@
 package dev.yurisuika.endemic.world.level.sapling;
 
 import dev.yurisuika.endemic.core.registries.EndemicRegistries;
-import dev.yurisuika.endemic.world.level.Group;
-import dev.yurisuika.endemic.world.level.Groups;
+import dev.yurisuika.endemic.world.level.sapling.group.Group;
+import dev.yurisuika.endemic.world.level.sapling.group.Groups;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;

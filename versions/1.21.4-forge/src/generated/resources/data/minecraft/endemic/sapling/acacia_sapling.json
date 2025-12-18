@@ -5,8 +5,7 @@
         "climate": {
           "downfall": {
             "optimum": {
-              "max": 0.0,
-              "min": 0.0
+              "max": 0.0
             },
             "tolerance": {
               "max": 0.1,
@@ -15,7 +14,6 @@
           },
           "temperature": {
             "optimum": {
-              "max": 2.0,
               "min": 2.0
             },
             "tolerance": {
@@ -27,7 +25,6 @@
         "location": {
           "brightness": {
             "optimum": {
-              "max": 15,
               "min": 15
             },
             "tolerance": {
@@ -49,17 +46,11 @@
       },
       "entries": [
         {
-          "feature": "minecraft:acacia",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "minecraft:acacia"
         }
       ],
       "region": {
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:savanna",
             "minecraft:savanna_plateau",
@@ -67,13 +58,11 @@
           ]
         },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         }
-      },
-      "weight": 1.0
+      }
     },
     {
       "conditions": {
@@ -124,21 +113,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_acacia",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:stunted_acacia"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -177,8 +156,7 @@
               "min": 4
             },
             "tolerance": {
-              "max": 16,
-              "min": 0
+              "max": 16
             }
           },
           "elevation": {
@@ -195,21 +173,11 @@
       },
       "entries": [
         {
-          "feature": "endemic:acacia_shrub",
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          },
-          "weight": 1.0
+          "feature": "endemic:acacia_shrub"
         }
       ],
       "region": {
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
-        },
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]

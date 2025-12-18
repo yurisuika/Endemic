@@ -1,16 +1,13 @@
 {
   "group": [
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:swamp",
             "minecraft:swamp_hills"
@@ -31,8 +28,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -57,28 +53,20 @@
               "max": 0.9
             },
             "tolerance": {
-              "min": 0.8,
-              "max": 1.0
+              "min": 0.8
             }
           }
         }
       },
       "entries": [
         {
-          "feature": "minecraft:swamp_oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:swamp_oak"
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -138,8 +126,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -164,36 +151,26 @@
               "max": 0.9
             },
             "tolerance": {
-              "min": 0.2,
-              "max": 1.0
+              "min": 0.2
             }
           }
         }
       },
       "entries": [
         {
-          "feature": "minecraft:fancy_oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:fancy_oak"
         },
         {
           "feature": "minecraft:fancy_oak_bees_005",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
+          "surroundings": {
+            "requires_flowers_nearby": true
           }
         }
       ]
     },
     {
-      "weight": 1.0,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -252,8 +229,7 @@
           },
           "brightness": {
             "optimum": {
-              "min": 15,
-              "max": 15
+              "min": 15
             },
             "tolerance": {
               "min": 14,
@@ -264,8 +240,7 @@
         "climate": {
           "temperature": {
             "optimum": {
-              "min": 0.0,
-              "max": 2.0
+              "min": 0.0
             },
             "tolerance": {
               "min": -0.1,
@@ -274,7 +249,6 @@
           },
           "downfall": {
             "optimum": {
-              "min": 0.0,
               "max": 0.8
             },
             "tolerance": {
@@ -286,19 +260,12 @@
       },
       "entries": [
         {
-          "feature": "minecraft:oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "minecraft:oak"
         },
         {
           "feature": "minecraft:oak_bees_005",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": true,
-            "saplings": false
+          "surroundings": {
+            "requires_flowers_nearby": true
           }
         }
       ]
@@ -307,13 +274,11 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
         },
         "biomes": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:swamp",
             "minecraft:swamp_hills"
@@ -368,12 +333,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_swamp_oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_swamp_oak"
         }
       ]
     },
@@ -381,7 +341,6 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -390,8 +349,7 @@
           "blacklist": [
             "minecraft:swamp",
             "minecraft:swamp_hills"
-          ],
-          "whitelist": []
+          ]
         }
       },
       "conditions": {
@@ -434,7 +392,6 @@
               "max": 0.9
             },
             "tolerance": {
-              "min": 0.0,
               "max": 1.1
             }
           }
@@ -442,12 +399,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_fancy_oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_fancy_oak"
         }
       ]
     },
@@ -455,7 +407,6 @@
       "weight": 0.5,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
@@ -464,8 +415,7 @@
           "blacklist": [
             "minecraft:swamp",
             "minecraft:swamp_hills"
-          ],
-          "whitelist": []
+          ]
         }
       },
       "conditions": {
@@ -516,12 +466,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_oak",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:stunted_oak"
         }
       ]
     },
@@ -529,14 +474,9 @@
       "weight": 0.25,
       "region": {
         "dimensions": {
-          "blacklist": [],
           "whitelist": [
             "minecraft:overworld"
           ]
-        },
-        "biomes": {
-          "blacklist": [],
-          "whitelist": []
         }
       },
       "conditions": {
@@ -557,7 +497,6 @@
               "max": 12
             },
             "tolerance": {
-              "min": 0,
               "max": 16
             }
           }
@@ -587,12 +526,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:oak_shrub",
-          "weight": 1.0,
-          "neighbors": {
-            "flowers": false,
-            "saplings": false
-          }
+          "feature": "endemic:oak_shrub"
         }
       ]
     }
