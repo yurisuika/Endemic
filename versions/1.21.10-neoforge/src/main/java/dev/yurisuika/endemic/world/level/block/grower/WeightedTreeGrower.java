@@ -27,18 +27,15 @@ import java.util.List;
 public class WeightedTreeGrower {
 
     public static boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, RandomSource random) {
-        List<Group.Entry> entries = filterEntries(level, pos, state);
+        List<Group.Entry> entries = getFilteredEntries(level, pos, state);
 
-        List<Group.Entry> multiSaplingsEntries = filterSaplingsEntries(entries, true);
-        multiSaplingsEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
-
-        ResourceKey<ConfiguredFeature<?, ?>> multiSaplingResourceKey = selectWeightedEntry(multiSaplingsEntries, random);
+        ResourceKey<ConfiguredFeature<?, ?>> multiSaplingResourceKey = selectWeightedEntry(filterForAdjacentSaplings(entries, true), random);
         if (multiSaplingResourceKey != null) {
             Holder<ConfiguredFeature<?, ?>> multiSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(multiSaplingResourceKey).orElse(null);
             if (multiSaplingHolder != null) {
                 for (int i = 0; i >= -1; --i) {
                     for (int j = 0; j >= -1; --j) {
-                        if (isTwoByTwoSapling(state, level, pos, i, j)) {
+                        if (hasAdjacentSaplings(state, level, pos, i, j)) {
                             ConfiguredFeature<?, ?> multiSaplingConfiguredFeature = multiSaplingHolder.value();
                             BlockState multiSaplingBlockState = Blocks.AIR.defaultBlockState();
                             level.setBlock(pos.offset(i, 0, j), multiSaplingBlockState, 260);
@@ -60,21 +57,18 @@ public class WeightedTreeGrower {
             }
         }
 
-        List<Group.Entry> singleSaplingsEntries = filterSaplingsEntries(entries, false);
-        singleSaplingsEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
-
-        ResourceKey<ConfiguredFeature<?, ?>> singleSaplingResourceKey = selectWeightedEntry(singleSaplingsEntries, random);
-        if (singleSaplingResourceKey == null) {
+        ResourceKey<ConfiguredFeature<?, ?>> saplingResourceKey = selectWeightedEntry(filterForAdjacentSaplings(entries, false), random);
+        if (saplingResourceKey == null) {
             return false;
         } else {
-            Holder<ConfiguredFeature<?, ?>> singleSaplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(singleSaplingResourceKey).orElse(null);
-            if (singleSaplingHolder == null) {
+            Holder<ConfiguredFeature<?, ?>> saplingHolder = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(saplingResourceKey).orElse(null);
+            if (saplingHolder == null) {
                 return false;
             } else {
-                ConfiguredFeature<?, ?> singleSaplingConfiguredFeature = singleSaplingHolder.value();
+                ConfiguredFeature<?, ?> saplingConfiguredFeature = saplingHolder.value();
                 BlockState singleSaplingBlockState = level.getFluidState(pos).createLegacyBlock();
                 level.setBlock(pos, singleSaplingBlockState, 260);
-                if (singleSaplingConfiguredFeature.place(level, chunkGenerator, random, pos)) {
+                if (saplingConfiguredFeature.place(level, chunkGenerator, random, pos)) {
                     if (level.getBlockState(pos) == singleSaplingBlockState) {
                         level.sendBlockUpdated(pos, state, singleSaplingBlockState, 2);
                     }
@@ -87,12 +81,12 @@ public class WeightedTreeGrower {
         }
     }
 
-    public static boolean isTwoByTwoSapling(BlockState state, BlockGetter level, BlockPos pos, int xOffset, int yOffset) {
+    public static boolean hasAdjacentSaplings(BlockState state, BlockGetter level, BlockPos pos, int xOffset, int yOffset) {
         Block block = state.getBlock();
         return level.getBlockState(pos.offset(xOffset, 0, yOffset)).is(block) && level.getBlockState(pos.offset(xOffset + 1, 0, yOffset)).is(block) && level.getBlockState(pos.offset(xOffset, 0, yOffset + 1)).is(block) && level.getBlockState(pos.offset(xOffset + 1, 0, yOffset + 1)).is(block);
     }
 
-    public static boolean hasFlowers(LevelAccessor level, BlockPos pos) {
+    public static boolean hasFlowersNearby(LevelAccessor level, BlockPos pos) {
         for (BlockPos blockPos : BlockPos.MutableBlockPos.betweenClosed(pos.below().north(2).west(2), pos.above().south(2).east(2))) {
             if (level.getBlockState(blockPos).is(BlockTags.FLOWERS)) {
                 return true;
@@ -125,28 +119,19 @@ public class WeightedTreeGrower {
         return selected;
     }
 
-    public static List<Group.Entry> filterSaplingsEntries(List<Group.Entry> entries, boolean saplings) {
+    public static List<Group.Entry> filterForAdjacentSaplings(List<Group.Entry> entries, boolean hasAdjacentSaplings) {
         List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (saplings && entry.surroundings().requiresAdjacentSaplings()) {
+            if (hasAdjacentSaplings && entry.surroundings().requiresAdjacentSaplings()) {
                 filteredEntries.add(entry);
-            } else if (!saplings && !entry.surroundings().requiresAdjacentSaplings()) {
+            } else if (!hasAdjacentSaplings && !entry.surroundings().requiresAdjacentSaplings()) {
                 filteredEntries.add(entry);
             }
         }
         return filteredEntries;
     }
 
-    public static List<Group.Entry> filterFlowersEntries(List<Group.Entry> entries, boolean flowers) {
-        for (Group.Entry entry : entries) {
-            if (!flowers && entry.surroundings().requiresFlowersNearby()) {
-                entries.remove(entry);
-            }
-        }
-        return entries;
-    }
-
-    public static List<Group.Entry> filterEntries(ServerLevel level, BlockPos pos, BlockState state) {
+    public static List<Group.Entry> getFilteredEntries(ServerLevel level, BlockPos pos, BlockState state) {
         ResourceLocation dimension = level.dimension().location();
         ResourceLocation biome = level.getBiome(pos).unwrap().orThrow().location();
         int elevation = pos.getY();
@@ -183,6 +168,8 @@ public class WeightedTreeGrower {
                 }
             }
         });
+
+        entries.removeIf(entry -> !hasFlowersNearby(level, pos) && entry.surroundings().requiresFlowersNearby());
         entries.sort(Comparator.comparing(Group.Entry::weight).reversed());
         return entries;
     }
