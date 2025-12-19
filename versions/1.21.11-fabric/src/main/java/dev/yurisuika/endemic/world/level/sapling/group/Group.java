@@ -236,12 +236,12 @@ public record Group(double weight, Region region, Conditions conditions, List<En
         }
 
         public Builder dimensionBlacklist(String... dimensions) {
-            this.dimensionBlacklist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(Identifier::tryParse).toArray());
+            this.dimensionBlacklist = Arrays.stream(dimensions).map(Identifier::tryParse).toList();
             return this;
         }
 
         public Builder dimensionBlacklist(ResourceKey<?>... dimensions) {
-            this.dimensionBlacklist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(ResourceKey::identifier).toArray());
+            this.dimensionBlacklist = Arrays.stream(dimensions).map(ResourceKey::identifier).toList();
             return this;
         }
 
@@ -251,12 +251,12 @@ public record Group(double weight, Region region, Conditions conditions, List<En
         }
 
         public Builder dimensionWhitelist(String... dimensions) {
-            this.dimensionWhitelist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(Identifier::tryParse).toArray());
+            this.dimensionWhitelist = Arrays.stream(dimensions).map(Identifier::tryParse).toList();
             return this;
         }
 
         public Builder dimensionWhitelist(ResourceKey<?>... dimensions) {
-            this.dimensionWhitelist = Arrays.asList((Identifier[]) Arrays.stream(dimensions).map(ResourceKey::identifier).toArray());
+            this.dimensionWhitelist = Arrays.stream(dimensions).map(ResourceKey::identifier).toList();
             return this;
         }
 
@@ -266,12 +266,12 @@ public record Group(double weight, Region region, Conditions conditions, List<En
         }
 
         public Builder biomeBlacklist(String... biomes) {
-            this.biomeBlacklist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(Identifier::tryParse).toArray());
+            this.biomeBlacklist = Arrays.stream(biomes).map(Identifier::tryParse).toList();
             return this;
         }
 
         public Builder biomeBlacklist(ResourceKey<?>... biomes) {
-            this.biomeBlacklist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(ResourceKey::identifier).toArray());
+            this.biomeBlacklist = Arrays.stream(biomes).map(ResourceKey::identifier).toList();
             return this;
         }
 
@@ -281,12 +281,12 @@ public record Group(double weight, Region region, Conditions conditions, List<En
         }
 
         public Builder biomeWhitelist(String... biomes) {
-            this.biomeWhitelist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(Identifier::tryParse).toArray());
+            this.biomeWhitelist = Arrays.stream(biomes).map(Identifier::tryParse).toList();
             return this;
         }
 
         public Builder biomeWhitelist(ResourceKey<?>... biomes) {
-            this.biomeWhitelist = Arrays.asList((Identifier[]) Arrays.stream(biomes).map(ResourceKey::identifier).toArray());
+            this.biomeWhitelist = Arrays.stream(biomes).map(ResourceKey::identifier).toList();
             return this;
         }
 
