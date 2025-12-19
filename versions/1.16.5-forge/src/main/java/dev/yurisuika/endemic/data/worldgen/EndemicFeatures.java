@@ -39,6 +39,14 @@ public class EndemicFeatures {
             new StraightTrunkPlacer(4, 1, 0),
             new TwoLayersFeatureSize(1, 0, 1))
             .ignoreVines().build());
+    public static final ConfiguredFeature<TreeConfiguration, ?> OAK_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()),
+            new SimpleStateProvider(Blocks.OAK_LEAVES.defaultBlockState()),
+            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
+            new StraightTrunkPlacer(1, 0, 0),
+            new TwoLayersFeatureSize(0, 0, 0))
+            .ignoreVines().build());
+
     public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_MEGA_PINE = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.SPRUCE_LOG.defaultBlockState()),
             new SimpleStateProvider(Blocks.SPRUCE_LEAVES.defaultBlockState()),
@@ -67,6 +75,14 @@ public class EndemicFeatures {
             new StraightTrunkPlacer(4, 1, 0),
             new TwoLayersFeatureSize(2, 0, 2))
             .ignoreVines().build());
+    public static final ConfiguredFeature<TreeConfiguration, ?> SPRUCE_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            new SimpleStateProvider(Blocks.SPRUCE_LOG.defaultBlockState()),
+            new SimpleStateProvider(Blocks.SPRUCE_LEAVES.defaultBlockState()),
+            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
+            new StraightTrunkPlacer(1, 0, 0),
+            new TwoLayersFeatureSize(0, 0, 0))
+            .ignoreVines().build());
+
     public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_SUPER_BIRCH = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.BIRCH_LOG.defaultBlockState()),
             new SimpleStateProvider(Blocks.BIRCH_LEAVES.defaultBlockState()),
@@ -81,6 +97,14 @@ public class EndemicFeatures {
             new StraightTrunkPlacer(4, 1, 0),
             new TwoLayersFeatureSize(1, 0, 1))
             .ignoreVines().build());
+    public static final ConfiguredFeature<TreeConfiguration, ?> BIRCH_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            new SimpleStateProvider(Blocks.BIRCH_LOG.defaultBlockState()),
+            new SimpleStateProvider(Blocks.BIRCH_LEAVES.defaultBlockState()),
+            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
+            new StraightTrunkPlacer(1, 0, 0),
+            new TwoLayersFeatureSize(0, 0, 0))
+            .ignoreVines().build());
+
     public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_MEGA_JUNGLE = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.JUNGLE_LOG.defaultBlockState()),
             new SimpleStateProvider(Blocks.JUNGLE_LEAVES.defaultBlockState()),
@@ -95,41 +119,6 @@ public class EndemicFeatures {
             new StraightTrunkPlacer(4, 3, 0),
             new TwoLayersFeatureSize(1, 0, 1))
             .ignoreVines().build());
-    public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_ACACIA = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-            new SimpleStateProvider(Blocks.ACACIA_LOG.defaultBlockState()),
-            new SimpleStateProvider(Blocks.ACACIA_LEAVES.defaultBlockState()),
-            new AcaciaFoliagePlacer(UniformInt.fixed(1), UniformInt.fixed(0)),
-            new ForkingTrunkPlacer(3, 2, 0),
-            new TwoLayersFeatureSize(1, 0, 2))
-            .ignoreVines().build());
-    public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_DARK_OAK = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-            new SimpleStateProvider(Blocks.DARK_OAK_LOG.defaultBlockState()),
-            new SimpleStateProvider(Blocks.DARK_OAK_LEAVES.defaultBlockState()),
-            new DarkOakFoliagePlacer(UniformInt.fixed(0), UniformInt.fixed(0)),
-            new DarkOakTrunkPlacer(3, 2, 1),
-            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
-            .ignoreVines().build());
-    public static final ConfiguredFeature<TreeConfiguration, ?> OAK_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-            new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()),
-            new SimpleStateProvider(Blocks.OAK_LEAVES.defaultBlockState()),
-            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
-            new StraightTrunkPlacer(1, 0, 0),
-            new TwoLayersFeatureSize(0, 0, 0))
-            .ignoreVines().build());
-    public static final ConfiguredFeature<TreeConfiguration, ?> SPRUCE_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-            new SimpleStateProvider(Blocks.SPRUCE_LOG.defaultBlockState()),
-            new SimpleStateProvider(Blocks.SPRUCE_LEAVES.defaultBlockState()),
-            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
-            new StraightTrunkPlacer(1, 0, 0),
-            new TwoLayersFeatureSize(0, 0, 0))
-            .ignoreVines().build());
-    public static final ConfiguredFeature<TreeConfiguration, ?> BIRCH_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-            new SimpleStateProvider(Blocks.BIRCH_LOG.defaultBlockState()),
-            new SimpleStateProvider(Blocks.BIRCH_LEAVES.defaultBlockState()),
-            new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
-            new StraightTrunkPlacer(1, 0, 0),
-            new TwoLayersFeatureSize(0, 0, 0))
-            .ignoreVines().build());
     public static final ConfiguredFeature<TreeConfiguration, ?> JUNGLE_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.JUNGLE_LOG.defaultBlockState()),
             new SimpleStateProvider(Blocks.JUNGLE_LEAVES.defaultBlockState()),
@@ -137,12 +126,28 @@ public class EndemicFeatures {
             new StraightTrunkPlacer(1, 0, 0),
             new TwoLayersFeatureSize(0, 0, 0))
             .ignoreVines().build());
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_ACACIA = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            new SimpleStateProvider(Blocks.ACACIA_LOG.defaultBlockState()),
+            new SimpleStateProvider(Blocks.ACACIA_LEAVES.defaultBlockState()),
+            new AcaciaFoliagePlacer(UniformInt.fixed(1), UniformInt.fixed(0)),
+            new ForkingTrunkPlacer(3, 2, 0),
+            new TwoLayersFeatureSize(1, 0, 2))
+            .ignoreVines().build());
     public static final ConfiguredFeature<TreeConfiguration, ?> ACACIA_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.ACACIA_LOG.defaultBlockState()),
             new SimpleStateProvider(Blocks.ACACIA_LEAVES.defaultBlockState()),
             new BushFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2),
             new StraightTrunkPlacer(1, 0, 0),
             new TwoLayersFeatureSize(0, 0, 0))
+            .ignoreVines().build());
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> STUNTED_DARK_OAK = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            new SimpleStateProvider(Blocks.DARK_OAK_LOG.defaultBlockState()),
+            new SimpleStateProvider(Blocks.DARK_OAK_LEAVES.defaultBlockState()),
+            new DarkOakFoliagePlacer(UniformInt.fixed(0), UniformInt.fixed(0)),
+            new DarkOakTrunkPlacer(3, 2, 1),
+            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
             .ignoreVines().build());
     public static final ConfiguredFeature<TreeConfiguration, ?> DARK_OAK_SHRUB = new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             new SimpleStateProvider(Blocks.DARK_OAK_LOG.defaultBlockState()),
