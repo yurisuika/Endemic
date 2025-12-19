@@ -47,7 +47,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:swamp_oak"
+          "feature": "endemic:swamp_oak"
+        },
+        {
+          "feature": "endemic:swamp_oak_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -111,13 +118,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:fancy_oak"
+          "feature": "endemic:fancy_oak"
         },
         {
-          "feature": "minecraft:fancy_oak_bees_005",
+          "feature": "endemic:fancy_oak_with_bee_nest",
           "surroundings": {
             "requires_flowers_nearby": true
-          }
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -206,13 +214,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:oak"
+          "feature": "endemic:oak"
         },
         {
-          "feature": "minecraft:oak_bees_005",
+          "feature": "endemic:oak_with_bee_nest",
           "surroundings": {
             "requires_flowers_nearby": true
-          }
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -305,7 +314,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_swamp_oak"
+          "feature": "endemic:dwarf_swamp_oak"
         }
       ],
       "region": {
@@ -371,7 +380,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_fancy_oak"
+          "feature": "endemic:dwarf_fancy_oak"
         }
       ],
       "region": {
@@ -438,7 +447,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_oak"
+          "feature": "endemic:dwarf_oak"
         }
       ],
       "region": {
@@ -504,7 +513,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:oak_shrub"
+          "feature": "endemic:shrub_oak"
         }
       ],
       "region": {

@@ -48,24 +48,94 @@
       },
       "entries": [
         {
-          "feature": "minecraft:pale_oak_bonemeal",
+          "feature": "endemic:creaking_pale_oak",
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          },
+          "weight": 0.01
+        },
+        {
+          "feature": "endemic:creaking_pale_oak_with_bee_nest",
+          "surroundings": {
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
+          },
+          "weight": 5.0E-4
+        }
+      ],
+      "region": {
+        "biomes": {
+          "whitelist": [
+            "minecraft:pale_garden"
+          ]
+        },
+        "dimensions": {
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      }
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.8,
+              "min": 0.8
+            },
+            "tolerance": {
+              "max": 0.9,
+              "min": 0.7
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.7,
+              "min": 0.7
+            },
+            "tolerance": {
+              "max": 0.8,
+              "min": 0.6
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "min": 15
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 14
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 95,
+              "min": 56
+            },
+            "tolerance": {
+              "max": 127,
+              "min": 48
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:pale_oak",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
         },
         {
-          "feature": "minecraft:pale_oak",
+          "feature": "endemic:pale_oak_with_bee_nest",
           "surroundings": {
-            "requires_adjacent_saplings": true
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
           },
-          "weight": 0.1
-        },
-        {
-          "feature": "minecraft:pale_oak_creaking",
-          "surroundings": {
-            "requires_adjacent_saplings": true
-          },
-          "weight": 0.01
+          "weight": 0.05
         }
       ],
       "region": {
@@ -130,7 +200,72 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_pale_oak",
+          "feature": "endemic:dwarf_creaking_pale_oak",
+          "surroundings": {
+            "requires_adjacent_saplings": true
+          },
+          "weight": 0.01
+        }
+      ],
+      "region": {
+        "dimensions": {
+          "whitelist": [
+            "minecraft:overworld"
+          ]
+        }
+      },
+      "weight": 0.5
+    },
+    {
+      "conditions": {
+        "climate": {
+          "downfall": {
+            "optimum": {
+              "max": 0.9,
+              "min": 0.7
+            },
+            "tolerance": {
+              "max": 1.1,
+              "min": 0.5
+            }
+          },
+          "temperature": {
+            "optimum": {
+              "max": 0.8,
+              "min": 0.6
+            },
+            "tolerance": {
+              "max": 1.0,
+              "min": 0.4
+            }
+          }
+        },
+        "location": {
+          "brightness": {
+            "optimum": {
+              "max": 14,
+              "min": 13
+            },
+            "tolerance": {
+              "max": 16,
+              "min": 11
+            }
+          },
+          "elevation": {
+            "optimum": {
+              "max": 127,
+              "min": 48
+            },
+            "tolerance": {
+              "max": 191,
+              "min": 32
+            }
+          }
+        }
+      },
+      "entries": [
+        {
+          "feature": "endemic:dwarf_pale_oak",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
@@ -193,7 +328,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:pale_oak_shrub"
+          "feature": "endemic:shrub_pale_oak"
         }
       ],
       "region": {

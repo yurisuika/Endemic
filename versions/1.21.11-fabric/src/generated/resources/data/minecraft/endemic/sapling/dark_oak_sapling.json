@@ -48,10 +48,18 @@
       },
       "entries": [
         {
-          "feature": "minecraft:dark_oak",
+          "feature": "endemic:dark_oak",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
+        },
+        {
+          "feature": "endemic:dark_oak_with_bee_nest",
+          "surroundings": {
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -116,7 +124,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_dark_oak",
+          "feature": "endemic:dwarf_dark_oak",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
@@ -179,7 +187,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:dark_oak_shrub"
+          "feature": "endemic:shrub_dark_oak"
         }
       ],
       "region": {

@@ -30,8 +30,7 @@ public class WeightedTreeGrower {
         List<Group.Entry> entries = filterEntries(level, pos, state);
 
         List<Group.Entry> multiSaplingsEntries = filterSaplingsEntries(entries, true);
-        List<Group.Entry> multiSaplingsFlowersEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
-        multiSaplingsEntries = multiSaplingsFlowersEntries.isEmpty() ? multiSaplingsEntries : multiSaplingsFlowersEntries;
+        multiSaplingsEntries = filterFlowersEntries(multiSaplingsEntries, hasFlowers(level, pos));
 
         ResourceKey<ConfiguredFeature<?, ?>> multiSaplingResourceKey = selectWeightedEntry(multiSaplingsEntries, random);
         if (multiSaplingResourceKey != null) {
@@ -62,8 +61,7 @@ public class WeightedTreeGrower {
         }
 
         List<Group.Entry> singleSaplingsEntries = filterSaplingsEntries(entries, false);
-        List<Group.Entry> singleSaplingsFlowersEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
-        singleSaplingsEntries = singleSaplingsFlowersEntries.isEmpty() ? singleSaplingsEntries : singleSaplingsFlowersEntries;
+        singleSaplingsEntries = filterFlowersEntries(singleSaplingsEntries, hasFlowers(level, pos));
 
         ResourceKey<ConfiguredFeature<?, ?>> singleSaplingResourceKey = selectWeightedEntry(singleSaplingsEntries, random);
         if (singleSaplingResourceKey == null) {
@@ -140,15 +138,12 @@ public class WeightedTreeGrower {
     }
 
     public static List<Group.Entry> filterFlowersEntries(List<Group.Entry> entries, boolean flowers) {
-        List<Group.Entry> filteredEntries = new ArrayList<>();
         for (Group.Entry entry : entries) {
-            if (flowers && entry.surroundings().requiresFlowersNearby()) {
-                filteredEntries.add(entry);
-            } else if (!flowers && !entry.surroundings().requiresFlowersNearby()) {
-                filteredEntries.add(entry);
+            if (!flowers && entry.surroundings().requiresFlowersNearby()) {
+                entries.remove(entry);
             }
         }
-        return filteredEntries;
+        return entries;
     }
 
     public static List<Group.Entry> filterEntries(ServerLevel level, BlockPos pos, BlockState state) {

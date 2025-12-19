@@ -48,7 +48,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:azalea_tree"
+          "feature": "endemic:azalea"
+        },
+        {
+          "feature": "endemic:azalea_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -113,7 +120,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_azalea"
+          "feature": "endemic:dwarf_azalea"
         }
       ],
       "region": {
@@ -173,7 +180,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:azalea_shrub"
+          "feature": "endemic:shrub_azalea"
         }
       ],
       "region": {

@@ -46,7 +46,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:acacia"
+          "feature": "endemic:acacia"
+        },
+        {
+          "feature": "endemic:acacia_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -113,7 +120,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_acacia"
+          "feature": "endemic:dwarf_acacia"
         }
       ],
       "region": {
@@ -173,7 +180,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:acacia_shrub"
+          "feature": "endemic:shrub_acacia"
         }
       ],
       "region": {

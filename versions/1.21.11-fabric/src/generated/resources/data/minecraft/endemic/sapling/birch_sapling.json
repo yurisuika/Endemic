@@ -48,13 +48,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:super_birch_bees_0002"
+          "feature": "endemic:tall_birch"
         },
         {
-          "feature": "minecraft:super_birch_bees",
+          "feature": "endemic:tall_birch_with_bee_nest",
           "surroundings": {
             "requires_flowers_nearby": true
-          }
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -119,13 +120,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:birch"
+          "feature": "endemic:birch"
         },
         {
-          "feature": "minecraft:birch_bees_005",
+          "feature": "endemic:birch_with_bee_nest",
           "surroundings": {
             "requires_flowers_nearby": true
-          }
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -196,7 +198,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_super_birch"
+          "feature": "endemic:dwarf_tall_birch"
         }
       ],
       "region": {
@@ -257,7 +259,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_birch"
+          "feature": "endemic:dwarf_birch"
         }
       ],
       "region": {
@@ -317,7 +319,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:birch_shrub"
+          "feature": "endemic:shrub_birch"
         }
       ],
       "region": {

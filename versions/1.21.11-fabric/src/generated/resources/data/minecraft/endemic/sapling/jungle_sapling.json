@@ -47,10 +47,18 @@
       },
       "entries": [
         {
-          "feature": "minecraft:mega_jungle_tree",
+          "feature": "endemic:mega_jungle",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
+        },
+        {
+          "feature": "endemic:mega_jungle_with_bee_nest",
+          "surroundings": {
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -114,11 +122,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:jungle_tree"
+          "feature": "endemic:jungle"
         },
         {
-          "feature": "minecraft:jungle_tree_no_vine",
-          "weight": 0.1
+          "feature": "endemic:jungle_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -184,7 +195,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_mega_jungle",
+          "feature": "endemic:dwarf_mega_jungle",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
@@ -247,7 +258,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_jungle"
+          "feature": "endemic:dwarf_jungle"
         }
       ],
       "region": {
@@ -307,7 +318,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:jungle_shrub"
+          "feature": "endemic:shrub_jungle"
         }
       ],
       "region": {

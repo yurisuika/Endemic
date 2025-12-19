@@ -48,10 +48,18 @@
       },
       "entries": [
         {
-          "feature": "minecraft:mega_pine",
+          "feature": "endemic:mega_pine_spruce",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
+        },
+        {
+          "feature": "endemic:mega_pine_spruce_with_bee_nest",
+          "surroundings": {
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -115,10 +123,18 @@
       },
       "entries": [
         {
-          "feature": "minecraft:mega_spruce",
+          "feature": "endemic:mega_spruce",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
+        },
+        {
+          "feature": "endemic:mega_spruce_with_bee_nest",
+          "surroundings": {
+            "requires_adjacent_saplings": true,
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -183,7 +199,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:pine"
+          "feature": "endemic:pine_spruce"
+        },
+        {
+          "feature": "endemic:pine_spruce_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -252,7 +275,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:spruce"
+          "feature": "endemic:spruce"
+        },
+        {
+          "feature": "endemic:spruce_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -327,7 +357,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_mega_pine",
+          "feature": "endemic:dwarf_mega_pine_spruce",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
@@ -391,7 +421,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_mega_spruce",
+          "feature": "endemic:dwarf_mega_spruce",
           "surroundings": {
             "requires_adjacent_saplings": true
           }
@@ -455,7 +485,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_pine"
+          "feature": "endemic:dwarf_pine_spruce"
         }
       ],
       "region": {
@@ -516,7 +546,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_spruce"
+          "feature": "endemic:dwarf_spruce"
         }
       ],
       "region": {
@@ -576,7 +606,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:spruce_shrub"
+          "feature": "endemic:shrub_spruce"
         }
       ],
       "region": {

@@ -47,8 +47,15 @@
       },
       "entries": [
         {
-          "feature": "minecraft:tall_mangrove",
+          "feature": "endemic:tall_mangrove",
           "weight": 0.85
+        },
+        {
+          "feature": "endemic:tall_mangrove_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.0425
         }
       ],
       "region": {
@@ -111,7 +118,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:mangrove"
+          "feature": "endemic:mangrove"
+        },
+        {
+          "feature": "endemic:mangrove_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -175,7 +189,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_tall_mangrove",
+          "feature": "endemic:dwarf_tall_mangrove",
           "weight": 0.85
         }
       ],
@@ -236,7 +250,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_mangrove"
+          "feature": "endemic:dwarf_mangrove"
         }
       ],
       "region": {
@@ -296,7 +310,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:mangrove_shrub"
+          "feature": "endemic:shrub_mangrove"
         }
       ],
       "region": {

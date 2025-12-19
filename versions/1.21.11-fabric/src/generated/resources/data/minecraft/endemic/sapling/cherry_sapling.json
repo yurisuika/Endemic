@@ -48,7 +48,14 @@
       },
       "entries": [
         {
-          "feature": "minecraft:cherry"
+          "feature": "endemic:cherry"
+        },
+        {
+          "feature": "endemic:cherry_with_bee_nest",
+          "surroundings": {
+            "requires_flowers_nearby": true
+          },
+          "weight": 0.05
         }
       ],
       "region": {
@@ -113,7 +120,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:stunted_cherry"
+          "feature": "endemic:dwarf_cherry"
         }
       ],
       "region": {
@@ -173,7 +180,7 @@
       },
       "entries": [
         {
-          "feature": "endemic:cherry_shrub"
+          "feature": "endemic:shrub_cherry"
         }
       ],
       "region": {
