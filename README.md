@@ -6,7 +6,7 @@ Endemic offers you the ability to configure how saplings grow! Do you wish that 
 ### Bring back the diversity of nature!
 Make saplings grow up conditionally based on the surrounding dimension, biome, elevation, brightness, temperature, and downfall. This means you can create deep configurations in conjunction with mods that change the weather and seasons, make certain tree variants grow at certain altitudes, or make it so you can only grow certain trees in those special places where you find them natively to keep the charm and promote trade and travel!
 
-By default, Endemic focuses on bringing those endemic tree variants such as swamp oaks back to their biomes, preserves trees growing in their native habitats, and makes saplings grown outside their native biomes and in low light end up growing as stunted and shrub forms.
+By default, Endemic focuses on bringing those endemic tree variants such as swamp oaks back to their biomes, preserves trees growing in their native habitats, and makes saplings grown outside their native biomes and in low light end up growing as dwarf and shrub forms.
 
 ### Any and all trees are welcome!
 Using a data-driven design, Endemic allows you to override any sapling that uses the vanilla tree grower, including modded saplings! Any sapling that does not have a configuration set will just follow its vanilla growth behavior.

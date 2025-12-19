@@ -27,16 +27,16 @@ public class Saplings {
     }
 
     public static void bootstrap(BootstapContext<Sapling> context) {
-        register(context, OAK_SAPLING, Groups.SWAMP_OAK, Groups.FANCY_OAK, Groups.OAK, Groups.STUNTED_SWAMP_OAK, Groups.STUNTED_FANCY_OAK, Groups.STUNTED_OAK, Groups.OAK_SHRUB);
-        register(context, SPRUCE_SAPLING, Groups.MEGA_PINE, Groups.MEGA_SPRUCE, Groups.PINE, Groups.SPRUCE, Groups.STUNTED_MEGA_PINE, Groups.STUNTED_MEGA_SPRUCE, Groups.STUNTED_PINE, Groups.STUNTED_SPRUCE, Groups.SPRUCE_SHRUB);
-        register(context, BIRCH_SAPLING, Groups.SUPER_BIRCH, Groups.BIRCH, Groups.STUNTED_SUPER_BIRCH, Groups.STUNTED_BIRCH, Groups.BIRCH_SHRUB);
-        register(context, JUNGLE_SAPLING, Groups.MEGA_JUNGLE, Groups.JUNGLE, Groups.STUNTED_MEGA_JUNGLE, Groups.STUNTED_JUNGLE, Groups.JUNGLE_SHRUB);
-        register(context, ACACIA_SAPLING, Groups.ACACIA, Groups.STUNTED_ACACIA, Groups.ACACIA_SHRUB);
-        register(context, DARK_OAK_SAPLING, Groups.DARK_OAK, Groups.STUNTED_DARK_OAK, Groups.DARK_OAK_SHRUB);
-        register(context, AZALEA, Groups.AZALEA, Groups.STUNTED_AZALEA, Groups.AZALEA_SHRUB);
-        register(context, FLOWERING_AZALEA, Groups.AZALEA, Groups.STUNTED_AZALEA, Groups.AZALEA_SHRUB);
-        register(context, MANGROVE_PROPAGULE, Groups.TALL_MANGROVE, Groups.MANGROVE, Groups.STUNTED_TALL_MANGROVE, Groups.STUNTED_MANGROVE, Groups.MANGROVE_SHRUB);
-        register(context, CHERRY_SAPLING, Groups.CHERRY, Groups.STUNTED_CHERRY, Groups.CHERRY_SHRUB);
+        register(context, OAK_SAPLING, Groups.SWAMP_OAK, Groups.FANCY_OAK, Groups.OAK, Groups.DWARF_SWAMP_OAK, Groups.DWARF_FANCY_OAK, Groups.DWARF_OAK, Groups.SHRUB_OAK);
+        register(context, SPRUCE_SAPLING, Groups.MEGA_PINE_SPRUCE, Groups.MEGA_SPRUCE, Groups.PINE_SPRUCE, Groups.SPRUCE, Groups.DWARF_MEGA_PINE_SPRUCE, Groups.DWARF_MEGA_SPRUCE, Groups.DWARF_PINE_SPRUCE, Groups.DWARF_SPRUCE, Groups.SHRUB_SPRUCE);
+        register(context, BIRCH_SAPLING, Groups.TALL_BIRCH, Groups.BIRCH, Groups.DWARF_TALL_BIRCH, Groups.DWARF_BIRCH, Groups.SHRUB_BIRCH);
+        register(context, JUNGLE_SAPLING, Groups.MEGA_JUNGLE, Groups.JUNGLE, Groups.DWARF_MEGA_JUNGLE, Groups.DWARF_JUNGLE, Groups.SHRUB_JUNGLE);
+        register(context, ACACIA_SAPLING, Groups.ACACIA, Groups.DWARF_ACACIA, Groups.SHRUB_ACACIA);
+        register(context, DARK_OAK_SAPLING, Groups.DARK_OAK, Groups.DWARF_DARK_OAK, Groups.SHRUB_DARK_OAK);
+        register(context, AZALEA, Groups.AZALEA, Groups.DWARF_AZALEA, Groups.SHRUB_AZALEA);
+        register(context, FLOWERING_AZALEA, Groups.AZALEA, Groups.DWARF_AZALEA, Groups.SHRUB_AZALEA);
+        register(context, MANGROVE_PROPAGULE, Groups.TALL_MANGROVE, Groups.MANGROVE, Groups.DWARF_TALL_MANGROVE, Groups.DWARF_MANGROVE, Groups.SHRUB_MANGROVE);
+        register(context, CHERRY_SAPLING, Groups.CHERRY, Groups.DWARF_CHERRY, Groups.SHRUB_CHERRY);
     }
 
 }

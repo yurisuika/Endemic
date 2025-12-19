@@ -23,12 +23,12 @@ public class Saplings {
     }
 
     public static void bootstrap() {
-        register(OAK_SAPLING, Groups.SWAMP_OAK, Groups.FANCY_OAK, Groups.OAK, Groups.STUNTED_SWAMP_OAK, Groups.STUNTED_FANCY_OAK, Groups.STUNTED_OAK, Groups.OAK_SHRUB);
-        register(SPRUCE_SAPLING, Groups.MEGA_PINE, Groups.MEGA_SPRUCE, Groups.PINE, Groups.SPRUCE, Groups.STUNTED_MEGA_PINE, Groups.STUNTED_MEGA_SPRUCE, Groups.STUNTED_PINE, Groups.STUNTED_SPRUCE, Groups.SPRUCE_SHRUB);
-        register(BIRCH_SAPLING, Groups.SUPER_BIRCH, Groups.BIRCH, Groups.STUNTED_SUPER_BIRCH, Groups.STUNTED_BIRCH, Groups.BIRCH_SHRUB);
-        register(JUNGLE_SAPLING, Groups.MEGA_JUNGLE, Groups.JUNGLE, Groups.STUNTED_MEGA_JUNGLE, Groups.STUNTED_JUNGLE, Groups.JUNGLE_SHRUB);
-        register(ACACIA_SAPLING, Groups.ACACIA, Groups.STUNTED_ACACIA, Groups.ACACIA_SHRUB);
-        register(DARK_OAK_SAPLING, Groups.DARK_OAK, Groups.STUNTED_DARK_OAK, Groups.DARK_OAK_SHRUB);
+        register(OAK_SAPLING, Groups.SWAMP_OAK, Groups.FANCY_OAK, Groups.OAK, Groups.DWARF_SWAMP_OAK, Groups.DWARF_FANCY_OAK, Groups.DWARF_OAK, Groups.SHRUB_OAK);
+        register(SPRUCE_SAPLING, Groups.MEGA_PINE_SPRUCE, Groups.MEGA_SPRUCE, Groups.PINE_SPRUCE, Groups.SPRUCE, Groups.DWARF_MEGA_PINE_SPRUCE, Groups.DWARF_MEGA_SPRUCE, Groups.DWARF_PINE_SPRUCE, Groups.DWARF_SPRUCE, Groups.SHRUB_SPRUCE);
+        register(BIRCH_SAPLING, Groups.TALL_BIRCH, Groups.BIRCH, Groups.DWARF_TALL_BIRCH, Groups.DWARF_BIRCH, Groups.SHRUB_BIRCH);
+        register(JUNGLE_SAPLING, Groups.MEGA_JUNGLE, Groups.JUNGLE, Groups.DWARF_MEGA_JUNGLE, Groups.DWARF_JUNGLE, Groups.SHRUB_JUNGLE);
+        register(ACACIA_SAPLING, Groups.ACACIA, Groups.DWARF_ACACIA, Groups.SHRUB_ACACIA);
+        register(DARK_OAK_SAPLING, Groups.DARK_OAK, Groups.DWARF_DARK_OAK, Groups.SHRUB_DARK_OAK);
     }
 
 }

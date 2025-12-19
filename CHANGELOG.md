@@ -1,3 +1,3 @@
-- Added API for registering default sapling configurations.
-- Added sapling config system for replacing vanilla tree grower behavior with conditional weighted feature sets.
-- Added "stunted tree" and "shrub" features for all vanilla trees.
+- Complete rewrite from the ground up!
+- Changed vanilla tree growers to use data-driven "sapling" configurations under the `endemic:sapling` resource key that can conditionally select tree features from a weighted tree grower if data is found for the block.
+- Added a comprehensive set of configured features for all vanilla trees.
