@@ -1,5 +1,5 @@
 plugins {
-    id("dev.architectury.loom-no-remap") version "1.14-SNAPSHOT"
+    id("dev.architectury.loom") version "1.13-SNAPSHOT"
     id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
@@ -7,11 +7,18 @@ base {
     archivesName = "${property("mod.id")}"
 }
 
-repositories {}
+repositories {
+    maven("https://maven.parchmentmc.org/")
+    maven("https://maven.neoforged.net/releases/")
+}
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft.version")}")
-    forge("net.minecraftforge:forge:${property("minecraft.version")}-${property("api.version")}")
+    mappings(loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${property("parchment.version")}@zip")
+    })
+    neoForge("net.neoforged:neoforge:${property("api.version")}")
 }
 
 sourceSets {
@@ -21,18 +28,14 @@ sourceSets {
 }
 
 loom {
-    forge {
-        mixinConfigs = listOf("${property("mod.id")}.mixins.json")
-    }
-
     mixin {
-        useLegacyMixinAp = false
+        useLegacyMixinAp = true
         defaultRefmapName = "${property("mod.id")}.refmap.json"
     }
 
     runs {
         register("datagen") {
-            data()
+            if (sc.eval(sc.current.version, ">=1.21.4")) serverData() else data()
             programArgs("--all")
             programArgs("--mod", "${property("mod.id")}")
             programArgs("--output", project.file("src/generated/resources").absolutePath)
@@ -55,7 +58,7 @@ java {
     targetCompatibility = requiredJava
     sourceCompatibility = requiredJava
 
-    version = "forge-${property("minecraft.version")}-${property("mod.version")}"
+    version = "neoforge-${property("minecraft.version")}-${property("mod.version")}"
     group = "${property("mod.group")}"
 }
 
@@ -79,7 +82,7 @@ tasks {
         )
         inputs.properties(props)
 
-        filesMatching(listOf("META-INF/mods.toml")) {
+        filesMatching(listOf("META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
             expand(props)
         }
     }
@@ -95,8 +98,8 @@ tasks {
     }
 }
 
-val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("jar").get().archiveFile
-val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").get().archiveFile
+val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get().archiveFile
+val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapSourcesJar").get().archiveFile
 
 val TaskContainer.buildAndCollect by tasks.registering(Copy::class) {
     group = "build"
@@ -109,11 +112,11 @@ publishMods {
     dryRun = true
 
     file = exportJar
-    displayName = "${property("mod.name")} ${property("mod.version")} (Forge ${property("minecraft.version")})"
-    version = "Forge-${property("minecraft.version")}-${property("mod.version")}"
+    displayName = "${property("mod.name")} ${property("mod.version")} (NeoForge ${property("minecraft.version")})"
+    version = "NeoForge-${property("minecraft.version")}-${property("mod.version")}"
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
-    modLoaders.add("forge")
+    modLoaders.add("neoforge")
 
     modrinth {
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")

@@ -1,5 +1,5 @@
 plugins {
-    id("dev.architectury.loom-no-remap") version "1.14-SNAPSHOT"
+    id("net.fabricmc.fabric-loom-remap") version "1.15-SNAPSHOT"
     id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
@@ -7,37 +7,35 @@ base {
     archivesName = "${property("mod.id")}"
 }
 
-repositories {}
+repositories {
+    maven("https://maven.parchmentmc.org/")
+}
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft.version")}")
-    forge("net.minecraftforge:forge:${property("minecraft.version")}-${property("api.version")}")
+    mappings(loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${property("parchment.version")}@zip")
+    })
+    modImplementation("net.fabricmc:fabric-loader:${property("loader.version")}")
+
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("api.version")}")
 }
 
-sourceSets {
-    main {
-        resources.srcDir(project.file("src/generated/resources"))
+fabricApi {
+    configureDataGeneration() {
+        client = true
+        outputDirectory = project.file("src/generated/resources")
     }
 }
 
 loom {
-    forge {
-        mixinConfigs = listOf("${property("mod.id")}.mixins.json")
-    }
+    fabricModJsonPath = project.file("src/main/resources/fabric.mod.json")
+    accessWidenerPath = project.file("src/main/resources/${property("mod.id")}.accesswidener")
 
     mixin {
-        useLegacyMixinAp = false
+        useLegacyMixinAp = true
         defaultRefmapName = "${property("mod.id")}.refmap.json"
-    }
-
-    runs {
-        register("datagen") {
-            data()
-            programArgs("--all")
-            programArgs("--mod", "${property("mod.id")}")
-            programArgs("--output", project.file("src/generated/resources").absolutePath)
-            programArgs("--existing", project.file("src/main/resources").absolutePath)
-        }
     }
 }
 
@@ -55,7 +53,7 @@ java {
     targetCompatibility = requiredJava
     sourceCompatibility = requiredJava
 
-    version = "forge-${property("minecraft.version")}-${property("mod.version")}"
+    version = "fabric-${property("minecraft.version")}-${property("mod.version")}"
     group = "${property("mod.group")}"
 }
 
@@ -79,7 +77,7 @@ tasks {
         )
         inputs.properties(props)
 
-        filesMatching(listOf("META-INF/mods.toml")) {
+        filesMatching("fabric.mod.json") {
             expand(props)
         }
     }
@@ -95,8 +93,8 @@ tasks {
     }
 }
 
-val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("jar").get().archiveFile
-val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").get().archiveFile
+val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get().archiveFile
+val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapSourcesJar").get().archiveFile
 
 val TaskContainer.buildAndCollect by tasks.registering(Copy::class) {
     group = "build"
@@ -109,17 +107,21 @@ publishMods {
     dryRun = true
 
     file = exportJar
-    displayName = "${property("mod.name")} ${property("mod.version")} (Forge ${property("minecraft.version")})"
-    version = "Forge-${property("minecraft.version")}-${property("mod.version")}"
+    displayName = "${property("mod.name")} ${property("mod.version")} (Fabric ${property("minecraft.version")})"
+    version = "Fabric-${property("minecraft.version")}-${property("mod.version")}"
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
-    modLoaders.add("forge")
+    modLoaders.add("fabric")
 
     modrinth {
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         projectId = "${property("publish.modrinth.id")}"
 
         minecraftVersions.addAll(property("publish.version_range").toString().split(' '))
+
+        requires {
+            slug = "fabric-api"
+        }
 
         announcementTitle = "Download from Modrinth"
     }
@@ -132,6 +134,10 @@ publishMods {
         serverRequired = false
         javaVersions.add(requiredJava)
         minecraftVersions.addAll(property("publish.version_range").toString().split(' '))
+
+        requires {
+            slug = "fabric-api"
+        }
 
         projectSlug = "${property("mod.id")}"
         announcementTitle = "Download from CurseForge"

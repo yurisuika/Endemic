@@ -1,5 +1,5 @@
 plugins {
-    id("dev.architectury.loom-no-remap") version "1.14-SNAPSHOT"
+    id("dev.architectury.loom") version "1.13-SNAPSHOT"
     id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
@@ -7,10 +7,16 @@ base {
     archivesName = "${property("mod.id")}"
 }
 
-repositories {}
+repositories {
+    maven("https://maven.parchmentmc.org/")
+}
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft.version")}")
+    mappings(loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${property("parchment.version")}@zip")
+    })
     forge("net.minecraftforge:forge:${property("minecraft.version")}-${property("api.version")}")
 }
 
@@ -26,7 +32,7 @@ loom {
     }
 
     mixin {
-        useLegacyMixinAp = false
+        useLegacyMixinAp = true
         defaultRefmapName = "${property("mod.id")}.refmap.json"
     }
 
@@ -95,8 +101,8 @@ tasks {
     }
 }
 
-val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("jar").get().archiveFile
-val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").get().archiveFile
+val exportJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get().archiveFile
+val exportSourcesJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapSourcesJar").get().archiveFile
 
 val TaskContainer.buildAndCollect by tasks.registering(Copy::class) {
     group = "build"
