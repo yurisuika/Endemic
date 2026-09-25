@@ -5,7 +5,6 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod(Endemic.MOD_ID)
 public class EndemicData {
 
     @Mod.EventBusSubscriber(modid = Endemic.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

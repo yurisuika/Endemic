@@ -30,7 +30,7 @@
     "endemic.mixins.json"
   ],
 
-  "accessWidener": "endemic.accesswidener",
+  "accessWidener": "endemic.classtweaker",
 
   "depends": {
     "fabricloader": "${loader_version_range}",
